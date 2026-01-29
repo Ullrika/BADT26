@@ -2,10 +2,67 @@
 title: "BADT26"
 ---
 
-This is a Quarto website.
+# First meeting 2-3 Feb
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+**Day 1 Monday, 2 Feb 2026 (12-16)**
 
-```{r}
-1 + 1
-```
+Lundmarkssalen Astronomihuset
+
+12.15 Course introduction
+
+12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability
+
+Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
+
+Exercise 1: Probability 
+
+13.00 Break
+
+13.15 Lecture about conjugate models
+
+Readings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)
+
+14.00 Break
+
+14.15 Exercise 2: Conjugate models
+
+15.00 Break
+
+15.15 Lecture on Bayesian analysis using MCMC
+
+Exercise 3. Write your own MCMC sampler 
+
+**Day 2 Tuesday, 3 Feb 09.00 - 14.00**
+
+Pufendorf Institute for Advanced Studies
+
+09.15 Bayesian analysis using MCMC
+
+Reading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)
+
+Exercise 3. Write your own MCMC sampler
+
+10.00 Short lecture Introduction to software for MCMC sampling (Zheng)
+
+Exercise 4. Get starteed with a software for MCMC sampling
+
+10.30 Lecture Predictive performance in Bayesian inference
+
+11.00 Break
+
+11.15 Lecture Generalised Linear Regression models with exercises
+
+Reading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)
+
+Exercise 5. Specifying models through graphs
+
+12-13 Lunch
+
+13.15 Exercise 6. Specify and run GLMs in MCMC samplers. 
+
+14.15 Lecture on Decision theory
+Reading: 1* and 2*
+
+# Second meeting 24-25 Feb
+
+Material for second meeting to come
