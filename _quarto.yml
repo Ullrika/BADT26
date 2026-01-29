@@ -14,6 +14,10 @@ website:
         text: Bayesian inference subjective probability
       - href: pages/exercise_1.qmd
         text: Exercise 1
+      - href: pages/MCMC.qmd
+        text: Markov chain monte carlo
+      - href: pages/pp.qmd
+        text: Predictive performance
 
 format:
   html:

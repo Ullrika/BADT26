@@ -1,0 +1,215 @@
+---
+title: "VRSF20"
+author: "Zheng Zhou"
+format: html
+---
+
+## Schedule 04/10
+
+* Lecture (1-3pm)
+  * First half: Markov chain Monte Carlo
+  * Second half: Predictive performance
+
+* Lab (3-5pm, at a different room!)
+  * Project
+
+## Beta-binomial conjugation
+
+Binomial likelihood:
+$$
+Y|\theta \sim \text{Binomial}(n, \theta)
+$$
+
+The prior on $\theta$ is a beta distribution:
+
+$$
+\theta \sim \text{Beta}(\alpha, \beta)
+$$
+
+Conjugation means that, applying Bayes rule,
+the posterior distribution of $\theta$ is also a beta distribution:
+
+$$
+\theta|Y \sim \text{Beta}(\alpha + y, \beta + n - y)
+$$
+
+## Posterior computation
+
+1. Analytical solution: often impossible
+2. Grid approximation: possible but efficiency drops exponentialy with dimension
+3. LaPlace approximation: assumption of multivariate normality not always applicable
+4. Markov Chain Monte Carlo (MCMC): feasible, efficient
+
+## What is MCMC
+
+* Markov chain
+  * Markov process: $f(t+1)=g(f(t),noise)$
+  * Chain
+  
+* Monte Carlo: random sampling could approximate analytical solution with sufficient steps
+
+In essence: MCMC is a method to use **Markov chain with random sampling** to sample from the posterior distribution
+
+## Example: Island hopping
+
+| Example | Statistical term |
+| ------ | ------ |
+| Island | Parameter value|
+| Population | Posterior probability |
+| Jump proposal | Likelihood |
+
+_Markov chain_: previous visits do not matter, just where the king is now.
+
+_Monte Carlo_: random proposal by flipping a coin
+
+## Metropolis algorithm
+
+A simple and more efficient version of MCMC to replace "coin flip"
+
+![](./Metropolis_paper.bmp)
+
+---
+
+Evaluation of proposal by the ratio of probability of proposed jump over staying at current:
+
+$$
+r_{jump} = \frac{P(\theta_{proposal})}{P(\theta_{current})}\\
+=\frac{P(Y|\theta_{proposal})P(\theta_{proposal})}{P(Y|\theta_{current})P(\theta_{current})}
+$$
+
+Take a random value $p_{jump} ~ Uniform(0,1)$,
+
+If $0<p_{jump}<r_{jump}$, them jump;
+
+If $r_{jump}<p_{jump}<1$, then stay.
+
+## Code implementation of island hopping
+
+```{r, islands}
+#| warning: false
+#| message: false
+#| echo: false
+library(tidyverse)
+
+num_island = 9
+
+island_size = tibble(
+  island = 1:num_island,
+  Size = 1:num_island
+)
+p0 = ggplot(island_size,aes(x=island,y=Size))+
+  geom_col()+
+  theme_classic()+
+  scale_y_continuous(limits = c(0,(num_island+1)))+
+  scale_x_continuous(breaks=1:num_island)+
+  labs(title = "Island size",
+       x = "Island number",
+       y = "Size")
+p0
+```
+
+---
+
+```{r islands_function,echo=T,include=T}
+# Function to implement the Metropolis algorithm
+target_distribution <- sapply(1:num_island,function(x){
+    prob = x/sum(1:num_island)
+  })
+
+metropolis_island_hopping <- function(num_iterations, starting_island = 5,true_prob = target_distribution) {
+  # Number of islands
+  num_islands <- num_island
+  
+  # Define transition probabilities (in this case, uniform)
+  # This means proposals are equally likely to jump to adjacent islands
+  
+  # Initialize chain
+  chain <- numeric(num_iterations)
+  chain[1] <- starting_island
+  
+  # Define stationary distribution (target)
+  # In this example, we'll use a uniform distribution
+  target_distribution <- true_prob
+  
+  # Run Metropolis algorithm
+  for (i in 2:num_iterations) {
+    current <- chain[i-1]
+    
+    # Propose a move: randomly jump to an adjacent island or stay
+    # For simplicity, adjacency is defined as +/- 1 
+    jump <- sample(c(-1, 0, 1), 1)
+    proposed <- current + jump
+    
+    # Check boundaries and wrap around (circular islands)
+    if (proposed < 1) {
+      proposed <- num_islands + proposed
+    } else if (proposed > num_islands) {
+      proposed <- proposed - num_islands
+    }
+    
+    # Calculate acceptance probability
+    acceptance_ratio <- target_distribution[proposed] / target_distribution[current]
+    acceptance_prob <- min(1, acceptance_ratio)
+    
+    # Accept or reject the proposal
+    if (runif(1) < acceptance_prob) {
+      chain[i] <- proposed  # Accept move
+    } else {
+      chain[i] <- current   # Reject move, stay at current island
+    }
+  }
+  
+  return(chain)
+}
+
+
+
+```
+
+---
+
+```{r island_run,include=T,echo=T}
+n_iter = 1000
+chain = metropolis_island_hopping(num_iterations = n_iter)
+
+hopping_freq = table(chain) / n_iter
+hopping_prob = numeric(num_island)
+for (i in 1:num_island) {
+  hopping_prob[i] <- sum(chain == i) / n_iter
+}
+hopping_results = tibble(
+  islands = 1:num_island,
+  freq = hopping_prob
+)
+hopping_results
+```
+
+## Plot Metropolis results on island hopping
+
+```{r metropolis_plot,include=T,echo=T}
+trace_data <- data.frame(
+  Iteration = 1:n_iter,
+  Island = chain[1:n_iter]
+)
+p2 <- ggplot(trace_data, aes(x = Iteration, y = Island)) +
+  geom_line() +
+  geom_point(size = 1) +
+  labs(title = "Trace Plot",
+       x = "Iteration",
+       y = "Island Number") +
+  scale_y_continuous(breaks = 1:num_island) +
+  theme_minimal()
+p2
+```
+
+## MCMC diagnostics
+
+* Trace plot: displays chain stability in random sampling, 
+  * Rhat/ Gelman-Rubins statistics: convergence of multiple chains
+* Effective sample size: measures chain accuracy- how many independent sampling steps for the chain to approximate the posterior
+* Autocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart is bad.
+
+Read the Bayes rule book chapter 6.3 for technical details.
+
+
+
