@@ -44,7 +44,7 @@ Exercise 3. Write your own MCMC sampler
 
 10.00 Short lecture Introduction to software for MCMC sampling (Zheng)
 
-Exercise 4. Get starteed with a software for MCMC sampling
+Exercise 4. Get started with a software for MCMC sampling
 
 10.30 Lecture Predictive performance in Bayesian inference
 

@@ -1,10 +1,45 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "BADT26",
-    "section": "",
-    "text": "First meeting 2-3 Feb\nDay 1 Monday, 2 Feb 2026 (12-16) Lundmarkssalen Astronomihuset\n12.15 Course introduction\n12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability\nReading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nExercise 1: Probability\n13.00 Break\n13.15 Lecture about conjugate models\nReadings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)\n14.00 Break\n14.15 Exercise 2: Conjugate models\n15.00 Break\n15.15 Lecture on Bayesian analysis using MCMC\nExercise 3. Write your own MCMC sampler\nDay 2 Tuesday, 3 Feb 09.00 - 14.00  Pufendorf Institute for Advanced Studies\n09.15 Bayesian analysis using MCMC Reading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)\nExercise 3. Write your own MCMC sampler\n10.00 Short lecture Introduction to software for MCMC sampling (Zheng)\nExercise 4. Get starteed with a software for MCMC sampling\n10.30 Lecture Predictive performance in Bayesian inference\n11.00 Break\n11.15 Lecture Generalised Linear Regression models with exercises\nReading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)\nExercise 5. Specifying models through graphs\n12-13 Lunch\n13.15 Exercise 6. Specify and run GLMs in MCMC samplers.\n14.15 Lecture on Decision theory Reading: 1* and 2*\n\n\nSecond meeting 24-25 Feb\nMaterial for second meeting to come"
+    "objectID": "pages/course_intro.html#goals",
+    "href": "pages/course_intro.html#goals",
+    "title": "Course introduction",
+    "section": "Goals",
+    "text": "Goals"
+  },
+  {
+    "objectID": "pages/course_intro.html#examination",
+    "href": "pages/course_intro.html#examination",
+    "title": "Course introduction",
+    "section": "Examination",
+    "text": "Examination"
+  },
+  {
+    "objectID": "pages/course_intro.html#material-and-content",
+    "href": "pages/course_intro.html#material-and-content",
+    "title": "Course introduction",
+    "section": "Material and content",
+    "text": "Material and content"
+  },
+  {
+    "objectID": "pages/course_intro.html#literature-seminar",
+    "href": "pages/course_intro.html#literature-seminar",
+    "title": "Course introduction",
+    "section": "Literature seminar",
+    "text": "Literature seminar"
+  },
+  {
+    "objectID": "pages/course_intro.html#individual-project",
+    "href": "pages/course_intro.html#individual-project",
+    "title": "Course introduction",
+    "section": "Individual project",
+    "text": "Individual project"
+  },
+  {
+    "objectID": "pages/course_intro.html#practical-things",
+    "href": "pages/course_intro.html#practical-things",
+    "title": "Course introduction",
+    "section": "Practical things",
+    "text": "Practical things"
   },
   {
     "objectID": "about.html",
@@ -12,5 +47,12 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BADT26",
+    "section": "",
+    "text": "First meeting 2-3 Feb\nDay 1 Monday, 2 Feb 2026 (12-16)\nLundmarkssalen Astronomihuset\n12.15 Course introduction\n12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability\nReading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nExercise 1: Probability\n13.00 Break\n13.15 Lecture about conjugate models\nReadings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)\n14.00 Break\n14.15 Exercise 2: Conjugate models\n15.00 Break\n15.15 Lecture on Bayesian analysis using MCMC\nExercise 3. Write your own MCMC sampler\nDay 2 Tuesday, 3 Feb 09.00 - 14.00\nPufendorf Institute for Advanced Studies\n09.15 Bayesian analysis using MCMC\nReading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)\nExercise 3. Write your own MCMC sampler\n10.00 Short lecture Introduction to software for MCMC sampling (Zheng)\nExercise 4. Get started with a software for MCMC sampling\n10.30 Lecture Predictive performance in Bayesian inference\n11.00 Break\n11.15 Lecture Generalised Linear Regression models with exercises\nReading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)\nExercise 5. Specifying models through graphs\n12-13 Lunch\n13.15 Exercise 6. Specify and run GLMs in MCMC samplers.\n14.15 Lecture on Decision theory Reading: 1* and 2*\n\n\nSecond meeting 24-25 Feb\nMaterial for second meeting to come"
   }
 ]

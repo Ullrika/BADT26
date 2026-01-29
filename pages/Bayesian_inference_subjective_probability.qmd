@@ -1,0 +1,12 @@
+---
+title: "Bayesian inference and subjective probability"
+subtitle: "BADT"
+author: "Sahlin"
+---
+
+## Content
+
+Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
+
+Content: Probability, statistical inference, likelihood, priors, Bayes rule, posterior
+

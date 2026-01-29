@@ -1,5 +1,6 @@
 ---
 title: "Course introduction"
+subtitle: "BADT"
 author: "Sahlin"
 ---
 
