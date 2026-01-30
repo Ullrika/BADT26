@@ -16,7 +16,7 @@ website:
         text: Exercise 1
       - href: pages/MCMC.qmd
         text: Markov chain monte carlo
-      - href: pages/pp.qmd
+      - href: pages/PP.qmd
         text: Predictive performance
 
 format:

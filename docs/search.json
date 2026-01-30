@@ -1,75 +1,5 @@
 [
   {
-    "objectID": "pages/course_intro.html#goals",
-    "href": "pages/course_intro.html#goals",
-    "title": "Course introduction",
-    "section": "Goals",
-    "text": "Goals"
-  },
-  {
-    "objectID": "pages/course_intro.html#examination",
-    "href": "pages/course_intro.html#examination",
-    "title": "Course introduction",
-    "section": "Examination",
-    "text": "Examination"
-  },
-  {
-    "objectID": "pages/course_intro.html#material-and-content",
-    "href": "pages/course_intro.html#material-and-content",
-    "title": "Course introduction",
-    "section": "Material and content",
-    "text": "Material and content"
-  },
-  {
-    "objectID": "pages/course_intro.html#literature-seminar",
-    "href": "pages/course_intro.html#literature-seminar",
-    "title": "Course introduction",
-    "section": "Literature seminar",
-    "text": "Literature seminar"
-  },
-  {
-    "objectID": "pages/course_intro.html#individual-project",
-    "href": "pages/course_intro.html#individual-project",
-    "title": "Course introduction",
-    "section": "Individual project",
-    "text": "Individual project"
-  },
-  {
-    "objectID": "pages/course_intro.html#practical-things",
-    "href": "pages/course_intro.html#practical-things",
-    "title": "Course introduction",
-    "section": "Practical things",
-    "text": "Practical things"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "BADT26",
-    "section": "",
-    "text": "First meeting 2-3 Feb\nDay 1 Monday, 2 Feb 2026 (12-16)\nLundmarkssalen Astronomihuset\n12.15 Course introduction\n12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability\nReading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nExercise 1: Probability\n13.00 Break\n13.15 Lecture about conjugate models\nReadings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)\n14.00 Break\n14.15 Exercise 2: Conjugate models\n15.00 Break\n15.15 Lecture on Bayesian analysis using MCMC\nExercise 3. Write your own MCMC sampler\nDay 2 Tuesday, 3 Feb 09.00 - 14.00\nPufendorf Institute for Advanced Studies\n09.15 Bayesian analysis using MCMC\nReading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)\nExercise 3. Write your own MCMC sampler\n10.00 Short lecture Introduction to software for MCMC sampling (Zheng)\nExercise 4. Get started with a software for MCMC sampling\n10.30 Lecture Predictive performance in Bayesian inference\n11.00 Break\n11.15 Lecture Generalised Linear Regression models with exercises\nReading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)\nExercise 5. Specifying models through graphs\n12-13 Lunch\n13.15 Exercise 6. Specify and run GLMs in MCMC samplers.\n14.15 Lecture on Decision theory Reading: 1* and 2*\n\n\nSecond meeting 24-25 Feb\nMaterial for second meeting to come"
-  },
-  {
-    "objectID": "pages/exercise_1.html",
-    "href": "pages/exercise_1.html",
-    "title": "Probability",
-    "section": "",
-    "text": "There are different interpretations and uses of probability.\nProbability as a mathematical measure is agnostic to the interpretation, i.e. the laws of probability are the same."
-  },
-  {
-    "objectID": "pages/exercise_1.html#frequency",
-    "href": "pages/exercise_1.html#frequency",
-    "title": "Probability",
-    "section": "Frequency",
-    "text": "Frequency\nThe experiment is setup as follows:\n\nAssign one student to flip the symmetric coin of the type Antoninus Pius - Bronze Sestertius - Roman Empire using the virtual coin flipper on random.org\nRecord if the outcome is heads or tails.\nAssign another student to throw a six sided dice using the virtual dice roller on random.org\nRecord if the outcome is a number in the range 1 to 5 or a six\nRepeat N=5 times\n\nAssign one student to record the outcomes in this frequency tree (replace N and # with numbers).\n\n\n\n\n|heads|B(“#”) –&gt; |tails|C(“#”) –&gt; |1 to 5|D(“#”) –&gt; |six|E(“#”) –&gt; |1 to 5|F(“#”) –&gt; |six|G(“#”) –&gt; \nAnswer the following questions:\n\nWhat is the observed frequency of the event “heads followed by a six”?\n\n\nExpected frequency\n\nIs this a reliable estimate of the expected frequency? If not, what can one do to make it more reliable?\nWhat do you expect the frequency to be if N would be a very large number?\n\n\n\n\n\n\n\nTip\n\n\n\nDefine the events A = “heads” and B = “six”.\nSpecify P(A) and P(B).\nCalculate P(A and B) using the multiplication rule for two independent events.\nDon’t forget to multiply by N to get the expected frequency.\n\n\nRepeat the experiment with N = 100 to verify if estimates of the expected frequencies become more reliable with a larger number of observations.\n\n\nChance\nNow let us go back to the step where you specified the probabilities P(A) and P(B). How did you do that? One way to do it is to look at the outcome space, find the outcomes that correspond to the event and divide by the total number of outcomes.\nFor the coin the outcome space is “heads” and “tails”, i.e. n = 2. The event of a getting “heads” can occur in one of the outcomes, i.e. m = 1. Under the assumption that all outcomes are equally likely, the theoretical probability for “heads” is \\(\\frac{m}{n} = \\frac{1}{2}\\).\nFor the dice, the outcome space is 1, 2, 3, 4, 5, and 6, i.e. n = 6. The event of getting a “six” can occur in one way, i.e. m = 1. The theoretical probability for the event “six” is therefore \\(\\frac{1}{6}\\).\n\n\n\n\n\n\nNote\n\n\n\nNotice that theoretical probabilities can only be used in balanced situations such as dice, cards, or lottery tickets where it justified to assume symmetry (equal probability) for all possible outcomes.\n\n\n\n\nRelative frequency\nIf we divide the frequency of an event by the number of trials N, we get the relative frequency which is a good estimate of a probability for the event to occur at the next iteration of the same experiment.\nLet \\(m\\) be the number of times the event has occurred. \\(E(\\frac{m}{N})=\\frac{E(m)}{N}=\\frac{N\\cdot P(event)}{N} = P(event)\\)\nRelative frequencies can be used to estimate the probability for an event as long as the observations are equally likely across the full outcome space.\n\n\n\n\n\n\nMake sure N is large\n\n\n\nThe more observations (i.e. larger N) the better estimate.\nThe more extreme event, i.e. very low or high probability of occurring, the more observations are needed.\nBe very skeptical to estimates of probabilities that are either 0 and 1, when the event is possible to occur.\n\n\n\n\nBelief (Personal probability)\nTake one of the thumbtacks provided in the exercise and a cup. Put the thumbtack in the cup, shake and place the cup upside down on a table without revealing the outcome.\n\nWhat outcomes are possible?\n\nFocus on the outcome that the thumbtack is having its head down with the needle pointing upwards.\n\nLet everyone in the group state their personal probability of this event as a number between 0 and 1, where 0 means that it is impossible to occur and 1 means that it is certain to occur.\n\n\n\n\n\n\n\nCromwell’s rule\n\n\n\nProbabilities 1 (“the event will definitely occur”) or 0 (“the event will definitely not occur”) should be avoided, except when applied to statements that are logically true or false.\n\n\n\nDiscuss if and why the probabilities differ.\n\nThis is an example of probability as a subjective probability that is purely a personal judgement based on available evidence and assumptions.\nMore evidence ought to result in smaller divergence in judgements. One way to illustrate this is to lift the cup and let everyone revise their judgement.\n\nDo that!\n\nGiven that the evidence is revealing the outcome, the subjective probabilities held by the students in the group should now be either 1 or 0.\nIn risk assessment, we seldom have such full certainty as in this example. Probabilities are almost inevitably based on judgements and assumptions such as random sampling.\n\n\n\n\n\n\nA general advice\n\n\n\nProbability can be thought of as an expected frequency. Instead of saying that “the probability of the event is 0.20 (or 20%)”, you can say “out of 100 situations like this, we would expect the event to occur 20 times”.\nBy carefully stating the denominator (reference class), ambiguity about the meaning of probability can be avoided.\nThis advice applies to any of the interpretations."
-  },
-  {
     "objectID": "pages/PP.html",
     "href": "pages/PP.html",
     "title": "Predictive Performance",
@@ -147,6 +77,13 @@
     "text": "Out-of-sample evaluation\nCross-validation\n\n\n\nK-fold cross validation\n\n\nTrue remedy to out-of-sample prediction problem is to improve the representativeness of sampling protocol. - Not necessarily related to sample size - Be aware of bias in sampling protocol and reduce the bias"
   },
   {
+    "objectID": "pages/exercise_1.html",
+    "href": "pages/exercise_1.html",
+    "title": "Probability",
+    "section": "",
+    "text": "Background\nThere are different interpretations and uses of probability.\nProbability as a mathematical measure is agnostic to the interpretation, i.e. the laws of probability are the same.\n\n\nPurpose\n\nTo understand common interpretations of probability and for what they are used\n\n\n\nContent\n\nExperiment to illustrate the frequency interpretation of probability\nTheoretical probability vs Expected frequency\nSubjective probability\n\n\n\nReferences\nI have used examples and text from the book Teaching probability by Jenny Gage and David Spiegelhalter from 2016, Cambridge University Press.\n\n\nFrequency\nThe experiment is setup as follows:\n\nAssign one student to flip the symmetric coin. You can flip the Antoninus Pius - Bronze Sestertius - Roman Empire using the virtual coin flipper on random.org\nRecord if the outcome is heads or tails.\nAssign another student to throw a six sided dice using the virtual dice roller on random.org\nRecord if the outcome is a number in the range 1 to 5 or a six\nRepeat \\(N=5\\) times\n\nRecord the outcomes in a table\nAnswer the following question:\n\nWhat is the observed frequency of the event “heads followed by a six”?\n\n\n\nExpected frequency\nDiscuss:\n\nIs this a reliable estimate of the expected frequency? If not, what can one do to make it more reliable?\nWhat do you expect the frequency to be if \\(N\\) would be a very large number?\n\n\n\n\n\n\n\nTip\n\n\n\nDefine the events A = “heads” and B = “six”.\nSpecify P(A) and P(B).\nCalculate P(A and B) using the multiplication rule for two independent events.\nDon’t forget to multiply by \\(N\\) to get the expected frequency.\n\n\nRepeat the experiment with \\(N = 100\\) to see what happens when the number of observations grow.\n\n\nChance\nNow let us go back to the step where you specified the probabilities P(A) and P(B). How did you do that? One way to do it is to look at the outcome space, find the outcomes that correspond to the event and divide by the total number of outcomes.\nFor the coin the outcome space is “heads” and “tails”, i.e. n = 2. The event of a getting “heads” can occur in one of the outcomes, i.e. m = 1. Under the assumption that all outcomes are equally likely, the theoretical probability for “heads” is \\(\\frac{m}{n} = \\frac{1}{2}\\).\nFor the dice, the outcome space is 1, 2, 3, 4, 5, and 6, i.e. n = 6. The event of getting a “six” can occur in one way, i.e. m = 1. The theoretical probability for the event “six” is therefore \\(\\frac{1}{6}\\).\n\n\n\n\n\n\nNote\n\n\n\nNotice that theoretical probabilities can only be used in balanced situations such as dice, cards, or lottery tickets where it justified to assume symmetry (equal probability) for all possible outcomes.\n\n\n\n\nRelative frequency\nIf we divide the frequency of an event by the number of trials \\(N\\), we get the relative frequency which is a good estimate of a probability for the event to occur at the next iteration of the same experiment.\nLet \\(m\\) be the number of times the event has occurred. \\(E(\\frac{m}{N})=\\frac{E(m)}{N}=\\frac{N\\cdot P(event)}{N} = P(event)\\)\nRelative frequencies can be used to estimate the probability for an event as long as the observations are equally likely across the full outcome space.\n\n\n\n\n\n\nMake sure N is large\n\n\n\nThe more observations (i.e. larger N) the better estimate.\nThe more extreme event, i.e. very low or high probability of occurring, the more observations are needed.\nBe very skeptical to estimates of probabilities that are either 0 and 1, when the event is possible to occur.\n\n\n\n\nBelief (Personal probability)\nTake one of the thumbtacks provided in the exercise and a cup. Put the thumbtack in the cup, shake and place the cup upside down on a table without revealing the outcome.\n\nWhat outcomes are possible?\n\nFocus on the outcome that the thumbtack in the cup is having its head down with the needle pointing upwards.\n\nLet everyone in the group write down their personal probability of this event as a number between 0 and 1, where 0 means that it is impossible to occur and 1 means that it is certain to occur. Write down first without revealing it to the others, and then share!\n\n\n\n\n\n\n\nCromwell’s rule\n\n\n\nProbabilities 1 (“the event will definitely occur”) or 0 (“the event will definitely not occur”) should be avoided, except when applied to statements that are logically true or false.\n\n\n\nDiscuss if and why the personal probabilities differ in the group\n\nThis is an example of probability as a subjective probability that is purely a personal judgement based on available evidence and assumptions.\nMore evidence ought to result in smaller divergence in judgements. One way to illustrate this is to make some tosses of the thumbtack and let everyone revise their judgement.\n\nDo that!\n\nGiven that the evidence is revealing the outcome, the subjective probabilities held by the students in the group should now be either 1 or 0.\nIn reality, we seldom have such full certainty as in this example. Probabilities are almost inevitably based on judgements and assumptions e.g. about a data generating process.\n\n\n\n\n\n\nA general advice\n\n\n\nProbability can be thought of as an expected frequency. Instead of saying that “the probability of the event is 0.20 (or 20%)”, you can say “out of 100 situations like this, we would expect the event to occur 20 times”.\nBy carefully stating the denominator (reference class), ambiguity about the meaning of probability can be avoided.\nThis advice applies to any of the interpretations.\n\n\n\n\nBelief about a unique event\n\nHow certain are you that it will rain in Lundagård during Lundakarnevalen in May this year?\n\n\n\nBelief about a unique number\nDon’t google this before making your judgement!\n\nWhat is the number of tigers in India?"
+  },
+  {
     "objectID": "pages/Bayesian_inference_subjective_probability.html",
     "href": "pages/Bayesian_inference_subjective_probability.html",
     "title": "Bayesian inference and subjective probability",
@@ -159,6 +96,55 @@
     "title": "Bayesian inference and subjective probability",
     "section": "",
     "text": "Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nContent: Probability, statistical inference, likelihood, priors, Bayes rule, posterior"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BADT26",
+    "section": "",
+    "text": "First meeting 2-3 Feb\nDay 1 Monday, 2 Feb 2026 (12-16)\nLundmarkssalen Astronomihuset\n12.15 Course introduction\n12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability\nReading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nExercise 1: Probability\n13.00 Break\n13.15 Lecture about conjugate models\nReadings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)\n14.00 Break\n14.15 Exercise 2: Conjugate models\n15.00 Break\n15.15 Lecture on Bayesian analysis using MCMC\nExercise 3. Write your own MCMC sampler\nDay 2 Tuesday, 3 Feb 09.00 - 14.00\nPufendorf Institute for Advanced Studies\n09.15 Bayesian analysis using MCMC\nReading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)\nExercise 3. Write your own MCMC sampler\n10.00 Short lecture Introduction to software for MCMC sampling (Zheng)\nExercise 4. Get started with a software for MCMC sampling\n10.30 Lecture Predictive performance in Bayesian inference\n11.00 Break\n11.15 Lecture Generalised Linear Regression models with exercises\nReading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)\nExercise 5. Specifying models through graphs\n12-13 Lunch\n13.15 Exercise 6. Specify and run GLMs in MCMC samplers.\n14.15 Lecture on Decision theory Reading: 1* and 2*\n\n\nSecond meeting 24-25 Feb\nMaterial for second meeting to come"
+  },
+  {
+    "objectID": "pages/course_intro.html#goals",
+    "href": "pages/course_intro.html#goals",
+    "title": "Course introduction",
+    "section": "Goals",
+    "text": "Goals"
+  },
+  {
+    "objectID": "pages/course_intro.html#examination",
+    "href": "pages/course_intro.html#examination",
+    "title": "Course introduction",
+    "section": "Examination",
+    "text": "Examination"
+  },
+  {
+    "objectID": "pages/course_intro.html#material-and-content",
+    "href": "pages/course_intro.html#material-and-content",
+    "title": "Course introduction",
+    "section": "Material and content",
+    "text": "Material and content"
+  },
+  {
+    "objectID": "pages/course_intro.html#literature-seminar",
+    "href": "pages/course_intro.html#literature-seminar",
+    "title": "Course introduction",
+    "section": "Literature seminar",
+    "text": "Literature seminar"
+  },
+  {
+    "objectID": "pages/course_intro.html#individual-project",
+    "href": "pages/course_intro.html#individual-project",
+    "title": "Course introduction",
+    "section": "Individual project",
+    "text": "Individual project"
+  },
+  {
+    "objectID": "pages/course_intro.html#practical-things",
+    "href": "pages/course_intro.html#practical-things",
+    "title": "Course introduction",
+    "section": "Practical things",
+    "text": "Practical things"
   },
   {
     "objectID": "pages/MCMC.html",
@@ -214,7 +200,7 @@
     "href": "pages/MCMC.html#code-implementation-of-island-hopping",
     "title": "VRSF20",
     "section": "Code implementation of island hopping",
-    "text": "Code implementation of island hopping\n\n\n\n\n\n\n\n\n\n\n\n# Function to implement the Metropolis algorithm\ntarget_distribution &lt;- sapply(1:num_island,function(x){\n    prob = x/sum(1:num_island)\n  })\n\nmetropolis_island_hopping &lt;- function(num_iterations, starting_island = 5,true_prob = target_distribution) {\n  # Number of islands\n  num_islands &lt;- num_island\n  \n  # Define transition probabilities (in this case, uniform)\n  # This means proposals are equally likely to jump to adjacent islands\n  \n  # Initialize chain\n  chain &lt;- numeric(num_iterations)\n  chain[1] &lt;- starting_island\n  \n  # Define stationary distribution (target)\n  # In this example, we'll use a uniform distribution\n  target_distribution &lt;- true_prob\n  \n  # Run Metropolis algorithm\n  for (i in 2:num_iterations) {\n    current &lt;- chain[i-1]\n    \n    # Propose a move: randomly jump to an adjacent island or stay\n    # For simplicity, adjacency is defined as +/- 1 \n    jump &lt;- sample(c(-1, 0, 1), 1)\n    proposed &lt;- current + jump\n    \n    # Check boundaries and wrap around (circular islands)\n    if (proposed &lt; 1) {\n      proposed &lt;- num_islands + proposed\n    } else if (proposed &gt; num_islands) {\n      proposed &lt;- proposed - num_islands\n    }\n    \n    # Calculate acceptance probability\n    acceptance_ratio &lt;- target_distribution[proposed] / target_distribution[current]\n    acceptance_prob &lt;- min(1, acceptance_ratio)\n    \n    # Accept or reject the proposal\n    if (runif(1) &lt; acceptance_prob) {\n      chain[i] &lt;- proposed  # Accept move\n    } else {\n      chain[i] &lt;- current   # Reject move, stay at current island\n    }\n  }\n  \n  return(chain)\n}\n\n\n\nn_iter = 1000\nchain = metropolis_island_hopping(num_iterations = n_iter)\n\nhopping_freq = table(chain) / n_iter\nhopping_prob = numeric(num_island)\nfor (i in 1:num_island) {\n  hopping_prob[i] &lt;- sum(chain == i) / n_iter\n}\nhopping_results = tibble(\n  islands = 1:num_island,\n  freq = hopping_prob\n)\nhopping_results\n\n# A tibble: 9 × 2\n  islands  freq\n    &lt;int&gt; &lt;dbl&gt;\n1       1 0.015\n2       2 0.036\n3       3 0.044\n4       4 0.079\n5       5 0.113\n6       6 0.118\n7       7 0.167\n8       8 0.208\n9       9 0.22"
+    "text": "Code implementation of island hopping\n\n\n\n\n\n\n\n\n\n\n\n# Function to implement the Metropolis algorithm\ntarget_distribution &lt;- sapply(1:num_island,function(x){\n    prob = x/sum(1:num_island)\n  })\n\nmetropolis_island_hopping &lt;- function(num_iterations, starting_island = 5,true_prob = target_distribution) {\n  # Number of islands\n  num_islands &lt;- num_island\n  \n  # Define transition probabilities (in this case, uniform)\n  # This means proposals are equally likely to jump to adjacent islands\n  \n  # Initialize chain\n  chain &lt;- numeric(num_iterations)\n  chain[1] &lt;- starting_island\n  \n  # Define stationary distribution (target)\n  # In this example, we'll use a uniform distribution\n  target_distribution &lt;- true_prob\n  \n  # Run Metropolis algorithm\n  for (i in 2:num_iterations) {\n    current &lt;- chain[i-1]\n    \n    # Propose a move: randomly jump to an adjacent island or stay\n    # For simplicity, adjacency is defined as +/- 1 \n    jump &lt;- sample(c(-1, 0, 1), 1)\n    proposed &lt;- current + jump\n    \n    # Check boundaries and wrap around (circular islands)\n    if (proposed &lt; 1) {\n      proposed &lt;- num_islands + proposed\n    } else if (proposed &gt; num_islands) {\n      proposed &lt;- proposed - num_islands\n    }\n    \n    # Calculate acceptance probability\n    acceptance_ratio &lt;- target_distribution[proposed] / target_distribution[current]\n    acceptance_prob &lt;- min(1, acceptance_ratio)\n    \n    # Accept or reject the proposal\n    if (runif(1) &lt; acceptance_prob) {\n      chain[i] &lt;- proposed  # Accept move\n    } else {\n      chain[i] &lt;- current   # Reject move, stay at current island\n    }\n  }\n  \n  return(chain)\n}\n\n\n\nn_iter = 1000\nchain = metropolis_island_hopping(num_iterations = n_iter)\n\nhopping_freq = table(chain) / n_iter\nhopping_prob = numeric(num_island)\nfor (i in 1:num_island) {\n  hopping_prob[i] &lt;- sum(chain == i) / n_iter\n}\nhopping_results = tibble(\n  islands = 1:num_island,\n  freq = hopping_prob\n)\nhopping_results\n\n# A tibble: 9 × 2\n  islands  freq\n    &lt;int&gt; &lt;dbl&gt;\n1       1 0.011\n2       2 0.033\n3       3 0.078\n4       4 0.123\n5       5 0.152\n6       6 0.153\n7       7 0.145\n8       8 0.154\n9       9 0.151"
   },
   {
     "objectID": "pages/MCMC.html#plot-metropolis-results-on-island-hopping",
