@@ -14,7 +14,7 @@ Lundmarkssalen Astronomihuset
 
 Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
 
-Exercise 1: Probability 
+[Exercise 1: Probability](pages\exercise_1.qmd)
 
 13.00 Break
 
