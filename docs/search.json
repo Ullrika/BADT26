@@ -54,5 +54,180 @@
     "title": "BADT26",
     "section": "",
     "text": "First meeting 2-3 Feb\nDay 1 Monday, 2 Feb 2026 (12-16)\nLundmarkssalen Astronomihuset\n12.15 Course introduction\n12.25 Lecture with non-computer exercises: Bayesian inference and subjective probability\nReading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nExercise 1: Probability\n13.00 Break\n13.15 Lecture about conjugate models\nReadings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)\n14.00 Break\n14.15 Exercise 2: Conjugate models\n15.00 Break\n15.15 Lecture on Bayesian analysis using MCMC\nExercise 3. Write your own MCMC sampler\nDay 2 Tuesday, 3 Feb 09.00 - 14.00\nPufendorf Institute for Advanced Studies\n09.15 Bayesian analysis using MCMC\nReading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)\nExercise 3. Write your own MCMC sampler\n10.00 Short lecture Introduction to software for MCMC sampling (Zheng)\nExercise 4. Get started with a software for MCMC sampling\n10.30 Lecture Predictive performance in Bayesian inference\n11.00 Break\n11.15 Lecture Generalised Linear Regression models with exercises\nReading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)\nExercise 5. Specifying models through graphs\n12-13 Lunch\n13.15 Exercise 6. Specify and run GLMs in MCMC samplers.\n14.15 Lecture on Decision theory Reading: 1* and 2*\n\n\nSecond meeting 24-25 Feb\nMaterial for second meeting to come"
+  },
+  {
+    "objectID": "pages/exercise_1.html",
+    "href": "pages/exercise_1.html",
+    "title": "Probability",
+    "section": "",
+    "text": "There are different interpretations and uses of probability.\nProbability as a mathematical measure is agnostic to the interpretation, i.e. the laws of probability are the same."
+  },
+  {
+    "objectID": "pages/exercise_1.html#frequency",
+    "href": "pages/exercise_1.html#frequency",
+    "title": "Probability",
+    "section": "Frequency",
+    "text": "Frequency\nThe experiment is setup as follows:\n\nAssign one student to flip the symmetric coin of the type Antoninus Pius - Bronze Sestertius - Roman Empire using the virtual coin flipper on random.org\nRecord if the outcome is heads or tails.\nAssign another student to throw a six sided dice using the virtual dice roller on random.org\nRecord if the outcome is a number in the range 1 to 5 or a six\nRepeat N=5 times\n\nAssign one student to record the outcomes in this frequency tree (replace N and # with numbers).\n\n\n\n\n|heads|B(“#”) –&gt; |tails|C(“#”) –&gt; |1 to 5|D(“#”) –&gt; |six|E(“#”) –&gt; |1 to 5|F(“#”) –&gt; |six|G(“#”) –&gt; \nAnswer the following questions:\n\nWhat is the observed frequency of the event “heads followed by a six”?\n\n\nExpected frequency\n\nIs this a reliable estimate of the expected frequency? If not, what can one do to make it more reliable?\nWhat do you expect the frequency to be if N would be a very large number?\n\n\n\n\n\n\n\nTip\n\n\n\nDefine the events A = “heads” and B = “six”.\nSpecify P(A) and P(B).\nCalculate P(A and B) using the multiplication rule for two independent events.\nDon’t forget to multiply by N to get the expected frequency.\n\n\nRepeat the experiment with N = 100 to verify if estimates of the expected frequencies become more reliable with a larger number of observations.\n\n\nChance\nNow let us go back to the step where you specified the probabilities P(A) and P(B). How did you do that? One way to do it is to look at the outcome space, find the outcomes that correspond to the event and divide by the total number of outcomes.\nFor the coin the outcome space is “heads” and “tails”, i.e. n = 2. The event of a getting “heads” can occur in one of the outcomes, i.e. m = 1. Under the assumption that all outcomes are equally likely, the theoretical probability for “heads” is \\(\\frac{m}{n} = \\frac{1}{2}\\).\nFor the dice, the outcome space is 1, 2, 3, 4, 5, and 6, i.e. n = 6. The event of getting a “six” can occur in one way, i.e. m = 1. The theoretical probability for the event “six” is therefore \\(\\frac{1}{6}\\).\n\n\n\n\n\n\nNote\n\n\n\nNotice that theoretical probabilities can only be used in balanced situations such as dice, cards, or lottery tickets where it justified to assume symmetry (equal probability) for all possible outcomes.\n\n\n\n\nRelative frequency\nIf we divide the frequency of an event by the number of trials N, we get the relative frequency which is a good estimate of a probability for the event to occur at the next iteration of the same experiment.\nLet \\(m\\) be the number of times the event has occurred. \\(E(\\frac{m}{N})=\\frac{E(m)}{N}=\\frac{N\\cdot P(event)}{N} = P(event)\\)\nRelative frequencies can be used to estimate the probability for an event as long as the observations are equally likely across the full outcome space.\n\n\n\n\n\n\nMake sure N is large\n\n\n\nThe more observations (i.e. larger N) the better estimate.\nThe more extreme event, i.e. very low or high probability of occurring, the more observations are needed.\nBe very skeptical to estimates of probabilities that are either 0 and 1, when the event is possible to occur.\n\n\n\n\nBelief (Personal probability)\nTake one of the thumbtacks provided in the exercise and a cup. Put the thumbtack in the cup, shake and place the cup upside down on a table without revealing the outcome.\n\nWhat outcomes are possible?\n\nFocus on the outcome that the thumbtack is having its head down with the needle pointing upwards.\n\nLet everyone in the group state their personal probability of this event as a number between 0 and 1, where 0 means that it is impossible to occur and 1 means that it is certain to occur.\n\n\n\n\n\n\n\nCromwell’s rule\n\n\n\nProbabilities 1 (“the event will definitely occur”) or 0 (“the event will definitely not occur”) should be avoided, except when applied to statements that are logically true or false.\n\n\n\nDiscuss if and why the probabilities differ.\n\nThis is an example of probability as a subjective probability that is purely a personal judgement based on available evidence and assumptions.\nMore evidence ought to result in smaller divergence in judgements. One way to illustrate this is to lift the cup and let everyone revise their judgement.\n\nDo that!\n\nGiven that the evidence is revealing the outcome, the subjective probabilities held by the students in the group should now be either 1 or 0.\nIn risk assessment, we seldom have such full certainty as in this example. Probabilities are almost inevitably based on judgements and assumptions such as random sampling.\n\n\n\n\n\n\nA general advice\n\n\n\nProbability can be thought of as an expected frequency. Instead of saying that “the probability of the event is 0.20 (or 20%)”, you can say “out of 100 situations like this, we would expect the event to occur 20 times”.\nBy carefully stating the denominator (reference class), ambiguity about the meaning of probability can be avoided.\nThis advice applies to any of the interpretations."
+  },
+  {
+    "objectID": "pages/PP.html",
+    "href": "pages/PP.html",
+    "title": "Predictive Performance",
+    "section": "",
+    "text": "MCMC approximates samples from the posterior distribution without analytical solutions\n\n\n\n\n\n\n\n\nObjective\nDesired property\nAnalytical solution\nApproximation without analytical solution\n\n\n\n\nModel aggregation\nMean and variance of the aggregated variable\nAnalytical solution using Tyler expansion and Lagrangian transformation\nMonte Carlo simulation\n\n\nPosterior sampling\nPosterior distribution\nConjugated posterior\nMCMC"
+  },
+  {
+    "objectID": "pages/PP.html#recap-of-mcmc",
+    "href": "pages/PP.html#recap-of-mcmc",
+    "title": "Predictive Performance",
+    "section": "",
+    "text": "MCMC approximates samples from the posterior distribution without analytical solutions\n\n\n\n\n\n\n\n\nObjective\nDesired property\nAnalytical solution\nApproximation without analytical solution\n\n\n\n\nModel aggregation\nMean and variance of the aggregated variable\nAnalytical solution using Tyler expansion and Lagrangian transformation\nMonte Carlo simulation\n\n\nPosterior sampling\nPosterior distribution\nConjugated posterior\nMCMC"
+  },
+  {
+    "objectID": "pages/PP.html#second-half-learning-goals",
+    "href": "pages/PP.html#second-half-learning-goals",
+    "title": "Predictive Performance",
+    "section": "Second-half learning goals",
+    "text": "Second-half learning goals\n\nDescribe how prior distributions and observed data influence posterior distributions\n\n\nApply this understanding to interpret posterior predictions across different scenarios with varying priors (flat, informed) and data (sparse, abundant)\nReflect on the ethical and practical implication of prior choices in modeling\n\n\nDescribe the purpose of evaluating predictive performance\n\n\nDescribe why evaluation of predictive performance is necessary for model validation, generalization and avoiding overfitting\nDescribe the difference between in-sample and out-of-sample evaluation of predictive performance\nReflect on the limitations of relying solely on predictive performance for decision making\n\n\nDescribe categories of predictive performance metrics\n\n\nDescribe the key difference between the categories\nDescribe Bayesian predictive measures"
+  },
+  {
+    "objectID": "pages/PP.html#impact-on-posterior-from-prior-and-data",
+    "href": "pages/PP.html#impact-on-posterior-from-prior-and-data",
+    "title": "Predictive Performance",
+    "section": "Impact on posterior from prior and data",
+    "text": "Impact on posterior from prior and data\n\n\n\n\n\n\n\n\n\n\nDiscussion questions (10-min):\n\nLook at each column. Which lines are different across rows? Why?\nLook at each row. Which lines are different across columns? Why?\nWe cannot change data. But we can change prior. In your opinion, is it better to use flat prior, weak or strong prior?\nWhat could go wrong with prior manipulation?"
+  },
+  {
+    "objectID": "pages/PP.html#the-ratione-to-evaluate-predictive-performance",
+    "href": "pages/PP.html#the-ratione-to-evaluate-predictive-performance",
+    "title": "Predictive Performance",
+    "section": "The ratione to evaluate predictive performance",
+    "text": "The ratione to evaluate predictive performance\nPlaying with models is fun. Which one is better?\nWe live in a real world with limited resources. How do we know our model is good enough to be used in the real world?\n\nAvoid overfitting\nAlign with practical goals\nEnsure generalization with context\n\nScope of evaluation: in-sample vs out-of-sample"
+  },
+  {
+    "objectID": "pages/PP.html#overfitting",
+    "href": "pages/PP.html#overfitting",
+    "title": "Predictive Performance",
+    "section": "Overfitting",
+    "text": "Overfitting\n\n\n\nBest example of overfitting"
+  },
+  {
+    "objectID": "pages/PP.html#generalization-with-practical-context",
+    "href": "pages/PP.html#generalization-with-practical-context",
+    "title": "Predictive Performance",
+    "section": "Generalization with practical context",
+    "text": "Generalization with practical context\nA model to predict gelato consumption based on swimming activity.\nIf the model is trained on survey data by people in Lund in summer, will the predictions apply to people in Malmö winter?\nWill the predictions apply to people in Qatar (in desert) in summer?"
+  },
+  {
+    "objectID": "pages/PP.html#predictive-performance-vs-goodness-of-fit",
+    "href": "pages/PP.html#predictive-performance-vs-goodness-of-fit",
+    "title": "Predictive Performance",
+    "section": "Predictive performance vs goodness-of-fit",
+    "text": "Predictive performance vs goodness-of-fit\nGoodness of fit: how well the model describes the observed data?\nPredictive performance: how well the model predicts new data? * Goodness of fit is a component of predictive performance"
+  },
+  {
+    "objectID": "pages/PP.html#category-of-predictive-performance-metrics",
+    "href": "pages/PP.html#category-of-predictive-performance-metrics",
+    "title": "Predictive Performance",
+    "section": "Category of predictive performance metrics",
+    "text": "Category of predictive performance metrics\n\n\n\n\n\n\n\n\nCategory\nDescription\nExample\n\n\n\n\nCentral tendency\nConsiders ONLY the mean distance between observed and predictive values\nmean rooted squared errors\n\n\nIncomplete uncertainty\nIn addition to central tendency, also considers uncertainty from the spread (variance)\nRanked Probability Score\n\n\nComplete uncertainty\nFull predictive density distribution\nPredictive density"
+  },
+  {
+    "objectID": "pages/PP.html#predictive-performance-metrics-for-bayesian-models",
+    "href": "pages/PP.html#predictive-performance-metrics-for-bayesian-models",
+    "title": "Predictive Performance",
+    "section": "Predictive performance metrics for Bayesian models",
+    "text": "Predictive performance metrics for Bayesian models\nBayesian models have a full posterior distribution already!\nWith sufficient computing power, no reason not to use full predictive distribution.\nExamples for those interested: Watanabe-Akaike Information criteria (WAIC), expected log predictive density (elpd)…"
+  },
+  {
+    "objectID": "pages/PP.html#out-of-sample-evaluation",
+    "href": "pages/PP.html#out-of-sample-evaluation",
+    "title": "Predictive Performance",
+    "section": "Out-of-sample evaluation",
+    "text": "Out-of-sample evaluation\nCross-validation\n\n\n\nK-fold cross validation\n\n\nTrue remedy to out-of-sample prediction problem is to improve the representativeness of sampling protocol. - Not necessarily related to sample size - Be aware of bias in sampling protocol and reduce the bias"
+  },
+  {
+    "objectID": "pages/Bayesian_inference_subjective_probability.html",
+    "href": "pages/Bayesian_inference_subjective_probability.html",
+    "title": "Bayesian inference and subjective probability",
+    "section": "",
+    "text": "Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nContent: Probability, statistical inference, likelihood, priors, Bayes rule, posterior"
+  },
+  {
+    "objectID": "pages/Bayesian_inference_subjective_probability.html#content",
+    "href": "pages/Bayesian_inference_subjective_probability.html#content",
+    "title": "Bayesian inference and subjective probability",
+    "section": "",
+    "text": "Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)\nContent: Probability, statistical inference, likelihood, priors, Bayes rule, posterior"
+  },
+  {
+    "objectID": "pages/MCMC.html",
+    "href": "pages/MCMC.html",
+    "title": "VRSF20",
+    "section": "",
+    "text": "Lecture (1-3pm)\n\nFirst half: Markov chain Monte Carlo\nSecond half: Predictive performance\n\nLab (3-5pm, at a different room!)\n\nProject"
+  },
+  {
+    "objectID": "pages/MCMC.html#schedule-0410",
+    "href": "pages/MCMC.html#schedule-0410",
+    "title": "VRSF20",
+    "section": "",
+    "text": "Lecture (1-3pm)\n\nFirst half: Markov chain Monte Carlo\nSecond half: Predictive performance\n\nLab (3-5pm, at a different room!)\n\nProject"
+  },
+  {
+    "objectID": "pages/MCMC.html#beta-binomial-conjugation",
+    "href": "pages/MCMC.html#beta-binomial-conjugation",
+    "title": "VRSF20",
+    "section": "Beta-binomial conjugation",
+    "text": "Beta-binomial conjugation\nBinomial likelihood: \\[\nY|\\theta \\sim \\text{Binomial}(n, \\theta)\n\\]\nThe prior on \\(\\theta\\) is a beta distribution:\n\\[\n\\theta \\sim \\text{Beta}(\\alpha, \\beta)\n\\]\nConjugation means that, applying Bayes rule, the posterior distribution of \\(\\theta\\) is also a beta distribution:\n\\[\n\\theta|Y \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\n\\]"
+  },
+  {
+    "objectID": "pages/MCMC.html#posterior-computation",
+    "href": "pages/MCMC.html#posterior-computation",
+    "title": "VRSF20",
+    "section": "Posterior computation",
+    "text": "Posterior computation\n\nAnalytical solution: often impossible\nGrid approximation: possible but efficiency drops exponentialy with dimension\nLaPlace approximation: assumption of multivariate normality not always applicable\nMarkov Chain Monte Carlo (MCMC): feasible, efficient"
+  },
+  {
+    "objectID": "pages/MCMC.html#what-is-mcmc",
+    "href": "pages/MCMC.html#what-is-mcmc",
+    "title": "VRSF20",
+    "section": "What is MCMC",
+    "text": "What is MCMC\n\nMarkov chain\n\nMarkov process: \\(f(t+1)=g(f(t),noise)\\)\nChain\n\nMonte Carlo: random sampling could approximate analytical solution with sufficient steps\n\nIn essence: MCMC is a method to use Markov chain with random sampling to sample from the posterior distribution"
+  },
+  {
+    "objectID": "pages/MCMC.html#example-island-hopping",
+    "href": "pages/MCMC.html#example-island-hopping",
+    "title": "VRSF20",
+    "section": "Example: Island hopping",
+    "text": "Example: Island hopping\n\n\n\nExample\nStatistical term\n\n\n\n\nIsland\nParameter value\n\n\nPopulation\nPosterior probability\n\n\nJump proposal\nLikelihood\n\n\n\nMarkov chain: previous visits do not matter, just where the king is now.\nMonte Carlo: random proposal by flipping a coin"
+  },
+  {
+    "objectID": "pages/MCMC.html#metropolis-algorithm",
+    "href": "pages/MCMC.html#metropolis-algorithm",
+    "title": "VRSF20",
+    "section": "Metropolis algorithm",
+    "text": "Metropolis algorithm\nA simple and more efficient version of MCMC to replace “coin flip”\n\n\nEvaluation of proposal by the ratio of probability of proposed jump over staying at current:\n\\[\nr_{jump} = \\frac{P(\\theta_{proposal})}{P(\\theta_{current})}\\\\\n=\\frac{P(Y|\\theta_{proposal})P(\\theta_{proposal})}{P(Y|\\theta_{current})P(\\theta_{current})}\n\\]\nTake a random value \\(p_{jump} ~ Uniform(0,1)\\),\nIf \\(0&lt;p_{jump}&lt;r_{jump}\\), them jump;\nIf \\(r_{jump}&lt;p_{jump}&lt;1\\), then stay."
+  },
+  {
+    "objectID": "pages/MCMC.html#code-implementation-of-island-hopping",
+    "href": "pages/MCMC.html#code-implementation-of-island-hopping",
+    "title": "VRSF20",
+    "section": "Code implementation of island hopping",
+    "text": "Code implementation of island hopping\n\n\n\n\n\n\n\n\n\n\n\n# Function to implement the Metropolis algorithm\ntarget_distribution &lt;- sapply(1:num_island,function(x){\n    prob = x/sum(1:num_island)\n  })\n\nmetropolis_island_hopping &lt;- function(num_iterations, starting_island = 5,true_prob = target_distribution) {\n  # Number of islands\n  num_islands &lt;- num_island\n  \n  # Define transition probabilities (in this case, uniform)\n  # This means proposals are equally likely to jump to adjacent islands\n  \n  # Initialize chain\n  chain &lt;- numeric(num_iterations)\n  chain[1] &lt;- starting_island\n  \n  # Define stationary distribution (target)\n  # In this example, we'll use a uniform distribution\n  target_distribution &lt;- true_prob\n  \n  # Run Metropolis algorithm\n  for (i in 2:num_iterations) {\n    current &lt;- chain[i-1]\n    \n    # Propose a move: randomly jump to an adjacent island or stay\n    # For simplicity, adjacency is defined as +/- 1 \n    jump &lt;- sample(c(-1, 0, 1), 1)\n    proposed &lt;- current + jump\n    \n    # Check boundaries and wrap around (circular islands)\n    if (proposed &lt; 1) {\n      proposed &lt;- num_islands + proposed\n    } else if (proposed &gt; num_islands) {\n      proposed &lt;- proposed - num_islands\n    }\n    \n    # Calculate acceptance probability\n    acceptance_ratio &lt;- target_distribution[proposed] / target_distribution[current]\n    acceptance_prob &lt;- min(1, acceptance_ratio)\n    \n    # Accept or reject the proposal\n    if (runif(1) &lt; acceptance_prob) {\n      chain[i] &lt;- proposed  # Accept move\n    } else {\n      chain[i] &lt;- current   # Reject move, stay at current island\n    }\n  }\n  \n  return(chain)\n}\n\n\n\nn_iter = 1000\nchain = metropolis_island_hopping(num_iterations = n_iter)\n\nhopping_freq = table(chain) / n_iter\nhopping_prob = numeric(num_island)\nfor (i in 1:num_island) {\n  hopping_prob[i] &lt;- sum(chain == i) / n_iter\n}\nhopping_results = tibble(\n  islands = 1:num_island,\n  freq = hopping_prob\n)\nhopping_results\n\n# A tibble: 9 × 2\n  islands  freq\n    &lt;int&gt; &lt;dbl&gt;\n1       1 0.015\n2       2 0.036\n3       3 0.044\n4       4 0.079\n5       5 0.113\n6       6 0.118\n7       7 0.167\n8       8 0.208\n9       9 0.22"
+  },
+  {
+    "objectID": "pages/MCMC.html#plot-metropolis-results-on-island-hopping",
+    "href": "pages/MCMC.html#plot-metropolis-results-on-island-hopping",
+    "title": "VRSF20",
+    "section": "Plot Metropolis results on island hopping",
+    "text": "Plot Metropolis results on island hopping\n\ntrace_data &lt;- data.frame(\n  Iteration = 1:n_iter,\n  Island = chain[1:n_iter]\n)\np2 &lt;- ggplot(trace_data, aes(x = Iteration, y = Island)) +\n  geom_line() +\n  geom_point(size = 1) +\n  labs(title = \"Trace Plot\",\n       x = \"Iteration\",\n       y = \"Island Number\") +\n  scale_y_continuous(breaks = 1:num_island) +\n  theme_minimal()\np2"
+  },
+  {
+    "objectID": "pages/MCMC.html#mcmc-diagnostics",
+    "href": "pages/MCMC.html#mcmc-diagnostics",
+    "title": "VRSF20",
+    "section": "MCMC diagnostics",
+    "text": "MCMC diagnostics\n\nTrace plot: displays chain stability in random sampling,\n\nRhat/ Gelman-Rubins statistics: convergence of multiple chains\n\nEffective sample size: measures chain accuracy- how many independent sampling steps for the chain to approximate the posterior\nAutocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart is bad.\n\nRead the Bayes rule book chapter 6.3 for technical details."
   }
 ]
