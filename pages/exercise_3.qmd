@@ -1,17 +1,37 @@
 ---
-title: "exercise_3"
-author: "Zheng Zhou"
+title: "Write your own MCMC sampler"
+subtitle: "Exercise BADT"
+author: "Zheng Zhou and Sahlin"
 format: html
 ---
 
-# Question
+### Background 
 
-Coin flip
+MCMC-sampling is an important part of contemporary Bayesian analysis. The participants of this course have different backgrounds, with varying experience of MCMC-sampling. The purpose of this exercise is to let everyone practice in specifying and coding up an MCMC sampler. We are not asking for an advanced model to sample from. 
 
-# Task
+We encourage you to work in groups. 
 
-1. Get the analytical solution for the posterior using the conjugation model.
+### Task
 
-2. Write a MCMC script to get the posterior estimates then compare with your analytical solution. 
+(@) Select a Bayesian model (likelihood and prior) with a limited number of parameters (1 or 2) and data (few data points). If you struggle coming up with a model, you can use a coin-flip (see below). 
+
+(@) Set up a Metropolis-Hastings algorithm to sample from the posterior
+
+(@) Implement it in code and run it
+
+(@) Visualise the MCMC-sampling
+
+(@) Derive one convergence metric
+
+(@) Run it with different choices of priors - from flat to specific
+
+(@) Be prepared to report back (no need to prepare anything specific)
+
+### Simple example - Coin flip
+
+
+1. Write a MCMC script to get the posterior for the parameters 
 
 Tips: proposes new values for the probability of heads, calculates the acceptance ratio based on the Beta prior and Binomial likelihood, and records the resulting chain, generate a traceplot.
+
+2. Compare with the analytical solution for the posterior using the conjugation model
