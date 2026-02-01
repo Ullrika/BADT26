@@ -6,11 +6,42 @@ author: "Sahlin"
 
 ## 
 
+We say that  $f(\pi)$  is a conjugate prior for  $L(\pi|y)$ if the posterior,  
+$f(\pi|y)$, is from the same model family as the prior.
+
+Conjugate models are very useful. 
+
+They are used in Bayesian networks with categorical nodes, when learning from data, e.g. in machine learning. 
+
 a. Beta-binomial, gamma-poisson, dirichlet-categorical, normal and multivariate normal
 https://en.wikipedia.org/wiki/Conjugate_prior
 
-
 Content: examples of conjugate models, history of conjugate models, conjugate models today
+
+
+### Beta-binomial
+
+**Observable:** number of successes $Y$ out of $N$ independent trials
+
+**Observations(data):** $y,n$ (random sample from $Y$ where $N=n$)
+
+**Data generating process:** $Y|\pi,N \sim Bin(N,\pi)$
+
+$$f(y|\pi,n) = \frac{n!}{y!(n-y)!}=\pi^y(1-\pi)^{n-y}$$
+
+**Parameter:** $\pi$
+
+**Likelihood:** 
+
+$$L(\pi,y,n) = \frac{n!}{y!(n-y)!}=\pi^y(1-\pi)^{n-y}$$
+
+log likelihood
+
+$$l(\pi,y,n) = \log L(\pi,y,n) = \log n! - \log y! - \log (n-y)! + y \log \pi + (n-y) \log (1-\pi)$$
+
+**Prior:** $\pi \sim Beta(\alpha,\beta)$
+
+**Hyper-parameters:** $\alpha$, $\beta$
 
 
 ## Impact on posterior from prior and data
@@ -200,5 +231,56 @@ print(facet_plot_with_labels)
 
 ```
 
-Bayesian networks 
+
+### Normal-gamma conjugate model 
+
+
+**Observable:** $Y$
+
+**Observations(data):** $\mathbf{y}=(y_1,\ldots,y_n)$ (random sample from $Y$)
+
+**Data generating process:**  $Y|\mu,\sigma \sim N(\mu,\sigma)$
+
+$$f(\mathbf{y}|\mu,\sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma}} \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right]$$
+
+**Parameters:** $\mu$, $\sigma$
+
+
+**Likelihood:** 
+
+$\sigma$ is known
+
+$$L(\mu,\sigma,\mathbf{y}) \propto \prod \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right] = \exp \left[-\frac{\sum(y_i-\mu)^2}{2\sigma^2} \right] = \exp \left[-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n} \right]$$
+
+log likelihood
+
+$$l(\mu,\sigma,\mathbf{y}) = \log L(\mu,\sigma,\mathbf{y}) \propto -\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}$$ 
+
+**Prior:**
+
+$$\mu|\sigma \sim N(\mu_0,\frac{\sigma}{\sqrt{k_0}})$$
+
+$$\frac{1}{\sigma^2} \sim \Gamma (\alpha_0,\beta_0)$$
+
+**Hyper-parameters:** $\mu_0$, $k$, $\alpha$, $\beta$
+
+
+
+![](img/normal.png)
+
+Let $\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$ be the sample mean and $s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2$ be the sample variance.
+
+**Posterior:**
+
+$$\mu|\sigma,\mathbf{x} \sim N(\frac{k_0\mu_0+n\bar{x}}{k_0+n},\frac{\sigma}{\sqrt{(k_0+n)}})$$
+
+$$\frac{1}{\sigma^2}|\mathbf{x} \sim \Gamma (\alpha_0+\frac{n}{2},\beta_0+\frac{s^2(n-1)}{2}+\frac{nk_0}{n+k_0}\frac{(\bar{x}-\mu_0)^2}{2})$$
+
+# Reparameterisation 
+
+sample-size version of beta-binomial 
+
+
+
+### Bayesian networks 
 
