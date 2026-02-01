@@ -5,7 +5,6 @@ format:
   html: default
 ---
 
-
 ## Recap of MCMC
 
 | Objective | Desired property | Analytical solution | Approximation without analytical solution |
@@ -15,72 +14,53 @@ format:
 
 Table: MCMC approximates samples from the posterior distribution without analytical solutions
 
-## Second-half learning goals
+## Learning goals
 
-1. Describe how prior distributions and observed data influence posterior distributions
+(@) Describe how prior and data influence posterior distributions
   - Apply this understanding to interpret posterior predictions across different scenarios with varying priors (flat, informed) and data (sparse, abundant)
   - Reflect on the ethical and practical implication of prior choices in modeling
 
-2. Describe the purpose of evaluating predictive performance
+(@) Describe the purpose of evaluating predictive performance
   - Describe why evaluation of predictive performance is necessary for model validation, generalization and avoiding overfitting
   - Describe the difference between in-sample and out-of-sample evaluation of predictive performance
   - Reflect on the limitations of relying solely on predictive performance for decision making
   
-3. Describe categories of predictive performance metrics
+(@) Describe categories of predictive performance metrics
   - Describe the key difference between the categories
   - Describe Bayesian predictive measures
 
-
 ---
 
-Discussion questions (10-min):
+## The rationale for model evaluation and comparison
 
-1. Look at each column. Which lines are different across rows? Why?
+Goodness-of-fit: Is the model good enough (for the data)?
 
-2. Look at each row. Which lines are different across columns? Why?
+Predictive performance: Can the model make good predictions for new data?
 
-3. We cannot change data. But we can change prior. In your opinion, is it better to use flat prior, weak or strong prior?
+Model comparison: Is the model better than other models?
 
-4. What could go wrong with prior manipulation?
+Two critical issues:
 
-## The rationale to evaluate predictive performance
+- Lack of fit
 
-Playing with models is fun. Which one is better?
+- Overfitting
 
-We live in a real world with limited resources. How do we know our model is good enough to be used in the real world?
+- Generalization with context
 
-* Avoid overfitting
-* Align with practical goals
-* Ensure generalization with context
-
-Scope of evaluation: in-sample vs out-of-sample
 
 ## Overfitting
 
 ![Best example of overfitting](./overfitting.jpeg)
 
-## Generalization with practical context
+In MCMC, overfitting, i.e., having more parameters than needed may cause three things:
 
-A model to predict gelato consumption based on swimming activity.
+1. The predictions are too good to be true
 
-If the model is trained on survey data by people in Lund in summer, will the predictions apply to people in Malmö winter?
+2. Divergence statistics are bad
 
-Will the predictions apply to people in Qatar (in desert) in summer?
+3. Posteriors for individual parameters have huge dispersion
 
-## Predictive performance vs goodness-of-fit
-
-Goodness of fit: how well the model describes the observed data?
-
-Predictive performance: how well the model predicts new data? 
-* Goodness of fit is a component of predictive performance
-
-## Category of predictive performance metrics
-
-| Category | Description | Example |
-|:---:|:---|:---|
-| Central tendency | Considers **ONLY** the mean distance between observed and predictive values | mean rooted squared errors |
-| Incomplete uncertainty | In addition to central tendency, also considers **uncertainty** from the spread (variance) | Ranked Probability Score |
-| Complete uncertainty | Full predictive _density_ distribution | Predictive density |
+Identifiability issue: MCMC can't tell influence on the likelihood come from which parameter 
 
 ## Predictive performance metrics for Bayesian models
 
@@ -88,7 +68,30 @@ Bayesian models have a full posterior distribution already!
 
 With sufficient computing power, no reason not to use full predictive distribution.
 
-Examples for those interested: Watanabe-Akaike Information criteria (WAIC), expected log predictive density (elpd)...
+Expected log predictive density (elpd)
+
+$$
+elpd(y,\tilde{y}_i) = \sum^n_{i=1}{\int{p_t (\tilde{y}_i)\log \ p(\tilde{y}_i |y)\ d \tilde{y}_i}}
+$$
+
+elpd can be used for computing Widely-applicable information criterion or leave-one-out cross validation.
+
+Expansion reads:
+
+[Vehtari, A.; Gelman, A.; Gabry, J. Practical Bayesian model evaluation using leave-one-out516
+cross-validation and WAIC. Statistics and Computing 2017, 27, 1413–1432](https://arxiv.org/abs/1507.04544)
+
+## Generalization with practical context
+
+Scope of evaluation: in-sample vs out-of-sample
+
+A model to predict ice cream consumption based on swimming activity.
+
+If the model is trained on survey data by people in Lund in summer, will the predictions apply to people in Malmö winter?
+
+Will the predictions apply to people in Qatar (in desert) in summer?
+
+
 
 ## Out-of-sample evaluation
 
@@ -99,3 +102,12 @@ Cross-validation
 True remedy to out-of-sample prediction problem is to improve the representativeness of sampling protocol.
   - Not necessarily related to sample size
   - Be aware of bias in sampling protocol and reduce the bias
+
+## Category of predictive performance metrics
+
+| Category | Description | Example |
+|:---:|:---|:---|
+| Central tendency | Considers **ONLY** the mean distance between observed and predictive values | Mean Rooted Squared Errors |
+| Incomplete uncertainty | In addition to central tendency, also considers **uncertainty** from the spread (variance) | Ranked Probability Score |
+| Complete uncertainty | Full predictive _density_ distribution | Expected Log Predictive Density |
+

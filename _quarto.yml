@@ -18,6 +18,8 @@ website:
         text: Exercise 2
       - href: pages/MCMC.qmd
         text: Markov chain monte carlo
+      - href: pages/exercise_3.qmd
+        text: Exercise 3
       - href: pages/PP.qmd
         text: Predictive performance
 

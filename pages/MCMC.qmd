@@ -3,24 +3,38 @@ title: "VRSF20"
 author: "Zheng Zhou"
 ---
 
+## Learning goals
+
+(@) describe what is a Markov chain monte carlo (MCMC)
+
+(@) describe the purpose and applicability range of MCMC
+
+(@) compare the strength and weakness of MCMC with other posterior estimation methods
+
+(@) develop a simple MCMC (complete exercise 3)
+
+(@) describe MCMC diagnostics
+
 ## Beta-binomial conjugation
 
 Binomial likelihood:
 
+n Bernoulli trials with y successes and unknown probability of success $\theta$.
+
 $$
- \text{Binomial}(n, y)
+ \text{Binomial}(n, y,\theta)
 $$
 
 The prior is a beta distribution:
 
 $$
- \text{Beta}(\alpha, \beta)
+ Beta(\alpha, \beta)
 $$
 
 Conjugation: the posterior distribution is also a beta distribution:
 
 $$
- \text{Beta}(\alpha + y, \beta + n - y)
+  Beta(\alpha + y, \beta + n - y)
 $$
 
 ## Posterior computation
@@ -190,11 +204,11 @@ When repeated enough times, frequency on any island matches the relative populat
 
 Three critical things:
 
-1. making a proposal and knowing the population of the proposal
+1. known your position and adjacent options
 
-2. knowing the population of the current, to calculate $p_{prop}=\frac{proposal}{current}$.
+2. making a proposal and knowing the population of the proposal
 
-3. generate a random value between [0,1] and compare with $p_{prop}$.
+3. knowing the population of the current, to calculate $p_{prop}=\frac{proposal}{current}$.
 
 
 ## Metropolis algorithm
@@ -209,24 +223,46 @@ Island hopping is a special case, Metropolis algorithm could handle:
 
 * complex proposals
 
+$$
+y=\beta_0 + \beta_1 x + \epsilon
+$$
 
+Model:
+
+$$
+\eta \sim N(0,\sigma^2) \\
+y \sim N(\beta_0 + \beta_1 x, \epsilon)
+$$
+
+$\beta_0, \beta_1$ are continuous parameters
+
+Likelihood:
+
+$$
+p(Y|\beta_0,\beta_1,\epsilon,x)=\prod_i^{n} \frac{1}{\sqrt{2\pi \sigma^2}}exp(-\frac{(y-(\beta_0+\beta_1 x))^2}{2\sigma^2})
+$$
+
+Priors:
+
+$\beta_0 \sim N(0,5)$.
+
+How does the island hopping analogy work here?
 
 ## Exercise 3
 
-Complete Ex 3: today and beginning of tomorrow. 
+Complete Ex 3: today and beginning of tomorrow's session. 
 
 ## MCMC diagnostics
 
 Before accepting MCMC results, how good they are?
 
 * Trace plot: displays chain stability in random sampling, 
-  * Rhat/ Gelman-Rubins statistics: convergence of multiple chains
+
+* Rhat/ Gelman-Rubins statistics: convergence of multiple chains
   
 * Effective sample size: measures chain accuracy- how many independent sampling steps for the chain to approximate the posterior
 
 * Autocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart is bad.
 
-Read the Bayes rule book chapter 6.3 for technical details.
-
-
+Read the Bayes rule book chapter 6.3  and DBDA chapter 7.5 for technical details and examples.
 

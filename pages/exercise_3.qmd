@@ -8,12 +8,17 @@ format: html
 ### Background 
 
 MCMC-sampling is an important part of contemporary Bayesian analysis. The participants of this course have different backgrounds, with varying experience of MCMC-sampling. The purpose of this exercise is to let everyone practice in specifying and coding up an MCMC sampler. We are not asking for an advanced model to sample from. 
+```{r}
+```
 
-We encourage you to work in groups. 
+
+```{r}
+```
+
 
 ### Task
 
-(@) Select a Bayesian model (likelihood and prior) with a limited number of parameters (1 or 2) and data (few data points). If you struggle coming up with a model, you can use a coin-flip (see below). 
+(@) Select a Bayesian model (likelihood and prior) with a limited number of parameters (1 or 2) and data (few data points). If you struggle coming up with a model, you can use the coin-flip example (see below). 
 
 (@) Set up a Metropolis-Hastings algorithm to sample from the posterior
 
@@ -21,17 +26,26 @@ We encourage you to work in groups.
 
 (@) Visualise the MCMC-sampling
 
-(@) Derive one convergence metric
-
 (@) Run it with different choices of priors - from flat to specific
 
-(@) Be prepared to report back (no need to prepare anything specific)
+### Coin flip
 
-### Simple example - Coin flip
+You have a coin and believe it is fair with equal chance to get head or tail. To test your belief, you flipped it for 100 times and got 55 heads and 45 tails.
 
+(@) Write your Bayesian model including a beta prior and a binomial likelihood
 
-1. Write a MCMC script to get the posterior for the parameters 
+(@) derive the analytical solution- a conjugate posterior.
+
+(@) Code a Metropolis algorithm to get the posterior for the parameters. 
 
 Tips: proposes new values for the probability of heads, calculates the acceptance ratio based on the Beta prior and Binomial likelihood, and records the resulting chain, generate a traceplot.
 
-2. Compare with the analytical solution for the posterior using the conjugation model
+(@) Visualize your sampling steps and summarize your posterior distribution.
+
+(@) Compare with the analytical solution.
+
+(@) Update the Metropolis algorithm script so that it reflect the following prior: the coin is heavily biased towards heads.
+
+# Coding demonstration for the coin flip example
+
+[Coin flip script](ex3_answers.qmd)
