@@ -43,7 +43,7 @@ Discussion questions (10-min):
 
 4. What could go wrong with prior manipulation?
 
-## The ratione to evaluate predictive performance
+## The rationale to evaluate predictive performance
 
 Playing with models is fun. Which one is better?
 
