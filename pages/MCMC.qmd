@@ -3,39 +3,35 @@ title: "VRSF20"
 author: "Zheng Zhou"
 ---
 
-* Lecture (1-3pm)
-  * First half: Markov chain Monte Carlo
-  * Second half: Predictive performance
-
-* Lab (3-5pm, at a different room!)
-  * Project
-
 ## Beta-binomial conjugation
 
 Binomial likelihood:
-$$
-Y|\theta \sim \text{Binomial}(n, \theta)
-$$
-
-The prior on $\theta$ is a beta distribution:
 
 $$
-\theta \sim \text{Beta}(\alpha, \beta)
+ \text{Binomial}(n, y)
 $$
 
-Conjugation means that, applying Bayes rule,
-the posterior distribution of $\theta$ is also a beta distribution:
+The prior is a beta distribution:
 
 $$
-\theta|Y \sim \text{Beta}(\alpha + y, \beta + n - y)
+ \text{Beta}(\alpha, \beta)
+$$
+
+Conjugation: the posterior distribution is also a beta distribution:
+
+$$
+ \text{Beta}(\alpha + y, \beta + n - y)
 $$
 
 ## Posterior computation
 
-1. Analytical solution: often impossible
+1. Analytical solution: conjugation often impossible
+
 2. Grid approximation: possible but efficiency drops exponentialy with dimension
-3. LaPlace approximation: assumption of multivariate normality not always applicable
-4. Markov Chain Monte Carlo (MCMC): feasible, efficient
+
+3. LaPlace approximation: assumption of multivariate normality often not applicable
+
+4. **Markov Chain Monte Carlo (MCMC)**: flexible, efficient
 
 ## What is MCMC
 
@@ -43,44 +39,33 @@ $$
   * Markov process: $f(t+1)=g(f(t),noise)$
   * Chain
   
-* Monte Carlo: random sampling could approximate analytical solution with sufficient steps
+* Monte Carlo: a large number of samples can approximate the distribution
 
-In essence: MCMC is a method to use **Markov chain with random sampling** to sample from the posterior distribution
+MCMC transforms the question:
+
+**FROM**:
+
+Getting the posterior distribution
+
+**TO**
+
+Getting enough representative samples from the posterior distribution
 
 ## Example: Island hopping
 
-| Example | Statistical term |
-| ------ | ------ |
-| Island | Parameter value|
-| Population | Posterior probability |
-| Jump proposal | Likelihood |
+1. Make a proposal.
 
-_Markov chain_: previous visits do not matter, just where the king is now.
+2. $p_{prop}=\frac{poposal}{current}$.
 
-_Monte Carlo_: random proposal by flipping a coin
+3. If $p_{prop}$ > 1, move; if $p_{prop}$=1, stay.
 
-## Metropolis algorithm
+4. If $p_{prop}$ < 1, generate a random value k between (0,1). If $k<p_{prop}$, then move.
 
-A simple and more efficient version of MCMC to replace "coin flip"
+5. repeat 1-4.
 
-![](./Metropolis_paper.bmp)
+### Simulate the hopping process
 
----
-
-Evaluation of proposal by the ratio of probability of proposed jump over staying at current:
-
-$$
-r_{jump} = \frac{P(\theta_{proposal})}{P(\theta_{current})}\\
-=\frac{P(Y|\theta_{proposal})P(\theta_{proposal})}{P(Y|\theta_{current})P(\theta_{current})}
-$$
-
-Take a random value $p_{jump} ~ Uniform(0,1)$,
-
-If $0<p_{jump}<r_{jump}$, them jump;
-
-If $r_{jump}<p_{jump}<1$, then stay.
-
-## Code implementation of island hopping
+Number of islands (parameter values) unknown in reality.
 
 ```{r, islands}
 #| warning: false
@@ -88,7 +73,7 @@ If $r_{jump}<p_{jump}<1$, then stay.
 #| echo: false
 library(tidyverse)
 
-num_island = 9
+num_island = 5
 
 island_size = tibble(
   island = 1:num_island,
@@ -113,7 +98,7 @@ target_distribution <- sapply(1:num_island,function(x){
     prob = x/sum(1:num_island)
   })
 
-metropolis_island_hopping <- function(num_iterations, starting_island = 5,true_prob = target_distribution) {
+metropolis_island_hopping <- function(num_iterations, starting_island = round(num_island/2,0),true_prob = target_distribution) {
   # Number of islands
   num_islands <- num_island
   
@@ -181,7 +166,7 @@ hopping_results = tibble(
 hopping_results
 ```
 
-## Plot Metropolis results on island hopping
+---
 
 ```{r metropolis_plot,include=T,echo=T}
 trace_data <- data.frame(
@@ -199,11 +184,46 @@ p2 <- ggplot(trace_data, aes(x = Iteration, y = Island)) +
 p2
 ```
 
+### Summary of hopping
+
+When repeated enough times, frequency on any island matches the relative population of the island.
+
+Three critical things:
+
+1. making a proposal and knowing the population of the proposal
+
+2. knowing the population of the current, to calculate $p_{prop}=\frac{proposal}{current}$.
+
+3. generate a random value between [0,1] and compare with $p_{prop}$.
+
+
+## Metropolis algorithm
+
+![](./Metropolis_paper.bmp)
+
+Island hopping is a special case, Metropolis algorithm could handle:
+
+* continuous positions
+
+* more than one dimension
+
+* complex proposals
+
+
+
+## Exercise 3
+
+Complete Ex 3: today and beginning of tomorrow. 
+
 ## MCMC diagnostics
+
+Before accepting MCMC results, how good they are?
 
 * Trace plot: displays chain stability in random sampling, 
   * Rhat/ Gelman-Rubins statistics: convergence of multiple chains
+  
 * Effective sample size: measures chain accuracy- how many independent sampling steps for the chain to approximate the posterior
+
 * Autocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart is bad.
 
 Read the Bayes rule book chapter 6.3 for technical details.

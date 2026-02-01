@@ -1,5 +1,17 @@
 ---
 title: "exercise_3"
+author: "Zheng Zhou"
 format: html
 ---
 
+# Question
+
+Coin flip
+
+# Task
+
+1. Get the analytical solution for the posterior using the conjugation model.
+
+2. Write a MCMC script to get the posterior estimates then compare with your analytical solution. 
+
+Tips: proposes new values for the probability of heads, calculates the acceptance ratio based on the Beta prior and Binomial likelihood, and records the resulting chain, generate a traceplot.
