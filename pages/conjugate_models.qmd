@@ -11,9 +11,13 @@ $p(\pi|y)$, is from the same model family as the prior.
 
 The prior is conjugate with respect to a particular likelihood function.
 
+This property is called "conjugacy" and was introduced by Raiffa & Schlaifer (2000), first edition published in 1961.
+
 Conjugate models are still useful. They are used to calculate probability intervals, for updating categorical nodes in binary Bayesian networks. 
 
 They are limited to simple Bayesian models. 
+
+Raiffa H, Schlaifer R. 2000. Applied statistical decision theory. Wiley classics library ed. New York: Wiley.
 
 ## Beta-Binomial
 

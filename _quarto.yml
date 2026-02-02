@@ -11,7 +11,7 @@ website:
       - href: pages/course_intro.qmd
         text: Course introduction
       - href: pages/Bayesian_inference_subjective_probability.qmd
-        text: Bayesian inference subjective probability
+        text: Bayesian inference
       - href: pages/exercise_1.qmd
         text: Exercise 1
       - href: pages/conjugate_models.qmd
@@ -19,7 +19,7 @@ website:
       - href: pages/exercise_2.qmd
         text: Exercise 2
       - href: pages/MCMC.qmd
-        text: Markov chain monte carlo
+        text: MCMC
       - href: pages/exercise_3.qmd
         text: Exercise 3
       - href: pages/PP.qmd

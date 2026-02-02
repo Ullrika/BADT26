@@ -10,24 +10,281 @@ Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
 
 Content: Probability, statistical inference, likelihood, priors, Bayes rule, posterior
 
-## Notations
+# Models
 
-$X$ is a continuous random variable 
+Scientific models are like golems: they do what you tell them to, but only that. They are neither true nor false.
 
-$f(x)$ is the density function $P(X\leq x)=\int_{-\infty}^x f(x)dx$
+Models are used:
+ - to predict
+   - predictive models (ML)
+   - often relevant in risk/decision context
+ - to understand how the world works
+   - inferential models
+   - means of producing scientific knowledge
+   - study of (causal) effects
 
-$p(\cdot)$ probability 
+Instead of solving the real problem, we are making a practical compromise and being, of necessity, content with an approximate solution (Jaynes 2003).
+
+# Perspectives on probability 
+
+Schools of thought on probability<sup>[1]</sup>:
+
+- Classical (Laplace, Bayes) - the "set" definition
+
+- Frequentist (Pearson, Fisher, Popper, von Mises) - the "series" definition
+
+- Logical (Keynes, Jeffreys, Jaynes)<sup>[2]</sup> - the "plausibility" definition
+
+- Subjectivist (de Finetti, Ramsey)<sup>[3]</sup> - the "opinion" definition
+
+- Knightian (Knight, the "beyond probability" school) - the "uncertainty vs risk" definition
 
 
-## Parameter and model 
+[1] Acree (2021)
+[2] Clayton (2021)
+[3] N-E Sahlin (1990)
+
+Acree MC. 2021. The Myth of Statistical Inference [Internet]. Cham: Springer International Publishing; [accessed 2022 Jan 6]. https://doi.org/10.1007/978-3-030-73257-8
+
+Clayton A. 2021. Bernoulli’s fallacy: statistical illogic and the crisis of modern science. New York: Columbia University Press.
+
+Sahlin N-E. 1990. The philosophy of FP Ramsey. [place unknown]: Cambridge University Press.
+
+## Classical probability
+
+Conditional probability
+
+>If of the two subsequent events, the probability of the 1st be $a/N$ and the probability of both together be $P/N$, then the probability of the 2nd on the supposition the 1st happens is $P/a$.
+$P(B|A)=P(A \& B)/P(A)$
+
+Bayes, hesitantly, concluded that time does not distinguish between the events and therefore that the relationship between $A$ and $B$ is *not necessarily causal*. $P(A|B)P(B)=P(B|A)P(A)$
+
+Laplace's law of succession
+
+> If an urn contains an infinity of white and black tickets in an unknown ratio, and if p + q tickets are drawn of which p are white and q are black, we ask the probability that in drawing a new ticket from this urn it will be white.
+
+Laplace suggested to replace a *single urn* of unknown constitution with an *infinity of urns* of known constitution
+$$\frac{\int_0^1x^{p+1}(1-x)^qdx}{\int_0^1x^{p}(1-x)^qdx}=\frac{p+1}{p+q+2}$$
 
 
+## Frequentist probability
+
+Bernoulli (1655-1705) in *Ars Conjectandi*:
+
+If you take a **large enough sample**, you can be **sure**, that the proportion of white pebbles you observe in the sample is **close** to the proportion in the urn (Law of Large Numbers).
+
+> "The sample ratio is close to a *given urn ratio* with a high probability" vs "The urn ratio is close to a *given sample ratio* with high probability."
+
+
+
+- Fascination with the normal curve and deviations from average (Adolphe Quetelet)
+
+- Galton's natural selection and eugenics. Reversion (or *regression*) towards mediocrity in hereditary studies
+
+- Pearson - numerical measure of normality $\chi^2$.
+
+- Young genius Fischer. Break-off. Animosity and hostility. Fischer's continuous war with Egon Pearson and Jerzy Nyman.
+
+[1] Clayton (2021) [2] Acree (2021)
+
+## Logical probability
+
+- Inference is an extension of Boolean algebra with an implication operator $A\implies B$ ("A implies B").
+
+- Implication does not assert that either $A$ or $B$ is true, but merely that $A\overline{B}$ is FALSE, i.e. that $(\overline{A}+B)$ is TRUE. Also can be expressed as $A=AB$: propositions $A$ and $AB$ have the same truth value.
+
+Desiderata for plausibility reasoning:
+
+- Representation of degrees of plausibility by real numbers;
+
+- Qualitative correspondence with common sense;
+
+- Consistency: 
+
+  - If a conclusion can be reasoned out in more than one way, then every possible way must lead to the same result
+
+  - The robot always takes into account all of the evidence it has
+relevant to a question. [...] the robot is completely nonideological.
+
+  - The robot always represents equivalent states of knowledge by
+equivalent plausibility assignments.
+
+Randomization does not change the state of the world. It alters our knowledge. Mind-projection fallacy.
+
+[1] Jaynes(2003)
+
+
+## Logical probability
+
+### Rules of plausibility reasoning
+
+ - The product rule
+ 
+ $$p(AB|C)=p(A|C)p(B|AC)=p(B|C)p(A|BC)$$
+ 
+ - The sum rule 
+ 
+$$p(A|B)+p(\overline{A}|B)=1$$
+
+$$p(A+B|C)=p(A|C)+p(B|C)-p(AB|C)$$
+
+Interpretation of plausibility
+
+$A \implies B$
+
+- $B$ is true, therefore $A$ becomes more plausible
+
+- $A$ is false, therefore $B$ becomes less plausible
+
+[1] Jaynes (2003)
+
+## Subjectivist probability
+
+Beliefs without actions are abstract. Probabilities can be understood only in the context of an agent (someone making a decision or doing reasoning).
+
+#### Bruno de Finetti (1906-1985)
+
+- "PROBABILITY DOES NOT EXIST!"
+
+- Interpretation of probability as personal attitude to uncertainty is inseparable from willingness to take risk
+
+- Unexperienced uncertainty (nothing at stake) is not a real uncertainty
+
+- Uncertainty can *only* be observed (and probabilities can be extracted) from betting behavior
+
+#### Frank Ramsey (1903-1930)<sup>[1]</sup>
+
+- Probabilities are subjective. Both prior beliefs and previously experienced frequencies are relevant for decision
+
+- Beliefs can be separated from preferences through the definition of "ethically neutral proposition" (uninfluenced decision)
+
+[1]N-E Sahlin
+
+## Knightian uncertainty
+
+Knight (1921):
+
+- risk - inherent randomness in the world described by probability
+
+- uncertainty - lack of knowledge. "Uncertainty occurs when we cannot assign values to the probability" 
+
+Bayes and Knight does not combine! 
+
+Introduce uncertainty about probabilities e.g. 
+
+Imprecise probability theory:
+
+- What to do when one can not assign a single probability number?
+
+- Probability represented by bounds without any distribution assigned to them (NOT 
+uniform!)
+
+Robust Bayesian approach gives imprecise probabilities
+
+- Sets of priors or sets of likelihoods
+
+- Find bounds of probabilities when summarising quantities of interest
+
+Relax the strict interpretation of Knight (he admitted that probability can describe uncertainty when there is enough basis to make judgements or Bayesian inferece)
+
+- Avoid conflating probabilities defining risk with probabilities expressing uncertainty about risk
+
+## Time to reflect
+
+1. How can different interpretations of probability affect a scientific discussion or knowledge generating process?
+
+2. Which perspectives on probability have you encountered in you research experience?
+
+# Bayesian analysis 
+
+**Observable:** $Y$
+
+**Observations(data):** $\mathbf{y}=(y_1,\ldots,y_n)$ (random sample from $Y$)
+
+**Data generating process:** $Y|\theta \sim \cdot$ 
+
+**Parameters:** $\theta$
+
+**Likelihood:** $L(\theta,\mathbf{y})=p(\mathbf{y}|\theta)$
+
+**Prior:** $\theta|\nu \sim \cdot$
+
+**Hyper-parameters:** $\nu$
+
+**Posterior:** $\theta|\mathbf{y},\nu \sim \cdot$
+
+**Bayes rule:** $$p(\theta|\mathbf{y},\nu) = \frac{p(\mathbf{y}|\theta)p(\theta|\nu)}{\int p(\mathbf{y}|\theta)p(\theta|\nu)d\theta} = \frac{p(\mathbf{y}|\theta)p(\theta|\nu)}{p(\mathbf{y})}$$
+
+**Posterior predictive:** $p(y_{new}|\mathbf{y}) = \int p(y_{new}|\theta)p(\theta|\mathbf{y})d\theta$
 
 ## Likelihood
 
-$p(data|\theta)$
+$p(data|\text{parameters})$
+
+- Parameters as fixed and data as variable
+
+- Data as fixed and parameter as uncertain 
+
+## Steps of a Bayesian data analysis
+
+1. Identify data relevant to the research question (**question/model-first**)
+
+2. Define a probabilistic data generating model (linking data to question/model, needed to derive the likelihood)
+
+3. Specify prior for parameters within the model 
+
+4. Use Bayesian inference to re-allocate credibility across parameter values. Interpret the posterior with respect to the validity of the model. 
+
+5. Check that the posterior predictions mimic the data with reasonable accuracy (i.e. make posterior predictive check)
+
+# Inference 
+
+## Parametric inference (parameter estimation)
+
+Inference about parameters are made by summarising the posterior for the quantity of interest.
+
+- Posterior mean and variance
+
+- Posterior mode
+
+- Posterior probability interval
+
+- Posterior quantiles (percentiles)
+
+- Propagation of posterior uncertainty into quantities derived from parameters $g(\theta)$
+
+### Bayesian p-value 
+
+Sometimes, analysts derive a Bayesian "p-value" which is the posterior probability of a null hypothesis. If this probability is small, then the null hypothesis can be rejected. Note that this is a pragmatic approach adopting frequentist terminology and not part of Bayesian theory. 
+
+For example, we specify the following hypotheses: 
+
+$H_0: \theta \leq 0$ against $H_1: \theta > 0$ 
+
+The Bayesian p-value is then $\text{Bayesian p-value}=\int_{-\infty}^0 p(\theta|data)d\theta$ where $p(\theta|data)$ denotes the posterior density. 
+
+## Predictive inference (predicting new observations)
+
+- Posterior predictive 
+
+- Data validation (predictive performance)
+
+- Forecasting, classification, etc
 
 
-Parameters as fixed and data as variable
+## Bayesian vs Frequentist
 
-Data as fixed and parameter as uncertain 
+This section is inspired by Efron and Hastie's book Computer age statistical inference - algorithms, evidence, and data science
+
+- Bayesian inference requires a prior distribution, and the choice of prior is therefore important and sometimes challenging.
+
+- Frequentism replaces the choice of a prior with the choice of a method or algorithm designed for the quantity of interest. 
+
+- Bayesian inference answers all possible questions at once.
+
+- Frequentism requires different methods/algorithms for different questions. 
+
+- Bayesian inference is open for sequential updating, e.g. when data are to be integrated to the model over time. 
+
+> The authors states that "Computer-age statistical inference at its most successful combines elements of the two philosophies"
+
