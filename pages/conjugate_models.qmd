@@ -276,6 +276,8 @@ Hyperparameters are the expected relative frequency $t_2=\frac{t_1s_1+y_1}{s_1+n
 
 Hyperparameters for step 3 are the expected relative frequency $t_3=\frac{t_2s_2+y_2}{s_2+n_2}=\frac{t_1s_1 + y_1 + y_2}{s_1+n_1+n_2}$ and "sample size" $s_3 = s_2+n_2=s_1+n_1+n_2$
 
+This also demonstrates the property of **data-order invariance** which states that if data is conditionally independent on the model, the order of updating has no effect on the final posterior. 
+
 ### Parametric inference 
 
 Is it possible to test hypothesis in Bayesian analysis? 
@@ -433,7 +435,7 @@ To perform Bayesian parameter estimation of a Bayesian Network, one has to speci
 
 ![](img/metanetwork.png)
 
-Koller, D., & Friedman, N. (2009). Probabilistic graphical models: principles and techniques. MIT press.
+Koller, D., & Friedman, N. (2009). Probabilistic graphical models: principles and techniques. MIT press. [PDF](http://mcb111.org/w06/KollerFriedman.pdf)
 
 
 Demonstration of implementation of priors in Bayesian Networks

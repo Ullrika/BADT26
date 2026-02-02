@@ -4,17 +4,173 @@ subtitle: "BADT"
 author: "Sahlin"
 ---
 
-## Registration
+
+## Why this course 
+
+A PhD course in Bayesian analysis for participants that are not from maths
+
+A PhD course that brings up the link between Bayesian inference and Decision theory 
+
+A possibility to discuss, praise and challenge Bayesian thinking 
+
+An introduction to Bayesian analysis to get started or get more experience 
+
+- Bayesian analysis: Bayesian statistics, Bayesian inference, Bayesian data analysis, Bayesian modelling, Bayesian computation, Bayesian networks, Bayesian emulation, Bayesian evidence synthesis
+
+- Decision theory: Bayesian decision theory, Bayesian hypothesis testing, Bayesian learning, decision making under uncertainty, evidence-based decision making, communicating uncertainty, uncertainty analysis in assessments, weight of evidence approaches
+
+
+Summer school 2015, PhD course spring 2018, PhD course online spring 2022, PhD course physical 2026
+
+
+![](img/bayesatlund.png)
+
+[Bayes@Lund web page](https://bayesat.github.io/)
+
+[Bayes@Lund Youtube Channel](https://www.youtube.com/channel/UCeoagWtIzhguFaZl5lFzz3g)
+
 
 ## Goals
 
-## Examination
+Content: 
+
+Bayesian analysis, Discrete Bayesian Belief Networks, Hierarchical modelling, Continuous Bayesian Belief Networks
+
+Probabilistic uncertainty analysis, Non-probabilistic methods for uncertainty analysis, Scientific principles to
+quantify uncertainty
+
+Bayesian Decision Theory, Principles of cautious decision making
+
 
 ## Material and content 
 
+Two books
+
+BR - Alicia A. Johnson, Miles Ott, Mine Dogucu Bayes Rules 
+
+DBDA - John K. Kruschke Doing Bayesian Data Analysis 
+
+Additional material: lecture notes and exercises available and updated during the course on this git web page
+
+## Assessment 
+
+Assessment is based on student activities in practical exercises and seminars, and on the written project report.
+
+- Presence at the two physical meetings (let us know if you cannot attend in advance)
+
+- Active participation in literature seminars 
+
+- Completed individual report
+
+
 ## Literature seminar
+
+### Learning goals
+
+- Digest a Bayesian decision analysis for a concrete problem
+
+- Practice to identify sources of uncertainty in an assessment
+
+- Be able to give examples of principles to quantify and treat uncertainty in a Bayesian analysis 
+
+- Be able to give an account of science theoretic arguments behind principles to quantify and treat uncertainty in knowledge production and decision making
+
+- Reflect on the limitations and justification of Bayesian principles and subjective probability to produce scientific advice or decision support
+
+- Practice collaboration and presentation in an interdisciplinary context
+
+### Instructions 
+
+The literature seminar is constructed around three themes. 
+
+- Before the seminar 
+
+Download the literature. You have been placed in a group (A-C). You are to read the three papers assigned to your group. Skim through the other papers. Look at the questions for your group. 
+
+- During the seminar
+
+Together with your group, prepare and give a presentation of the three papers (try to keep it short < 8 min per paper). Structure the presentation around the answers to the questions under that theme.  
+
+### Theme 1: The Bayesian analysis combined with decision making 
+
+Group A. Augustynczik, A. L. et al. Productivity of Fagus sylvatica under climate change–A Bayesian analysis of risk and uncertainty using the model 3-PG. Forest Ecology and Management 401, 192–206 (2017). link to paper
+
+Group B. Spiegelhalter, D. J. & Best, N. G. Bayesian approaches to multiple sources of evidence and uncertainty in complex cost-effectiveness modelling. Statist. Med. 22, 3687–3709 (2003). link to paper
+
+Group C. Theobald, C. M. & Talbot, M. The Bayesian choice of crop variety and fertilizer dose. Journal of the Royal Statistical Society: Series C (Applied Statistics) 51, 23–36 (2002). link to paper
+
+Questions 
+
+- Describe the decision problem! Who is the decision-maker? What are the decision alternatives? How are values/preferences defined and used? What qualifies as a good decision?
+
+- Describe the model to inform the decision problem. What is the quantify of interest? What type of data was used? How were priors specified?
+
+- List sources of uncertainty for this assessment!
+
+- Describe strengths and weaknesses of the methods and principles underlying the paper as a method in research and as a method to produce scientific advice (decision-support).  
+
+### Theme 2: Uncertainty and subjective probability 
+
+Group A. Meder, B., Le Lec, F. & Osman, M. Decision making in uncertain times: what can cognitive and decision sciences say about or learn from economic crises? Trends in Cognitive Sciences 17, 257–260 (2013). link to paper
+
+Group B. Paté-Cornell, E. On “Black Swans” and “Perfect Storms”: Risk Analysis and Management When Statistics Are Not Enough: On Black Swans and Perfect Storms. Risk Analysis 32, 1823–1833 (2012). link to paper
+
+Group C. Parker, W. S. Whose probabilities? Predicting climate change with ensembles of models. Philosophy of Science 77, 985–997 (2010). link to paper
+
+Questions 
+
+- What type of assessment or decision problem is used as context for the paper?
+
+- How is uncertainty presented or defined by the authors?
+
+- What use of subjective probability is described and are there any requirements or justifications for this use?
+
+- Do the authors suggest any limitations with subjective probability as a measure to quantify uncertainty in research and in processes that produce scientific advice? If so, which?
+
+### Theme 3: Beyond the Bayesian paradigm
+
+Group A. French, S. Axiomatizing the Bayesian Paradigm in Parallel Small Worlds. Operations Research (2020). link to paper
+
+Group B. O’Hagan, A. & Oakley, J. E. Probability is perfect, but we can’t elicit it perfectly. Reliability Engineering & System Safety 85, 239–248 (2004). link to paper
+
+Group C. Gärdenfors, Peter. & Sahlin, Nils. E. Unreliable probabilities, risk taking, and decision making. Synthese 53, 361–386 (1982). link to paper
+
+Questions 
+
+- What challenges with the Bayesian paradigm are raised by the authors?
+
+- What is their solution?
+
+- Describe strengths and weaknesses of the methods and principles proposed in the paper relevant and useful in research and in processes that produce scientific advice (decision-support).  
 
 ## Individual project 
 
+The purpose of the individual project is to allow you to implement Bayesian analysis on a problem that you specify yourself. This can be something that is related to your research (but it doesn't have to be). Select a problem making sure that the amount of work should not exceed more than a week.
+
+The problem should be either a Bayesian analysis with an informed and justified prior or a Decision analysis supported by a Bayesian analysis
+
+(@) Share your project idea
+
+(@) Get early feedback from Ullrika/Zheng
+
+(@) Perform the project
+
+(@) Produce a minimal report (project description, what you did, result)
+
+(@) Get feedback from Ullrika/Zheng
+
+(@) The project should preferably be finalised within a month after the last course day. Instructions to submit will follow
+
+If you are new to Bayesian stuff - MAKE IT SIMPLE!
+
+If you feel advanced - take the opportunity to try something new
+
 ## Practical things 
+
+LADOK - contact your ladok-administrator with a request to be registered to the course with identity 6FNAM001. 
+
+We will issue certificates upon a completed course. 
+
+PUB after the course today 
+
 

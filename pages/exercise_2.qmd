@@ -6,34 +6,63 @@ author: "Sahlin"
 
 ### Background 
 
-Conjugate models are very useful even today. 
+Conjugate models are very useful even today, but for relatively simple problems. 
 
-### Task
-
-We have prepared some examples where we want to you use conjugate models to identify which of them that has a conflict between prior and data 
-
-Use conjugate models to construct probability intervals for the results from a clinical trial and compare to a published meta-analysis
+### Task 1
 
 Test an hypothesis using conjugate model. How sensitive is the conclusion from the choice of prior? 
 
 
-Let  
-λ
-  be the average number of goals scored in a Women’s World Cup game. We’ll analyze  
-λ
-  by the following Gamma-Poisson model where data  
-Y
-i
-  is the observed number of goals scored in a sample of World Cup games:
+Let $\lambda$ be the average number of goals scored in a Women’s World Cup game. We’ll analyse $\lambda$ by a Gamma-Poisson model where data  $Y_i$ is the observed number of goals scored in a sample of World Cup games
+
+1. Specify the model 
+
+2. Plot and summarize our prior understanding of  $\lambda$.
+
+3. Why is the Poisson model a reasonable choice for our data  
+$Y_i$?
+
+Use the wwc_2019_matches data from [fivethirtyeight](https://data.fivethirtyeight.com/)
+
+The wwc_2019_matches data includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. We summed the scores by the two teams per game, made a histogram and calculated some summary statistics:
+
+```{r}
+#| echo: false
+
+library(fivethirtyeight)
+
+goals <- wwc_2019_matches$score1 + wwc_2019_matches$score2
+
+library(ggplot2)
+
+hist(goals)
+```
 
 
-Plot and summarize our prior understanding of  
-λ
- .
+```{r}
+#| echo: false
 
-Why is the Poisson model a reasonable choice for our data  
-Y
-i
- ?
+summary(goals)
+```
 
-The wwc_2019_matches data in the fivethirtyeight package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game:
+4. Make a test if the average number of goals scored in a Women’s World Cup game is less than 1.8.
+
+
+### Task 2
+
+Use conjugate models to construct probability intervals for the results from a clinical trial and compare to a published meta-analysis. 
+
+[Lancet paper](https://www.thelancet.com/article/S0140-67362031142-9/fulltext)
+
+
+![](https://www.thelancet.com/cms/10.1016/S0140-6736(20)31142-9/asset/b966c770-af7d-4424-a04a-556cef203d13/main.assets/gr4_lrg.jpg)
+
+A relative risk (RR) is a ratio of the probability of an event occurring in the exposed group versus the probability of the event occurring in the non-exposed group.
+
+1. Reproduce the probability interval for a RR from the forest plots tables e.g. Scales et al 2003
+
+2. Calculate a probability interval for one of the studies for which the RR is not calculable, e.g. Hall et al 2014
+
+
+
+ 

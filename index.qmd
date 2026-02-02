@@ -8,7 +8,7 @@ title: "BADT26"
 
 Lundmarkssalen Astronomihuset
 
-12.15 Course introduction
+12.15 [Course introduction](pages\course_intro.qmd)
 
 12.25 Lecture with non-computer exercises: [Bayesian inference and subjective probability](pages\Bayesian_inference_subjective_probability.qmd)
 
