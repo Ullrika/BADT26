@@ -16,6 +16,8 @@ analytical_sd <- sqrt((56 * 46) / ((56 + 46)^2 * (56 + 46 + 1)))
 Using MCMC
 
 ```{r}
+library(tidyverse)
+
 # Metropolis Algorithm for Coin Flip
 # 100 flips: 55 heads, 45 tails
 # Prior: Beta(1,1)
@@ -49,10 +51,11 @@ posterior_density <- function(theta) {
 }
 
 # store the positions
-chain_theta <- numeric(num_iterations)
-prior_values <- numeric(num_iterations)
-likelihood_values <- numeric(num_iterations)
-posterior_values <- numeric(num_iterations)
+chain_theta <- numeric(n_iterations)
+prior_values <- numeric(n_iterations)
+likelihood_values <- numeric(n_iterations)
+posterior_values <- numeric(n_iterations)
+acceptance_ratios <- numeric(n_iterations - 1)
 
 # Calculate values for initial position
 chain_theta[1] <- starting_theta
@@ -62,14 +65,14 @@ posterior_values[1] <- prior_values[1] * likelihood_values[1]  # Unnormalized po
 
 
 # Metropolis algorithm main loop
-for (i in 1:n_iterations) {
+for (i in 2:n_iterations) {
   current_theta <- chain_theta[i-1]
   
   # 1. Propose a new candidate value
   # random walk
   proposed_theta <- rnorm(1, mean = current_theta, sd = proposal_sd)
-  if (proposed_theta < 0) proposed_theta <- 1/(-proposed_theta)
-  if (proposed_theta > 1) proposed_theta <- 1/proposed_theta
+  if (proposed_theta < 0) {proposed_theta <- 1/(-proposed_theta)}
+  if (proposed_theta > 1) {proposed_theta <- 1/proposed_theta}
   proposed_theta <- max(0.001, min(0.999, proposed_theta))
 
   # 2. Calculate acceptance ratio
@@ -106,14 +109,14 @@ for (i in 1:n_iterations) {
 
 ```{r}
 # summarize 
-prior_values[n_iterations] <- prior_function(chain_theta[n_iterations])
-likelihood_values[n_iterations] <- likelihood_function(chain_theta[n_iterations])
+prior_values[n_iterations] <- prior_density(chain_theta[n_iterations])
+likelihood_values[n_iterations] <- likelihood_density(chain_theta[n_iterations])
 posterior_values[n_iterations] <- prior_values[n_iterations] * likelihood_values[n_iterations]
 
 summary(posterior_values)
 
 trace_df <- data.frame(
-  iteration = 1:num_iter,
+  iteration = 1:n_iterations,
   theta = chain_theta
 )
 
@@ -130,6 +133,7 @@ p_trace <- ggplot(trace_df, aes(x = iteration, y = theta)) +
        y = "theta") +
   scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.1)) +
   theme(legend.position = "bottom")
+p_trace
 
 ```
 
