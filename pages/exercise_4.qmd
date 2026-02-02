@@ -30,19 +30,20 @@ author: "Zheng Zhou"
 
 **If you Use R**: install [cmdstanr](https://mc-stan.org/cmdstanr/)
 
-1. install [Rtools45](https://github.com/r-hub/rtools45/releases/download/latest/rtools45.exe)
+**If you Use python**: install [cmdstanPy](https://mc-stan.org/cmdstanpy/installation.html)
 
-2. install cmdstanr
+1. install appropriate C++ toolchain based on your IDE: [for R](https://mc-stan.org/docs/cmdstan-guide/installation.html#cpp-toolchain) and [for python](https://mc-stan.org/cmdstanpy/installation.html#c-toolchain-requirements)
 
-3. build cmdstan
+2. install compiler for your IDE
 
-**If you Use python**: install [PyStan](https://pystan.readthedocs.io/en/latest/installation.html)
+3. install utility package if desire
 
 (@) Once done, run an example model to check the compiler
 
 The beta-binomial example in stan
 
 ```{r}
+library(cmdstanr)
 file <- file.path(cmdstan_path(), "examples", "bernoulli", "bernoulli.stan")
 mod <- cmdstan_model(file)
 # names correspond to the data block in the Stan program
