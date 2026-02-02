@@ -261,13 +261,13 @@ Complete Ex 3: today and beginning of tomorrow's session.
 
 Before accepting MCMC results, how good they are?
 
-* Trace plot: displays chain stability in random sampling, 
+* Trace plot: biased by the arbitrary starting value? fully explore the posterior range? 
 
-* Rhat/ Gelman-Rubins statistics: convergence of multiple chains
+* Rhat/ Gelman-Rubins statistics: convergence of multiple chains, also shown in the trace plot
   
 * Effective sample size: measures chain accuracy- how many independent sampling steps for the chain to approximate the posterior
 
-* Autocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart is bad.
+* Autocorrelation: also shows chain accuracy- strong correlation between steps that are one or two steps apart breaks Markov process
 
 Read the Bayes rule book chapter 6.3  and DBDA chapter 7.5 for technical details and examples.
 
