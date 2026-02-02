@@ -13,17 +13,20 @@ website:
       - href: pages/Bayesian_inference_subjective_probability.qmd
         text: Bayesian inference
       - href: pages/exercise_1.qmd
-        text: Exercise 1
+        text: E1
       - href: pages/conjugate_models.qmd
         text: Conjugate models
       - href: pages/exercise_2.qmd
-        text: Exercise 2
+        text: E2
       - href: pages/MCMC.qmd
         text: MCMC
       - href: pages/exercise_3.qmd
-        text: Exercise 3
+        text: E3
       - href: pages/PP.qmd
         text: Predictive performance
+      - href: pages/exercise_4.qmd
+        text: E4
+      
 
 format:
   html:

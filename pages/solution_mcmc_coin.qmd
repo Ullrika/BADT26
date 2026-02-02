@@ -1,5 +1,5 @@
 ---
-title: "Exercise 3 Answers"
+title: "Solution to Exercise Coin flip in R"
 author: "Zheng Zhou"
 ---
 
@@ -43,7 +43,10 @@ likelihood <- function(theta) {
 posterior_density <- function(theta) {
   prior_density(theta) * likelihood(theta)  # Prior * Likelihood
 }
+```
 
+
+```{r}
 # Metropolis algorithm main loop
 for (i in 1:n_iterations) {
   
@@ -73,7 +76,10 @@ for (i in 1:n_iterations) {
   # 4. Store the current theta value
   samples[i] <- current_theta
 }
+```
 
+
+```{r}
 # Discard burn-in samples
 post_burn_samples <- samples[(burn_in + 1):n_iterations]
 
@@ -84,7 +90,10 @@ posterior_sd <- sd(post_burn_samples)
 
 # Calculate 95% credible interval
 credible_interval <- quantile(post_burn_samples, c(0.025, 0.975))
+```
 
+
+```{r}
 # Display results
 cat("=== Metropolis Algorithm Results ===\n")
 cat("Observed data: ", n_heads, "heads out of", n_flips, "flips\n")
@@ -104,7 +113,10 @@ cat("\n=== Analytical Solution (for comparison) ===\n")
 cat("Beta(56, 46) posterior\n")
 cat("Analytical mean:", round(analytical_mean, 4), "\n")
 cat("Analytical SD:", round(analytical_sd, 4), "\n")
+```
 
+
+```{r}
 # Plotting the results
 par(mfrow = c(2, 2))  # Create 2x2 grid of plots
 
@@ -137,7 +149,10 @@ acf(post_burn_samples, main = "Autocorrelation",
 
 # Reset plot layout
 par(mfrow = c(1, 1))
+```
 
+
+```{r}
 # Calculate effective sample size (ESS)
 # ESS = n / (1 + 2*sum(autocorrelations))
 # Rough estimate for demonstration

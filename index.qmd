@@ -8,27 +8,21 @@ title: "BADT26"
 
 Lundmarkssalen Astronomihuset
 
-12.15 [Course introduction](pages\course_intro.qmd)
+[Course introduction](pages\course_intro.qmd)
 
-12.25 Lecture with non-computer exercises: [Bayesian inference and subjective probability](pages\Bayesian_inference_subjective_probability.qmd)
+Lecture with non-computer exercises: [Bayesian inference and subjective probability](pages\Bayesian_inference_subjective_probability.qmd)
 
 Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
 
 [Exercise 1: Probability](pages\exercise_1.qmd)
 
-13.00 Break
-
-13.15 Lecture about [conjugate models](pages\conjugate_models.qmd)
+Lecture about [conjugate models](pages\conjugate_models.qmd)
 
 Readings: BR* (Chapters 3 and 5) and DBDA* (Chapters 6)
 
-14.00 Break
+[Exercise 2: Conjugate models](pages\exercise_2.qmd)
 
-14.15 [Exercise 2: Conjugate models](pages\exercise_2.qmd)
-
-15.00 Break
-
-15.15 Lecture on [Bayesian analysis using MCMC](pages\MCMC.qmd)
+Lecture on [Bayesian analysis using MCMC](pages\MCMC.qmd)
 
 [Exercise 3. Write your own MCMC sampler](pages\exercise_3.qmd) 
 
@@ -40,29 +34,30 @@ Pufendorf Institute for Advanced Studies
 
 Reading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)
 
-Exercise 3. Write your own MCMC sampler
+[Exercise 2: Conjugate models](pages\exercise_2.qmd)
 
-10.00 Short lecture Introduction to software for MCMC sampling (Zheng)
+[Exercise 3. Write your own MCMC sampler](pages\exercise_3.qmd)
+
+10.30 Short lecture Introduction to software for MCMC sampling (Zheng)
+
+10.45 Short lecture [Predictive performance in Bayesian inference](pages\PP.qmd)
 
 Exercise 4. Get started with a software for MCMC sampling
 
-10.30 Lecture [Predictive performance in Bayesian inference](pages\PP.qmd)
-
-11.00 Break
-
-11.15 Lecture Generalised Linear Regression models with exercises
+11.30 Lecture Generalised Linear Regression models 
 
 Reading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)
 
-Exercise 5. Specifying models through graphs
-
 12-13 Lunch
 
-13.15 Exercise 6. Specify and run GLMs in MCMC samplers. 
+13.00 Exercise 5. Bayesian GLMs 
 
-14.15 Lecture on Decision theory
+14.15 Lecture on Decision theory with example in stan
+
 Reading: 1* and 2*
 
 # Second meeting 24-25 Feb
 
 Material for second meeting to come
+
+

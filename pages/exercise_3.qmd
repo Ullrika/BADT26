@@ -41,4 +41,4 @@ Tips: proposes new values for the probability of heads, calculates the acceptanc
 
 # Coding demonstration for the coin flip example
 
-[Coin flip script](ex3_answers.qmd)
+[Coin flip R script](solution_mcmc_coin.qmd)
