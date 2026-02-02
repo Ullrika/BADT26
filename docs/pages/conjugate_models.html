@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sahlin">
+
+<title>Conjugate models – BADT26</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">BADT26</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/course_intro.html"> 
+<span class="menu-text">Course introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/Bayesian_inference_subjective_probability.html"> 
+<span class="menu-text">Bayesian inference</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/exercise_1.html"> 
+<span class="menu-text">Exercise 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../pages/conjugate_models.html" aria-current="page"> 
+<span class="menu-text">Conjugate models</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/exercise_2.html"> 
+<span class="menu-text">Exercise 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/MCMC.html"> 
+<span class="menu-text">MCMC</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/exercise_3.html"> 
+<span class="menu-text">Exercise 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/PP.html"> 
+<span class="menu-text">Predictive performance</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conjugate-model" id="toc-conjugate-model" class="nav-link active" data-scroll-target="#conjugate-model">Conjugate model</a></li>
+  <li><a href="#beta-binomial" id="toc-beta-binomial" class="nav-link" data-scroll-target="#beta-binomial">Beta-Binomial</a>
+  <ul class="collapse">
+  <li><a href="#impact-on-posterior-from-prior-and-data" id="toc-impact-on-posterior-from-prior-and-data" class="nav-link" data-scroll-target="#impact-on-posterior-from-prior-and-data">Impact on posterior from prior and data</a></li>
+  <li><a href="#reparameterisation" id="toc-reparameterisation" class="nav-link" data-scroll-target="#reparameterisation">Reparameterisation</a></li>
+  <li><a href="#bayesian-learning---sequential-updating" id="toc-bayesian-learning---sequential-updating" class="nav-link" data-scroll-target="#bayesian-learning---sequential-updating">Bayesian learning - Sequential updating</a></li>
+  <li><a href="#parametric-inference" id="toc-parametric-inference" class="nav-link" data-scroll-target="#parametric-inference">Parametric inference</a></li>
+  </ul></li>
+  <li><a href="#conjugate-models-and-the-exponential-family" id="toc-conjugate-models-and-the-exponential-family" class="nav-link" data-scroll-target="#conjugate-models-and-the-exponential-family">Conjugate models and the exponential family</a>
+  <ul class="collapse">
+  <li><a href="#normal-normal-conjugate-model" id="toc-normal-normal-conjugate-model" class="nav-link" data-scroll-target="#normal-normal-conjugate-model">Normal-Normal conjugate model</a></li>
+  <li><a href="#gamma-normal-conjugate-model" id="toc-gamma-normal-conjugate-model" class="nav-link" data-scroll-target="#gamma-normal-conjugate-model">Gamma-Normal conjugate model</a></li>
+  <li><a href="#list-of-conjugate-models" id="toc-list-of-conjugate-models" class="nav-link" data-scroll-target="#list-of-conjugate-models">List of conjugate models</a></li>
+  </ul></li>
+  <li><a href="#example-from-bayesian-networks" id="toc-example-from-bayesian-networks" class="nav-link" data-scroll-target="#example-from-bayesian-networks">Example from Bayesian Networks</a></li>
+  <li><a href="#monte-carlo-simulation" id="toc-monte-carlo-simulation" class="nav-link" data-scroll-target="#monte-carlo-simulation">Monte Carlo simulation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Conjugate models</h1>
+<p class="subtitle lead">BADT</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sahlin </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="conjugate-model" class="level2">
+<h2 class="anchored" data-anchor-id="conjugate-model">Conjugate model</h2>
+<p>We say that <span class="math inline">\(p(\pi)\)</span> is a conjugate prior for <span class="math inline">\(L(\pi|y)\)</span> if the posterior,<br>
+<span class="math inline">\(p(\pi|y)\)</span>, is from the same model family as the prior.</p>
+<p>The prior is conjugate with respect to a particular likelihood function.</p>
+<p>This property is called “conjugacy” and was introduced by Raiffa &amp; Schlaifer (2000), first edition published in 1961.</p>
+<p>Conjugate models are still useful. They are used to calculate probability intervals, for updating categorical nodes in binary Bayesian networks.</p>
+<p>They are limited to simple Bayesian models.</p>
+<p>Raiffa H, Schlaifer R. 2000. Applied statistical decision theory. Wiley classics library ed.&nbsp;New York: Wiley.</p>
+</section>
+<section id="beta-binomial" class="level2">
+<h2 class="anchored" data-anchor-id="beta-binomial">Beta-Binomial</h2>
+<p><strong>Observable:</strong> number of successes <span class="math inline">\(Y\)</span> out of <span class="math inline">\(N\)</span> independent trials</p>
+<p><strong>Observations(data):</strong> <span class="math inline">\(y,n\)</span> (random sample from <span class="math inline">\(Y\)</span> where <span class="math inline">\(N=n\)</span>)</p>
+<p><strong>Data generating process:</strong> <span class="math inline">\(Y|\pi,N \sim Bin(N,\pi)\)</span></p>
+<p><span class="math display">\[p(y|\pi,n) = \frac{n!}{y!(n-y)!}=\pi^y(1-\pi)^{n-y}\]</span></p>
+<p><strong>Parameter:</strong> <span class="math inline">\(\pi\)</span></p>
+<p><strong>Likelihood:</strong></p>
+<p><span class="math display">\[L(\pi,y,n) = \frac{n!}{y!(n-y)!}=\pi^y(1-\pi)^{n-y}\]</span></p>
+<p>log likelihood</p>
+<p><span class="math display">\[l(\pi,y,n) = \log L(\pi,y,n) = \log n! - \log y! - \log (n-y)! + y \log \pi + (n-y) \log (1-\pi)\]</span></p>
+<p>Simplification by dropping constant that do not depend on parameter</p>
+<p><span class="math inline">\(l(\pi,y,n) \propto y \log \pi + (n-y) \log (1-\pi)\)</span></p>
+<p><strong>Prior:</strong> <span class="math inline">\(\pi \sim Beta(\alpha,\beta)\)</span></p>
+<p><strong>Hyper-parameters:</strong> <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span></p>
+<p><strong>Posterior:</strong>: <span class="math inline">\(\pi \sim Beta(\alpha+y,\beta+n-y)\)</span></p>
+<section id="impact-on-posterior-from-prior-and-data" class="level3">
+<h3 class="anchored" data-anchor-id="impact-on-posterior-from-prior-and-data">Impact on posterior from prior and data</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="conjugate_models_files/figure-html/post-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reparameterisation" class="level3">
+<h3 class="anchored" data-anchor-id="reparameterisation">Reparameterisation</h3>
+<p><strong>Data generating process:</strong> <span class="math inline">\(Y|\pi,N \sim Bin(N,\pi)\)</span></p>
+<p>Let us look at an alternative parameterisation of the beta distribution</p>
+<p>Let <span class="math inline">\(\alpha=ts\)</span> and <span class="math inline">\(\beta=(1-t)s\)</span></p>
+<p>The new parameters <span class="math inline">\(t\)</span> and <span class="math inline">\(s\)</span> can be seen as expected relative frequency and “sample size”, respectively.</p>
+<p><strong>Prior:</strong> <span class="math inline">\(\pi \sim Beta(ts,(1-t)s)\)</span></p>
+<p><strong>Hyper-parameters:</strong> <span class="math inline">\(t\)</span>, <span class="math inline">\(s\)</span></p>
+<p><strong>Posterior:</strong> <span class="math inline">\(\pi|y,n \sim Beta(ts+y,(1-t)s+n-y)\)</span></p>
+</section>
+<section id="bayesian-learning---sequential-updating" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-learning---sequential-updating">Bayesian learning - Sequential updating</h3>
+<p>Bayesian inference can be done sequentially, by using the posterior in a previous step as prior in the next step</p>
+<p><strong>Prior step 1:</strong> <span class="math inline">\(\pi|s,t \sim Beta(ts,(1-t)s)\)</span></p>
+<p><strong>Posterior step 1:</strong> <span class="math inline">\(\pi|y_1,n_1,s_1,t_1 \sim Beta(t_1s_1+y_1,(1-t_1)s_1+n_1-y_1)\)</span></p>
+<p>Posterior expected relative frequency is</p>
+<p><span class="math display">\[\frac{t_1s_1+y_1}{t_1s_1+y_1+(1-t_1)s_1+n_1-y_1}=\frac{t_1s_1+y_1}{s_1+n_1}\]</span></p>
+<p><strong>Prior step 2:</strong> <span class="math inline">\(\pi|s_2,t_2 \sim Beta(t_2s_2,(1-t_2)s_2)\)</span></p>
+<p>Hyperparameters are the expected relative frequency <span class="math inline">\(t_2=\frac{t_1s_1+y_1}{s_1+n_1}\)</span> and “sample size” <span class="math inline">\(s_2 = s_1+n_1\)</span></p>
+<p><strong>Posterior step 2:</strong> <span class="math inline">\(\pi|y_2,n_2,s_2,t_2 \sim Beta(t_2s_2+y_2,(1-t_2)s_2+n_2-y_2)\)</span></p>
+<p>Hyperparameters for step 3 are the expected relative frequency <span class="math inline">\(t_3=\frac{t_2s_2+y_2}{s_2+n_2}=\frac{t_1s_1 + y_1 + y_2}{s_1+n_1+n_2}\)</span> and “sample size” <span class="math inline">\(s_3 = s_2+n_2=s_1+n_1+n_2\)</span></p>
+<p>This also demonstrates the property of <strong>data-order invariance</strong> which states that if data is conditionally independent on the model, the order of updating has no effect on the final posterior.</p>
+</section>
+<section id="parametric-inference" class="level3">
+<h3 class="anchored" data-anchor-id="parametric-inference">Parametric inference</h3>
+<p>Is it possible to test hypothesis in Bayesian analysis?</p>
+<ul>
+<li><p>Bayes factor</p></li>
+<li><p>Bayesian p-value</p></li>
+<li><p>Bayesian confidence interval</p></li>
+<li><p>Bayesian model selection</p></li>
+</ul>
+<p>Using observed data to choose between two probabilistic models, <span class="math inline">\(M_0\)</span> and <span class="math inline">\(M_1\)</span>.</p>
+<p><span class="math display">\[\underbrace{\frac{p(M_1|data)}{p(M_0|data)}}_{\text{posterior ratio}}=\underbrace{\frac{p(M_1)}{p(M_0)}}_{\text{prior ratio}}\underbrace{\frac{p(data|M_1)}{p(data|M_0)}}_{\text{bayes factor}}\]</span></p>
+<p><a href="https://www.statlect.com/fundamentals-of-statistics/posterior-odds-ratio">https://www.statlect.com/fundamentals-of-statistics/posterior-odds-ratio</a></p>
+<p>Using observed data to choose between two probabilistic models, <span class="math inline">\(M_0\)</span> and <span class="math inline">\(M_1\)</span> that differ in complexity. For example, consider teh binomial model: <span class="math inline">\(M_0\)</span> could be that the parameter <span class="math inline">\(\pi\)</span> takes a specific value <span class="math inline">\(\pi_0\)</span>, whereas <span class="math inline">\(M_1\)</span> is that it can be any value in the interval <span class="math inline">\([0,1]\)</span>.</p>
+<p>The probability for data under <span class="math inline">\(M_0\)</span>, <span class="math inline">\(p(data|M_0)\)</span>, is found by using <span class="math inline">\(\pi=\pi_0\)</span> in the probabilistic model for data.</p>
+<p>The probability for data under <span class="math inline">\(M_0\)</span>, <span class="math inline">\(p(data|M_1)\)</span> is found by specifying a prior for <span class="math inline">\(\pi\)</span>, do Bayesian updating, and use the posterior <span class="math inline">\(\pi|data\)</span> to calcualte the expected probability for data under <span class="math inline">\(M_1\)</span></p>
+<p><span class="math display">\[p(data|M_1) = \int_\infty^\infty p(data|\theta,M_1)p(\theta|M_1)d\theta\]</span></p>
+</section>
+</section>
+<section id="conjugate-models-and-the-exponential-family" class="level2">
+<h2 class="anchored" data-anchor-id="conjugate-models-and-the-exponential-family">Conjugate models and the exponential family</h2>
+<p>Analytic results for the posterior distribution can always be obtained for a class of distributions known as exponential family distributions, provided that conjugate priors are used.</p>
+<p>Exponential family distributions can be written in the form</p>
+<p><span class="math display">\[p(\mathbf{y}|\mathbf{\eta})=f(\mathbf{y})\exp \left[\mathbf{\eta}^T\mathbf{s(y)} + \psi(\mathbf{\eta})\right]\]</span> where <span class="math inline">\(\mathbf{\eta}\)</span> is a vector of natural parameters, <span class="math inline">\(f(\mathbf{y})\)</span> is an arbitrary function that depends only on <span class="math inline">\(\mathbf{y}\)</span>, <span class="math inline">\(\mathbf{s(y)}\)</span> is a vector containing the sufficient statistics for the data <span class="math inline">\(\mathbf{y}\)</span>, and <span class="math inline">\(\psi(\mathbf{\eta})\)</span> is the logarithm of the normalizing constant.</p>
+<p>For example</p>
+<p><span class="math inline">\(\eta = \log \frac{\theta}{1-\theta}\)</span></p>
+<p><span class="math inline">\(\psi(\eta) = \log (1+\exp(\eta))=-\log (1-\theta)\)</span></p>
+<p>For any exponential family distribution, there is a corresponding family of conjugate priors with <span class="math inline">\(p(\mathbf{\eta}|\mathbf{y}) \propto \exp \left[ \mathbf{\eta}^T\nu + \lambda \psi(\mathbf{\eta})\right]\)</span>.</p>
+<p>Conjugacy can be demonstrated by observing that the posterior is given by</p>
+<p><span class="math inline">\(p(\mathbf{\eta}|\mathbf{y}) \propto p(\mathbf{y}|\mathbf{\eta})p(\mathbf{\eta})\)</span></p>
+<section id="normal-normal-conjugate-model" class="level3">
+<h3 class="anchored" data-anchor-id="normal-normal-conjugate-model">Normal-Normal conjugate model</h3>
+<p><strong>Observable:</strong> <span class="math inline">\(Y\)</span></p>
+<p><strong>Observations(data):</strong> <span class="math inline">\(\mathbf{y}=(y_1,\ldots,y_n)\)</span> (random sample from <span class="math inline">\(Y\)</span>)</p>
+<p><strong>Data generating process:</strong> <span class="math inline">\(Y|\mu,\sigma \sim N(\mu,\sigma)\)</span></p>
+<p><span class="math display">\[p(\mathbf{y}|\mu,\sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma}} \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right]\]</span></p>
+<p><strong>Parameters:</strong> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span> (we assume <span class="math inline">\(\sigma\)</span> is known)</p>
+<p><strong>Likelihood:</strong></p>
+<p><span class="math display">\[L(\mu,\mathbf{y}) \propto \prod \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right] = \exp \left[-\frac{\sum(y_i-\mu)^2}{2\sigma^2} \right] = \exp \left[-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n} \right]\]</span></p>
+<p>log likelihood</p>
+<p><span class="math display">\[l(\mu,\mathbf{y}) = \log L(\mu,\mathbf{y}) \propto -\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}\]</span></p>
+<p><strong>Prior:</strong></p>
+<p><span class="math display">\[\mu|\sigma \sim N(\mu_0,\frac{\sigma}{\sqrt{k}})\]</span></p>
+<p><strong>Hyper-parameters:</strong> <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(k\)</span></p>
+<p>Let <span class="math inline">\(\bar{y}=\frac{1}{n}\sum_{i=1}^n y_i\)</span> be the sample mean and <span class="math inline">\(s^2 = \frac{1}{n-1}\sum_{i=1}^n (y_i-\bar{y})^2\)</span> be the sample variance.</p>
+<p><strong>Posterior:</strong></p>
+<p><span class="math display">\[\mu|\sigma,\mathbf{y} \sim N(\frac{k\mu_0+n\bar{y}}{k+n},\frac{\sigma}{\sqrt{(k+n)}})\]</span></p>
+<p><img src="img/normal_normal.png" class="img-fluid"></p>
+</section>
+<section id="gamma-normal-conjugate-model" class="level3">
+<h3 class="anchored" data-anchor-id="gamma-normal-conjugate-model">Gamma-Normal conjugate model</h3>
+<p><strong>Observable:</strong> <span class="math inline">\(Y\)</span></p>
+<p><strong>Observations(data):</strong> <span class="math inline">\(\mathbf{y}=(y_1,\ldots,y_n)\)</span> (random sample from <span class="math inline">\(Y\)</span>)</p>
+<p><strong>Data generating process:</strong> <span class="math inline">\(Y|\mu,\sigma \sim N(\mu,\sigma)\)</span></p>
+<p><span class="math display">\[p(\mathbf{y}|\mu,\sigma) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma}} \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right]\]</span></p>
+<p><strong>Parameters:</strong> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span></p>
+<p><strong>Likelihood:</strong></p>
+<p><span class="math display">\[L(\mu,\sigma,\mathbf{y}) = \prod \frac{1}{\sqrt{2\pi\sigma}} \exp \left[-\frac{(y_i-\mu)^2}{2\sigma^2} \right] = \left(\frac{1}{\sqrt{2\pi\sigma}}\right)^n\exp   \left[-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n} \right]\]</span></p>
+<p>log likelihood</p>
+<p><span class="math display">\[l(\mu,\sigma,\mathbf{y}) = \log L(\mu,\sigma,\mathbf{y}) =-\frac{n}{2}\log (\pi\sigma) -\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}\]</span></p>
+<p><strong>Prior:</strong></p>
+<p><span class="math display">\[\mu|\sigma \sim N(\mu_0,\frac{\sigma}{\sqrt{k}})\]</span></p>
+<p><span class="math display">\[\frac{1}{\sigma^2} \sim \Gamma (\alpha_0,\beta_0)\]</span></p>
+<p><strong>Hyper-parameters:</strong> <span class="math inline">\(\mu_0\)</span>, <span class="math inline">\(k\)</span>, <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span></p>
+<p><strong>Posterior:</strong></p>
+<p><span class="math display">\[\mu|\sigma,\mathbf{y} \sim N(\frac{k\mu_0+n\bar{y}}{k+n},\frac{\sigma}{\sqrt{(k+n)}})\]</span></p>
+<p><span class="math display">\[\frac{1}{\sigma^2}|\mathbf{y} \sim \Gamma (\alpha_0+\frac{n}{2},\beta_0+\frac{s^2(n-1)}{2}+\frac{nk}{n+k}\frac{(\bar{y}-\mu_0)^2}{2})\]</span></p>
+<p><img src="img/normal_gamma.png" class="img-fluid"></p>
+</section>
+<section id="list-of-conjugate-models" class="level3">
+<h3 class="anchored" data-anchor-id="list-of-conjugate-models">List of conjugate models</h3>
+<p><a href="https://en.wikipedia.org/wiki/Conjugate_prior">https://en.wikipedia.org/wiki/Conjugate_prior</a></p>
+</section>
+</section>
+<section id="example-from-bayesian-networks" class="level2">
+<h2 class="anchored" data-anchor-id="example-from-bayesian-networks">Example from Bayesian Networks</h2>
+<p>Bayesian Parameter Estimation in Bayesian Networks (section 17.4 in Koller and Friedman 2009).</p>
+<p>A Bayesian Network can be understood as a probability distribution for data that allows specification of a likelihood. BNs were originally developed for categorical or binary nodes linked with edges into network.</p>
+<p>The concept was expanded for continuous normally distributed nodes, referred to as Gaussian Networks.</p>
+<p>Inference in these networks are of two types:</p>
+<ul>
+<li>Predictive inference: calculation of the probability of query variables (a subset of variables in the network) given evidence defined by an instantiation of a subset of variables in the network.</li>
+</ul>
+<p><span class="math display">\[p(\mathbf{Y}|\mathbf{E}=\mathbf{e})\]</span></p>
+<ul>
+<li>Parametric inference: Inference of the parameters in a network. This can be to estimate Conditional Probability Tables (CPTs) or expected values and variances in Gaussian Networks.</li>
+</ul>
+<p>Parametric inference can be done using maximum likelihood estimation.</p>
+<p>To perform Bayesian parameter estimation of a Bayesian Network, one has to specify a joint probability distribution of the unknown parameters and observables. Koller and Friedman (2009) refers to it as adding a meta-network for learning. Assumes global parameter independence, i.e.&nbsp;priors for parameters do not depend on each other. This allows taking expectations over parameters when making predictions independently and then combine the results when making predictions.</p>
+<p><img src="img/metanetwork.png" class="img-fluid"></p>
+<p>Koller, D., &amp; Friedman, N. (2009). Probabilistic graphical models: principles and techniques. MIT press. <a href="http://mcb111.org/w06/KollerFriedman.pdf">PDF</a></p>
+<p>Demonstration of implementation of priors in Bayesian Networks</p>
+<p>BayesFusion</p>
+<p><a href="https://repo.bayesfusion.com/bayesbox.html">https://repo.bayesfusion.com/bayesbox.html</a></p>
+</section>
+<section id="monte-carlo-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="monte-carlo-simulation">Monte Carlo simulation</h2>
+<p>Consider the expected value of a function <span class="math inline">\(g\)</span> of the random variable <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[E(g(\theta)) = \int_{-\infty}^{\infty} g(\theta)f(\theta)d\theta\]</span></p>
+<p>At best, one can use various approximations of the function to derive the target quantity.</p>
+<p>When the number of variables increase, it quickly becomes demanding to calculate the expected value</p>
+<p><span class="math display">\[E(g(\theta_1,\theta_2,\ldots)) = \int_{-\infty}^{\infty} g(\theta_1,\theta_2,\ldots)f(\theta_1,\theta_2,\ldots)d\theta_1d\theta_2\cdots\]</span></p>
+<p>Monte Carlo simulation is a numerical method to approximate functions of random variables or processes.</p>
+<p>Monte Carlo approximation works provided that there exists a finite expected value and variance of the function, i.e.&nbsp;that <span class="math inline">\(E(|g(\mathbf{\theta})|) &lt; \infty\)</span> and <span class="math inline">\(V(g(\mathbf{\theta})) &lt; \infty\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some useful theorems
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="the-weak-law-of-large-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="the-weak-law-of-large-numbers">The weak law of large numbers</h4>
+<p>If <span class="math inline">\(X_1,\ldots\)</span> are independent and identically distributed random variables with the same expected value <span class="math inline">\(\mu\)</span>, then the average of the random variables converges to the expected value as the number of variables <span class="math inline">\(n\)</span> goes towards infinity:</p>
+<p><span class="math display">\[\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \overset{p}{\rightarrow} \mu\]</span></p>
+<p>Convergence in probability <span class="math inline">\(p\)</span> is the same thing to say that the average converges to the value <span class="math inline">\(\mu\)</span> with probability 1.</p>
+</section>
+<section id="the-strong-law-of-large-numbers" class="level4">
+<h4 class="anchored" data-anchor-id="the-strong-law-of-large-numbers">The strong law of large numbers</h4>
+<p>Let <span class="math inline">\(X_1,\ldots\)</span> be a sequence of independent and identically distributed random variables where the expected value of the absolute random variable is finite, i.e.&nbsp;<span class="math inline">\(E(|X_1|) &lt; \infty\)</span>. Let <span class="math inline">\(E(X_1)=\mu\)</span>, then the average of the random variables converges to the expected value as the number of variables <span class="math inline">\(n\)</span> goes towards infinity:</p>
+<p><span class="math display">\[\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \overset{a.s.}{\rightarrow} \mu\]</span></p>
+<p><span class="math inline">\(a.s.\)</span> means “almost surely”, and is a stronger type of convergence than convergence in probability.</p>
+<p><img src="img/convergence_kadane.png" class="img-fluid"></p>
+</section>
+<section id="reflection-from-kadane" class="level2">
+<h2 class="anchored" data-anchor-id="reflection-from-kadane">Reflection from Kadane</h2>
+<blockquote class="blockquote">
+<p>Conjugate analysis is neat mathematically when it works. However, the slightest deviation in the specification of the likelihood or prior would destroy the property of conjugacy. Consequently, these results are interesting but far from a usable platform from which to do analyses.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Similarly, large sample theory is nice, but gives little guidance on how large a sample is required for large sample theory to yield good approximations. Since Bayesian analyses can and do deal with small samples as well as large ones (indeed Bayesians can gracefully make decisions with no data at all, relying on their prior), large sample theory is also quite limited in scope.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Because of these limitations, Bayesians now rely heavily on computational methods to find posterior distributions</p>
+</blockquote>
+<p>Kadane, J. B. (2020). Principles of uncertainty 2nd. Chapman and Hall/CRC. <a href="https://www.stat.cmu.edu/~kadane/principles-2.pdf">PDF</a></p>
+
+
+</section>
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
