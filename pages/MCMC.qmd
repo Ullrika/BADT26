@@ -70,7 +70,7 @@ Getting enough representative samples from the posterior distribution
 
 1. Make a proposal.
 
-2. $p_{prop}=\frac{poposal}{current}$.
+2. Acceptance ratio $p_{prop}=\frac{poposal}{current}$.
 
 3. If $p_{prop}$ > 1, move; if $p_{prop}$=1, stay.
 
@@ -209,12 +209,12 @@ Three critical things:
 
 2. making a proposal and knowing the population of the proposal
 
-3. knowing the population of the current, to calculate $p_{prop}=\frac{proposal}{current}$.
+3. knowing the population of the current, to calculate the acceptance ratio $p_{prop}=\frac{proposal}{current}$.
 
 
 ## Metropolis algorithm
 
-![](./Metropolis_paper.bmp)
+![](img/Metropolis_paper.bmp)
 
 Island hopping is a special case, Metropolis algorithm could handle:
 
@@ -231,8 +231,12 @@ $$
 Model:
 
 $$
+\begin{equation}
+\begin{split}
 \eta \sim N(0,\sigma^2) \\
 y \sim N(\beta_0 + \beta_1 x, \epsilon)
+\end{split}
+\end{equation}
 $$
 
 $\beta_0, \beta_1$ are continuous parameters

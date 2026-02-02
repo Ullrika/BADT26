@@ -5,15 +5,6 @@ author: "Zheng Zhou"
 format: html
 ---
 
-## Recap of MCMC
-
-| Objective | Desired property | Analytical solution | Approximation without analytical solution |
-|:---:|:---|:---|:---|
-| Model aggregation | Mean and variance of the aggregated variable | Analytical solution using Tyler expansion and Lagrangian transformation | Monte Carlo simulation |
-| Posterior sampling | Posterior distribution | Conjugated posterior | MCMC |
-
-Table: MCMC approximates samples from the posterior distribution without analytical solutions
-
 ## Learning goals
 
 (@) Describe how prior and data influence posterior distributions
@@ -33,9 +24,11 @@ Table: MCMC approximates samples from the posterior distribution without analyti
 
 ## The rationale for model evaluation and comparison
 
-Goodness-of-fit: Is the model good enough (for the data)?
+Model evaluation: how good is this model?
 
-Predictive performance: Can the model make good predictions for new data?
+- Goodness-of-fit: Is the model good enough (for the data)?
+
+- Predictive performance: Can the model make good predictions for new data?
 
 Model comparison: Is the model better than other models?
 
@@ -50,7 +43,7 @@ Two critical issues:
 
 ## Overfitting
 
-![Best example of overfitting](./overfitting.jpeg)
+![Best example of overfitting](img/overfitting.jpeg)
 
 In MCMC, overfitting, i.e., having more parameters than needed may cause three things:
 
@@ -97,7 +90,7 @@ Will the predictions apply to people in Qatar (in desert) in summer?
 
 Cross-validation
 
-![K-fold cross validation](./k-CV.jpg)
+![K-fold cross validation](img/k-CV.jpg)
 
 True remedy to out-of-sample prediction problem is to improve the representativeness of sampling protocol.
   - Not necessarily related to sample size
