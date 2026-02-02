@@ -10,3 +10,24 @@ Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)
 
 Content: Probability, statistical inference, likelihood, priors, Bayes rule, posterior
 
+## Notations
+
+$X$ is a continuous random variable 
+
+$f(x)$ is the density function $P(X\leq x)=\int_{-\infty}^x f(x)dx$
+
+$p(\cdot)$ probability 
+
+
+## Parameter and model 
+
+
+
+## Likelihood
+
+$p(data|\theta)$
+
+
+Parameters as fixed and data as variable
+
+Data as fixed and parameter as uncertain 

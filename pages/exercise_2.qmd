@@ -17,3 +17,23 @@ Use conjugate models to construct probability intervals for the results from a c
 Test an hypothesis using conjugate model. How sensitive is the conclusion from the choice of prior? 
 
 
+Let  
+λ
+  be the average number of goals scored in a Women’s World Cup game. We’ll analyze  
+λ
+  by the following Gamma-Poisson model where data  
+Y
+i
+  is the observed number of goals scored in a sample of World Cup games:
+
+
+Plot and summarize our prior understanding of  
+λ
+ .
+
+Why is the Poisson model a reasonable choice for our data  
+Y
+i
+ ?
+
+The wwc_2019_matches data in the fivethirtyeight package includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. Define, plot, and discuss the total number of goals scored per game:

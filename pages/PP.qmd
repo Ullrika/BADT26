@@ -1,8 +1,8 @@
 ---
 title: "Predictive Performance"
+subtitle: "BADT"
 author: "Zheng Zhou"
-format:
-  html: default
+format: html
 ---
 
 ## Recap of MCMC

@@ -8,13 +8,6 @@ format: html
 ### Background 
 
 MCMC-sampling is an important part of contemporary Bayesian analysis. The participants of this course have different backgrounds, with varying experience of MCMC-sampling. The purpose of this exercise is to let everyone practice in specifying and coding up an MCMC sampler. We are not asking for an advanced model to sample from. 
-```{r}
-```
-
-
-```{r}
-```
-
 
 ### Task
 
@@ -40,7 +33,7 @@ You have a coin and believe it is fair with equal chance to get head or tail. To
 
 Tips: proposes new values for the probability of heads, calculates the acceptance ratio based on the Beta prior and Binomial likelihood, and records the resulting chain, generate a traceplot.
 
-(@) Visualize your sampling steps and summarize your posterior distribution.
+(@) Visualise your sampling steps and summarize your posterior distribution.
 
 (@) Compare with the analytical solution.
 
