@@ -3,13 +3,22 @@ title: "Exercise 3 Answers"
 author: "Zheng Zhou"
 ---
 
-```{r}
-# Metropolis Algorithm for Coin Flip Inference
-# 100 flips: 55 heads, 45 tails
-# Prior: Beta(1,1) which is uniform(0,1)
+For comparison: Analytical solution with Beta-Binomial conjugation
 
-# Set seed for reproducibility
-set.seed(123)
+```{r}
+# Prior: Beta(1,1), Likelihood: Binomial(100, theta)
+# Posterior: Beta(1 + 55, 1 + 45) = Beta(56, 46)
+analytical_mean <- 56 / (56 + 46)
+analytical_sd <- sqrt((56 * 46) / ((56 + 46)^2 * (56 + 46 + 1)))
+
+```
+
+Using MCMC
+
+```{r}
+# Metropolis Algorithm for Coin Flip
+# 100 flips: 55 heads, 45 tails
+# Prior: Beta(1,1)
 
 # Define observed data
 n_flips <- 100      # Total number of coin flips
@@ -17,25 +26,20 @@ n_heads <- 55       # Observed number of heads
 n_tails <- 45       # Observed number of tails (or n_flips - n_heads)
 
 # Define parameters for Metropolis algorithm
-n_iterations <- 10000  # Number of MCMC iterations
-burn_in <- 1000        # Number of initial iterations to discard
-proposal_sd <- 0.1     # Standard deviation for proposal distribution
-
-# Initialize storage for samples
-samples <- numeric(n_iterations)  # Vector to store sampled theta values
-current_theta <- 0.5              # Starting value for theta (probability of heads)
+n_iterations <- 1000  # Number of MCMC iterations
+starting_theta <- 0.5
+proposal_sd <- 0.1
 
 # Define the prior distribution (Beta distribution)
 # Beta(1,1) is uniform over [0,1], so density is 1 for all valid thetas
 prior_density <- function(theta) {
   if (theta < 0 || theta > 1) return(0)  # Prior is 0 outside [0,1]
-  dbeta(theta, 1, 1)  # Beta(1,1) density (always equals 1 for theta in [0,1])
+  dbeta(theta, 1, 1)  # Beta(1,1) 
 }
 
 # Define the likelihood function (binomial probability)
-likelihood <- function(theta) {
+likelihood_density <- function(theta) {
   # Binomial likelihood: P(data|theta) = theta^{heads} * (1-theta)^{tails}
-  # Using dbinom for numerical stability
   dbinom(n_heads, size = n_flips, prob = theta)
 }
 
@@ -44,105 +48,88 @@ posterior_density <- function(theta) {
   prior_density(theta) * likelihood(theta)  # Prior * Likelihood
 }
 
+# store the positions
+chain_theta <- numeric(num_iterations)
+prior_values <- numeric(num_iterations)
+likelihood_values <- numeric(num_iterations)
+posterior_values <- numeric(num_iterations)
+
+# Calculate values for initial position
+chain_theta[1] <- starting_theta
+prior_values[1] <- prior_density(chain_theta[1])
+likelihood_values[1] <- likelihood_density(chain_theta[1])
+posterior_values[1] <- prior_values[1] * likelihood_values[1]  # Unnormalized posterior
+
+
 # Metropolis algorithm main loop
 for (i in 1:n_iterations) {
+  current_theta <- chain_theta[i-1]
   
   # 1. Propose a new candidate value
-  # Use normal distribution centered at current theta
-  # Note: This can propose values outside [0,1]
+  # random walk
   proposed_theta <- rnorm(1, mean = current_theta, sd = proposal_sd)
-  
+  if (proposed_theta < 0) proposed_theta <- 1/(-proposed_theta)
+  if (proposed_theta > 1) proposed_theta <- 1/proposed_theta
+  proposed_theta <- max(0.001, min(0.999, proposed_theta))
+
   # 2. Calculate acceptance ratio
   # Ratio of posterior densities: P(proposed)/P(current)
-  # If proposed theta is invalid (outside [0,1]), posterior is 0
-  if (proposed_theta < 0 || proposed_theta > 1) {
-    acceptance_ratio <- 0  # Reject proposals outside valid range
-  } else {
-    acceptance_ratio <- posterior_density(proposed_theta) / 
-                       posterior_density(current_theta)
-  }
+  # Calculate posterior for CURRENT state
+  prior_current <- prior_density(current_theta)
+  likelihood_current <- likelihood_density(current_theta)
+  posterior_current <- prior_current * likelihood_current  # Unnormalized
+    
+  # Calculate posterior for PROPOSED state
+  prior_proposed <- prior_density(proposed_theta)
+  likelihood_proposed <- likelihood_density(proposed_theta)
+  posterior_proposed <- prior_proposed * likelihood_proposed  # Unnormalized
   
+  acceptance_ratio <- posterior_proposed / posterior_current
+  acceptance_prob <- min(1, acceptance_ratio)
+  
+  # Store the computed values
+  prior_values[i-1] <- prior_current
+  likelihood_values[i-1] <- likelihood_current
+  posterior_values[i-1] <- posterior_current
+  acceptance_ratios[i-1] <- acceptance_prob
+
   # 3. Accept or reject the proposal
-  # Generate uniform random number for acceptance decision
-  u <- runif(1)
-  if (u < acceptance_ratio) {
+  if (runif(1) < acceptance_ratio) {
+    chain_theta[i] <- proposed_theta
     current_theta <- proposed_theta  # Accept proposal
+  } else {
+    chain_theta[i] <- current_theta
   }
-  # If u >= acceptance_ratio, keep current_theta (implicitly)
-  
-  # 4. Store the current theta value
-  samples[i] <- current_theta
 }
+```
 
-# Discard burn-in samples
-post_burn_samples <- samples[(burn_in + 1):n_iterations]
 
-# Calculate posterior summary statistics
-posterior_mean <- mean(post_burn_samples)
-posterior_median <- median(post_burn_samples)
-posterior_sd <- sd(post_burn_samples)
+```{r}
+# summarize 
+prior_values[n_iterations] <- prior_function(chain_theta[n_iterations])
+likelihood_values[n_iterations] <- likelihood_function(chain_theta[n_iterations])
+posterior_values[n_iterations] <- prior_values[n_iterations] * likelihood_values[n_iterations]
 
-# Calculate 95% credible interval
-credible_interval <- quantile(post_burn_samples, c(0.025, 0.975))
+summary(posterior_values)
 
-# Display results
-cat("=== Metropolis Algorithm Results ===\n")
-cat("Observed data: ", n_heads, "heads out of", n_flips, "flips\n")
-cat("Posterior mean (probability of heads):", round(posterior_mean, 4), "\n")
-cat("Posterior median:", round(posterior_median, 4), "\n")
-cat("Posterior standard deviation:", round(posterior_sd, 4), "\n")
-cat("95% Credible Interval: [", 
-    round(credible_interval[1], 4), ", ", 
-    round(credible_interval[2], 4), "]\n", sep = "")
+trace_df <- data.frame(
+  iteration = 1:num_iter,
+  theta = chain_theta
+)
 
-# For comparison: Analytical solution with Beta-Binomial conjugacy
-# Prior: Beta(1,1), Likelihood: Binomial(100, theta)
-# Posterior: Beta(1 + 55, 1 + 45) = Beta(56, 46)
-analytical_mean <- 56 / (56 + 46)
-analytical_sd <- sqrt((56 * 46) / ((56 + 46)^2 * (56 + 46 + 1)))
-cat("\n=== Analytical Solution (for comparison) ===\n")
-cat("Beta(56, 46) posterior\n")
-cat("Analytical mean:", round(analytical_mean, 4), "\n")
-cat("Analytical SD:", round(analytical_sd, 4), "\n")
+p_trace <- ggplot(trace_df, aes(x = iteration, y = theta)) +
+  geom_line(alpha = 0.5, color = "gray") +
+  geom_point(size = 0.5, alpha = 0.5) +
+  geom_hline(yintercept = n_heads/n_flips, color = "red", linetype = "dashed", size = 1) +
+  # scale_color_manual(values = c("FALSE" = "red", "TRUE" = "green"), 
+  #                    na.value = "black", name = "Accepted") +
+  theme_classic() +
+  labs(title = "Trace Plot of theta (Probability of Heads)",
+       # subtitle = paste("Red dashed line: Observed proportion =", round(n_heads/n_flips, 3)),
+       x = "Iteration",
+       y = "theta") +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, 0.1)) +
+  theme(legend.position = "bottom")
 
-# Plotting the results
-par(mfrow = c(2, 2))  # Create 2x2 grid of plots
-
-# 1. Trace plot (shows MCMC sampling path)
-plot(1:length(post_burn_samples), post_burn_samples, type = "l",
-     xlab = "Iteration (after burn-in)", ylab = "Theta",
-     main = "Trace Plot", col = "blue", lwd = 0.5)
-
-# 2. Histogram of posterior samples
-hist(post_burn_samples, breaks = 30, probability = TRUE,
-     xlab = "Theta (probability of heads)", 
-     main = "Posterior Distribution",
-     col = "lightblue", border = "white")
-# Add analytical posterior density curve
-curve(dbeta(x, 56, 46), add = TRUE, col = "red", lwd = 2)
-legend("topright", legend = c("MCMC", "Analytical"), 
-       col = c("lightblue", "red"), lwd = c(5, 2), bty = "n")
-
-# 3. Running mean (shows convergence)
-running_mean <- cumsum(post_burn_samples) / (1:length(post_burn_samples))
-plot(1:length(post_burn_samples), running_mean, type = "l",
-     xlab = "Iteration", ylab = "Running Mean",
-     main = "Running Mean of Theta",
-     col = "darkgreen", lwd = 1)
-abline(h = analytical_mean, col = "red", lty = 2, lwd = 2)
-
-# 4. Autocorrelation plot
-acf(post_burn_samples, main = "Autocorrelation", 
-    xlab = "Lag", ylab = "ACF", col = "purple")
-
-# Reset plot layout
-par(mfrow = c(1, 1))
-
-# Calculate effective sample size (ESS)
-# ESS = n / (1 + 2*sum(autocorrelations))
-# Rough estimate for demonstration
-acf_vals <- acf(post_burn_samples, plot = FALSE)$acf
-ess <- length(post_burn_samples) / (1 + 2 * sum(acf_vals[-1]))
-cat("\nEffective Sample Size (approximate):", round(ess, 0), "\n")
 ```
 

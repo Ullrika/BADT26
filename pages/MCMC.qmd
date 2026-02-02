@@ -104,102 +104,147 @@ p0 = ggplot(island_size,aes(x=island,y=Size))+
        x = "Island number",
        y = "Size")
 p0
+
 ```
 
----
+Let's first compute the posterior manually.
 
-```{r islands_function,echo=T,include=T}
-# Function to implement the Metropolis algorithm
+Prior: no knowledge of the islands
 
-# Normalize sizes to get true probabilities (Target: P(θ|D))
-target_distribution <- sapply(1:num_island,function(x){
-    prob = x/sum(1:num_island)  # proportional to likelihood * prior
-  })
+```{r}
+prior_function <- function(island) {
+  return(1/num_island)  # Uniform prior
+}
 
-metropolis_island_hopping <- function(num_iterations, starting_island = round(num_island/2,0),true_prob = target_distribution) {
-  # Number of islands
-  num_islands <- num_island
-  
-  # Define transition probabilities (in this case, uniform)
-  # This means proposals are equally likely to jump to adjacent islands
-  
-  # Initialize chain
-  chain <- numeric(num_iterations)
-  chain[1] <- starting_island
-  
-  # Define stationary distribution (target)
-  # In this example, we'll use a uniform distribution
-  target_distribution <- true_prob
-  
-  # Run Metropolis algorithm
-  for (i in 2:num_iterations) {
+```
+
+Likelihood: proportional to relative population of each island
+
+```{r}
+likelihood_function <- function(island) {
+  return(island / sum(1:num_island))  # Proportional to island size
+}
+```
+
+Therefore, posterior = prior * likelihood / marginals
+
+```{r}
+true_posterior <- sapply(1:num_island, function(i) {
+  prior_function(i) * likelihood_function(i)
+})
+true_posterior <- true_posterior / sum(true_posterior)  # marginalize
+names(true_posterior) <- paste0("Island ",1:num_island)
+true_posterior
+
+```
+
+Now compute the posterior with MCMC
+
+```{r}
+num_iterations <- 1e3
+starting_island <- 3
+
+# store the positions
+chain <- numeric(num_iterations)
+prior_values <- numeric(num_iterations)
+likelihood_values <- numeric(num_iterations)
+posterior_values <- numeric(num_iterations)
+
+# Calculate values for initial position
+chain[1] <- starting_island
+prior_values[1] <- prior_function(chain[1])
+likelihood_values[1] <- likelihood_function(chain[1])
+posterior_values[1] <- prior_values[1] * likelihood_values[1]  # Unnormalized posterior
+
+# Store jump decisions for analysis
+accepted <- logical(num_iterations - 1)
+acceptance_ratios <- numeric(num_iterations - 1)
+
+for(i in 2:num_iterations){
     current <- chain[i-1]
     
-    # Propose a move: randomly jump to an adjacent island or stay
-    # For simplicity, adjacency is defined as +/- 1 
-    jump <- sample(c(-1, 0, 1), 1)
+    # Propose a move: randomly jump to an adjacent island
+    jump <- sample(c(-1,1), 1)  
     proposed <- current + jump
+    # Handle boundaries with wrap-around
+    if (proposed < 1) proposed <- num_island
+    if (proposed > num_island) proposed <- 1
+    # random walk proposal
+    # proposed <- current + rnorm(1,proposal_mean,proposal_sd)
     
-    # Check boundaries and wrap around (circular islands)
-    if (proposed < 1) {
-      proposed <- num_islands + proposed
-    } else if (proposed > num_islands) {
-      proposed <- proposed - num_islands
-    }
-    
-    # Calculate acceptance probability
-    acceptance_ratio <- target_distribution[proposed] / target_distribution[current]
+    # compute acceptance ratio
+    # current position
+    prior_current <- prior_function(current)
+    likelihood_current <- likelihood_function(current)
+    posterior_current <- prior_current * likelihood_current  # Unnormalized
+
+    # proposed position    
+    prior_proposed <- prior_function(proposed)
+    likelihood_proposed <- likelihood_function(proposed)
+    posterior_proposed <- prior_proposed * likelihood_proposed  # Unnormalized
+
+    acceptance_ratio <- posterior_proposed / posterior_current
     acceptance_prob <- min(1, acceptance_ratio)
-    
-    # Accept or reject the proposal
+
+    # Store the computed values
+    prior_values[i-1] <- prior_current
+    likelihood_values[i-1] <- likelihood_current
+    posterior_values[i-1] <- posterior_current
+    acceptance_ratios[i-1] <- acceptance_prob
+
+    # decide the jump
     if (runif(1) < acceptance_prob) {
-      chain[i] <- proposed  # Accept move
+      chain[i] <- proposed
+      accepted[i-1] <- TRUE
     } else {
-      chain[i] <- current   # Reject move, stay at current island
+      chain[i] <- current
+      accepted[i-1] <- FALSE
     }
-  }
-  
-  return(chain)
 }
-
-
 
 ```
 
----
+Now summarize the results from MCMC
 
-```{r island_run,include=T,echo=T}
-n_iter = 1000
-chain = metropolis_island_hopping(num_iterations = n_iter)
+```{r}
+prior_values[num_iterations] <- prior_function(chain[num_iterations])
+likelihood_values[num_iterations] <- likelihood_function(chain[num_iterations])
+posterior_values[num_iterations] <- prior_values[num_iterations] * likelihood_values[num_iterations]
 
-hopping_freq = table(chain) / n_iter
-hopping_prob = numeric(num_island)
-for (i in 1:num_island) {
-  hopping_prob[i] <- sum(chain == i) / n_iter
-}
-hopping_results = tibble(
-  islands = 1:num_island,
-  freq = hopping_prob
+# Calculate empirical frequencies from MCMC samples
+mcmc_freq <- table(chain) / num_iterations
+mcmc_df <- data.frame(
+  island = 1:num_island,
+  mcmc_prob = as.numeric(mcmc_freq),
+  true_posterior = true_posterior
 )
-hopping_results
+mcmc_df
 ```
 
----
+Trace the move
 
-```{r metropolis_plot,include=T,echo=T}
-trace_data <- data.frame(
-  Iteration = 1:n_iter,
-  Island = chain[1:n_iter]
+```{r}
+# Trace plot with acceptance indicators
+trace_df <- data.frame(
+  iteration = 1:num_iterations,
+  island = chain,
+  accepted = c(NA, accepted),
+  posterior = posterior_values
 )
-p2 <- ggplot(trace_data, aes(x = Iteration, y = Island)) +
-  geom_line() +
-  geom_point(size = 1) +
+p_trace <- ggplot(trace_df, aes(x = iteration, y = island)) +
+  geom_line(alpha = 0.5) +
+  geom_point(aes( size = posterior), alpha = 0.7) +
+  # scale_color_manual(values = c("FALSE" = "red", "TRUE" = "green"), 
+  #                    na.value = "black", name = "Accepted") +
+  scale_size_continuous(name = "Posterior", range = c(1, 3)) +
+  scale_y_continuous(breaks = 1:num_island, limits = c(1, num_island)) +
+  theme_classic() +
   labs(title = "Trace Plot",
+       subtitle = "Point size proportional to posterior probability",
        x = "Iteration",
-       y = "Island Number") +
-  scale_y_continuous(breaks = 1:num_island) +
-  theme_minimal()
-p2
+       y = "Island Number")
+p_trace
+
 ```
 
 ### Summary of hopping
