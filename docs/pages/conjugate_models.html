@@ -220,7 +220,7 @@ window.Quarto = {
 
 <section id="conjugate-model" class="level2">
 <h2 class="anchored" data-anchor-id="conjugate-model">Conjugate model</h2>
-<p>We say that <span class="math inline">\(p(\pi)\)</span> is a conjugate prior for <span class="math inline">\(L(\pi|y)\)</span> if the posterior,<br>
+<p>We say that <span class="math inline">\(p(\pi)\)</span> is a conjugate prior for <span class="math inline">\(L(\pi,y)\)</span> if the posterior,<br>
 <span class="math inline">\(p(\pi|y)\)</span>, is from the same model family as the prior.</p>
 <p>The prior is conjugate with respect to a particular likelihood function.</p>
 <p>This property is called “conjugacy” and was introduced by Raiffa &amp; Schlaifer (2000), first edition published in 1961.</p>
@@ -243,7 +243,7 @@ window.Quarto = {
 <p><span class="math inline">\(l(\pi,y,n) \propto y \log \pi + (n-y) \log (1-\pi)\)</span></p>
 <p><strong>Prior:</strong> <span class="math inline">\(\pi \sim Beta(\alpha,\beta)\)</span></p>
 <p><strong>Hyper-parameters:</strong> <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span></p>
-<p><strong>Posterior:</strong>: <span class="math inline">\(\pi \sim Beta(\alpha+y,\beta+n-y)\)</span></p>
+<p><strong>Posterior:</strong>: <span class="math inline">\(\pi|y,n \sim Beta(\alpha+y,\beta+n-y)\)</span></p>
 <section id="impact-on-posterior-from-prior-and-data" class="level3">
 <h3 class="anchored" data-anchor-id="impact-on-posterior-from-prior-and-data">Impact on posterior from prior and data</h3>
 <div class="cell">

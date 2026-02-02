@@ -6,7 +6,7 @@ author: "Sahlin"
 
 ## Conjugate model
 
-We say that  $p(\pi)$  is a conjugate prior for  $L(\pi|y)$ if the posterior,  
+We say that  $p(\pi)$  is a conjugate prior for  $L(\pi,y)$ if the posterior,  
 $p(\pi|y)$, is from the same model family as the prior.
 
 The prior is conjugate with respect to a particular likelihood function.
@@ -47,7 +47,7 @@ $l(\pi,y,n) \propto y \log \pi + (n-y) \log (1-\pi)$
 
 **Hyper-parameters:** $\alpha$, $\beta$
 
-**Posterior:**: $\pi \sim Beta(\alpha+y,\beta+n-y)$
+**Posterior:**: $\pi|y,n \sim Beta(\alpha+y,\beta+n-y)$
 
 
 

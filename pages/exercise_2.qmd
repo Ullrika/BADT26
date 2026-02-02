@@ -43,6 +43,7 @@ hist(goals)
 #| echo: false
 
 summary(goals)
+length(goals)
 ```
 
 4. Make a test if the average number of goals scored in a Women’s World Cup game is less than 1.8.
