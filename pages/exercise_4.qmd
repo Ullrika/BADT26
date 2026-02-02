@@ -20,15 +20,15 @@ author: "Zheng Zhou"
 
 ## Stan ecosystem
 
-(@) sampler: rstan, cmdstanr, PyStan
+(@) sampler: rstan, cmdstanr, CmdStanPy, PyMC
 
-(@) high-level utility package: rstanarm, brms, PyStan and more
+(@) high-level utility package: rstanarm, brms, PyStan, bambi and more
 
 ## Getting start with Stan
 
 (@) Installation
 
-Use R: install [cmdstanr](https://mc-stan.org/cmdstanr/)
+**If you Use R**: install [cmdstanr](https://mc-stan.org/cmdstanr/)
 
 1. install [Rtools45](https://github.com/r-hub/rtools45/releases/download/latest/rtools45.exe)
 
@@ -36,17 +36,38 @@ Use R: install [cmdstanr](https://mc-stan.org/cmdstanr/)
 
 3. build cmdstan
 
-Use python: install [PyStan](https://pystan.readthedocs.io/en/latest/installation.html)
+**If you Use python**: install [PyStan](https://pystan.readthedocs.io/en/latest/installation.html)
 
 (@) Once done, run an example model to check the compiler
+
+The beta-binomial example in stan
+
+```{r}
+file <- file.path(cmdstan_path(), "examples", "bernoulli", "bernoulli.stan")
+mod <- cmdstan_model(file)
+# names correspond to the data block in the Stan program
+data_list <- list(N = 10, y = c(0,1,0,0,0,0,0,0,0,1))
+
+# call out the stan script
+mod$print()
+```
+
+Sampling
+
+```{r}
+fit <- mod$sample(
+  data = data_list,
+  seed = 123,
+  chains = 4
+)
+```
+
 
 (@) Extract model diagnostics
 
 ```{r}
-# install.package(c("bayesplot","tidyverse","posterior))
-
+# install.package(c("bayesplot","tidyverse"))
 library(bayesplot)
-library(posterior)
 library(tidyverse)
 ```
 
@@ -54,7 +75,7 @@ Check rhat and effecti sample size:
 
 ```{r}
 # all parameters
-# fit$summary()
+fit$summary()
 ```
 
 Rhat should be as close to 1 as possible
@@ -65,17 +86,17 @@ Traceplot:
 
 ```{r}
 # all parameters
-# mcmc_trace(fit$draws())
+mcmc_trace(fit$draws())
 
 # specific parameter
-# mcmc_trace(fit$draws("theta"))
+mcmc_trace(fit$draws("theta"))
 ```
 
 Autocorrelation:
 
 ```{r}
 # all parameters
-# mcmc_acf(fit$draws())
+mcmc_acf(fit$draws())
 ```
 
 When something goes wrong, check [this](https://mc-stan.org/docs/reference-manual/analysis.html)

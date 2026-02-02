@@ -24,6 +24,8 @@ website:
         text: Exercise 3
       - href: pages/PP.qmd
         text: Predictive performance
+      - href: pages/exercise_4.qmd
+        text: Exercise 4
 
 format:
   html:
