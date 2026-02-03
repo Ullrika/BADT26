@@ -90,6 +90,7 @@ library(tidyverse)
 
 num_island = 5
 
+# Set up the population/size of each island (The 'Target Distribution')
 island_size = tibble(
   island = 1:num_island,
   Size = 1:num_island
@@ -109,8 +110,10 @@ p0
 
 ```{r islands_function,echo=T,include=T}
 # Function to implement the Metropolis algorithm
+
+# Normalize sizes to get true probabilities (Target: P(θ|D))
 target_distribution <- sapply(1:num_island,function(x){
-    prob = x/sum(1:num_island)
+    prob = x/sum(1:num_island)  # proportional to likelihood * prior
   })
 
 metropolis_island_hopping <- function(num_iterations, starting_island = round(num_island/2,0),true_prob = target_distribution) {
@@ -233,13 +236,13 @@ Model:
 $$
 \begin{equation}
 \begin{split}
-\eta \sim N(0,\sigma^2) \\
+\epsilon \sim N(0,\sigma^2) \\
 y \sim N(\beta_0 + \beta_1 x, \epsilon)
 \end{split}
 \end{equation}
 $$
 
-$\beta_0, \beta_1$ are continuous parameters
+$\beta_0, \beta_1$ are parameters
 
 Likelihood:
 

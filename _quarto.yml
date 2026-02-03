@@ -26,7 +26,6 @@ website:
         text: Predictive performance
       - href: pages/exercise_4.qmd
         text: E4
-      
 
 format:
   html:
