@@ -4,5 +4,101 @@ subtitle: "BADT"
 author: "Sahlin"
 ---
 
+## Generic setup for decison making
+
+- Agents
+
+- Decision alternatives
+
+- Preferences over outcomes
+
+- Impact on outcomes for each decision alternative
+
+- An idea of what is a good decision
+
+Decision rules: 
+
+Bayesian Decision Theory: Maximise expected utility 
+
+There are other decision rules! 
+
+## DT 
+
+- Descriptive: What people actually do, or have done
+
+- Prescriptive: What people shoudl and can do
+
+- Normative: What people should do (in theory, e.g. if rational)
+
+[Medium read on Decision theory at Stanford Encyclopedia of Philosophy Archive](https://plato.stanford.edu/archives/win2020/entries/decision-theory/)
+
+## Preferences 
+
+An agent prefers option $A$ over $B$ means that the agents takes $A$ to be more desirable or choice-worthy than $B$
+
+Indifference $\sim$
+
+Weak preference $\preccurlyeq$
+
+Strong preference $\prec$
 
 
+Rational preferences of options can be seen to be given by: 
+
+- Completeness 
+
+For any $A, B\in S:\text{ either }A \preccurlyeq B\text{ or } B \preccurlyeq A$
+
+- Transitivity 
+
+For any $A, B, C \in S: \text{ if }A\preccurlyeq B\text{ and } B\preccurlyeq C \text{ then } A \preccurlyeq C$
+
+## Utilities
+
+Utility as a way to measure preferences 
+
+$$\text{For any }A,B \in S: u(A)\leq u(B) \Longleftrightarrow A \preccurlyeq B$$
+
+## Maximise Expected Utility 
+
+Let $p_{ik}$ be the the probability for outcome $O_{ik}$ in lottery $L_i$
+
+von Newmann Morgenstern representation theorem of the expected utility of lottery $L_i$
+
+$$EU(L_i)=\sum_ku(O_{ik})\cdot p_{ik}$$
+
+
+## Subjective Expected Utility (SEU) 
+
+Savage
+
+Set of outcomes $\mathbf{O}$ - target of desire 
+
+Set of states of the world $\mathbf{S}$ - target of belief
+
+An act can be seen as a function from the states to outcomes. We have at least to acts $f$ and $g$
+
+$f(s_i)$ denotes the outcome of act $f$ when event $s_i \in \mathbf{S}$ is actually happening 
+
+The expected utility of act $f$ is given by *Savage's equation* 
+
+$$U(f)=\sum_i u(f(s_i))\cdot p(s_i)$$
+
+Savage defined six axioms, which when satisfied, generates that a persons belief can be represented by a unique probability function which relates the theory to the theory to maximise expected utility (von Newmann Morgenstern representation theorem)
+
+> To maximise expected utility can be seen as a decision rule for decision problems where the probability of different outcomes are known or when the probability for different outcomes represents a persons belief about that outcome. 
+
+> It is possible to derive a persons belief by asking here to choose between options. This is often done asking them to choose between lotteries with different costs and expected utilities. Betting interpretation of subjective probability. 
+
+
+## Bayesian decision theory
+
+### Bayesian Belief Network 
+
+Wet grass - Rain- Sprinkler -Umbrella 
+
+I will demonstrate BBN and influence diagram in genie
+
+### Bayesian decision analysis example in stan
+
+[https://mc-stan.org/docs/stan-users-guide/decision-analysis.html](https://mc-stan.org/docs/stan-users-guide/decision-analysis.html)

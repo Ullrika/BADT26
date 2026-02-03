@@ -1,7 +1,0 @@
----
-title: "Bayesian Generalised Linear Models"
-subtitle: "Exercise BADT"
-author: "Sahlin"
----
-
-## We run Bayesian GLM in brms or bambi 

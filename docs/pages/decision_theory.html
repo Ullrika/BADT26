@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -137,10 +166,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../pages/Bayesian_GLM.html"> 
 <span class="menu-text">Bayesian GLM</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../pages/exercise_5.html"> 
-<span class="menu-text">E5</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -152,8 +177,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#generic-setup-for-decison-making" id="toc-generic-setup-for-decison-making" class="nav-link active" data-scroll-target="#generic-setup-for-decison-making">Generic setup for decison making</a></li>
+  <li><a href="#dt" id="toc-dt" class="nav-link" data-scroll-target="#dt">DT</a></li>
+  <li><a href="#preferences" id="toc-preferences" class="nav-link" data-scroll-target="#preferences">Preferences</a></li>
+  <li><a href="#utilities" id="toc-utilities" class="nav-link" data-scroll-target="#utilities">Utilities</a></li>
+  <li><a href="#maximise-expected-utility" id="toc-maximise-expected-utility" class="nav-link" data-scroll-target="#maximise-expected-utility">Maximise Expected Utility</a></li>
+  <li><a href="#subjective-expected-utility-seu" id="toc-subjective-expected-utility-seu" class="nav-link" data-scroll-target="#subjective-expected-utility-seu">Subjective Expected Utility (SEU)</a></li>
+  <li><a href="#bayesian-decision-theory" id="toc-bayesian-decision-theory" class="nav-link" data-scroll-target="#bayesian-decision-theory">Bayesian decision theory</a>
+  <ul class="collapse">
+  <li><a href="#bayesian-belief-network" id="toc-bayesian-belief-network" class="nav-link" data-scroll-target="#bayesian-belief-network">Bayesian Belief Network</a></li>
+  <li><a href="#bayesian-decision-analysis-example-in-stan" id="toc-bayesian-decision-analysis-example-in-stan" class="nav-link" data-scroll-target="#bayesian-decision-analysis-example-in-stan">Bayesian decision analysis example in stan</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -184,8 +225,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="generic-setup-for-decison-making" class="level2">
+<h2 class="anchored" data-anchor-id="generic-setup-for-decison-making">Generic setup for decison making</h2>
+<ul>
+<li><p>Agents</p></li>
+<li><p>Decision alternatives</p></li>
+<li><p>Preferences over outcomes</p></li>
+<li><p>Impact on outcomes for each decision alternative</p></li>
+<li><p>An idea of what is a good decision</p></li>
+</ul>
+<p>Decision rules:</p>
+<p>Bayesian Decision Theory: Maximise expected utility</p>
+<p>There are other decision rules!</p>
+</section>
+<section id="dt" class="level2">
+<h2 class="anchored" data-anchor-id="dt">DT</h2>
+<ul>
+<li><p>Descriptive: What people actually do, or have done</p></li>
+<li><p>Prescriptive: What people shoudl and can do</p></li>
+<li><p>Normative: What people should do (in theory, e.g.&nbsp;if rational)</p></li>
+</ul>
+<p><a href="https://plato.stanford.edu/archives/win2020/entries/decision-theory/">Medium read on Decision theory at Stanford Encyclopedia of Philosophy Archive</a></p>
+</section>
+<section id="preferences" class="level2">
+<h2 class="anchored" data-anchor-id="preferences">Preferences</h2>
+<p>An agent prefers option <span class="math inline">\(A\)</span> over <span class="math inline">\(B\)</span> means that the agents takes <span class="math inline">\(A\)</span> to be more desirable or choice-worthy than <span class="math inline">\(B\)</span></p>
+<p>Indifference <span class="math inline">\(\sim\)</span></p>
+<p>Weak preference <span class="math inline">\(\preccurlyeq\)</span></p>
+<p>Strong preference <span class="math inline">\(\prec\)</span></p>
+<p>Rational preferences of options can be seen to be given by:</p>
+<ul>
+<li>Completeness</li>
+</ul>
+<p>For any <span class="math inline">\(A, B\in S:\text{ either }A \preccurlyeq B\text{ or } B \preccurlyeq A\)</span></p>
+<ul>
+<li>Transitivity</li>
+</ul>
+<p>For any <span class="math inline">\(A, B, C \in S: \text{ if }A\preccurlyeq B\text{ and } B\preccurlyeq C \text{ then } A \preccurlyeq C\)</span></p>
+</section>
+<section id="utilities" class="level2">
+<h2 class="anchored" data-anchor-id="utilities">Utilities</h2>
+<p>Utility as a way to measure preferences</p>
+<p><span class="math display">\[\text{For any }A,B \in S: u(A)\leq u(B) \Longleftrightarrow A \preccurlyeq B\]</span></p>
+</section>
+<section id="maximise-expected-utility" class="level2">
+<h2 class="anchored" data-anchor-id="maximise-expected-utility">Maximise Expected Utility</h2>
+<p>Let <span class="math inline">\(p_{ik}\)</span> be the the probability for outcome <span class="math inline">\(O_{ik}\)</span> in lottery <span class="math inline">\(L_i\)</span></p>
+<p>von Newmann Morgenstern representation theorem of the expected utility of lottery <span class="math inline">\(L_i\)</span></p>
+<p><span class="math display">\[EU(L_i)=\sum_ku(O_{ik})\cdot p_{ik}\]</span></p>
+</section>
+<section id="subjective-expected-utility-seu" class="level2">
+<h2 class="anchored" data-anchor-id="subjective-expected-utility-seu">Subjective Expected Utility (SEU)</h2>
+<p>Savage</p>
+<p>Set of outcomes <span class="math inline">\(\mathbf{O}\)</span> - target of desire</p>
+<p>Set of states of the world <span class="math inline">\(\mathbf{S}\)</span> - target of belief</p>
+<p>An act can be seen as a function from the states to outcomes. We have at least to acts <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span></p>
+<p><span class="math inline">\(f(s_i)\)</span> denotes the outcome of act <span class="math inline">\(f\)</span> when event <span class="math inline">\(s_i \in \mathbf{S}\)</span> is actually happening</p>
+<p>The expected utility of act <span class="math inline">\(f\)</span> is given by <em>Savage’s equation</em></p>
+<p><span class="math display">\[U(f)=\sum_i u(f(s_i))\cdot p(s_i)\]</span></p>
+<p>Savage defined six axioms, which when satisfied, generates that a persons belief can be represented by a unique probability function which relates the theory to the theory to maximise expected utility (von Newmann Morgenstern representation theorem)</p>
+<blockquote class="blockquote">
+<p>To maximise expected utility can be seen as a decision rule for decision problems where the probability of different outcomes are known or when the probability for different outcomes represents a persons belief about that outcome.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>It is possible to derive a persons belief by asking here to choose between options. This is often done asking them to choose between lotteries with different costs and expected utilities. Betting interpretation of subjective probability.</p>
+</blockquote>
+</section>
+<section id="bayesian-decision-theory" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-decision-theory">Bayesian decision theory</h2>
+<section id="bayesian-belief-network" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-belief-network">Bayesian Belief Network</h3>
+<p>Wet grass - Rain- Sprinkler -Umbrella</p>
+<p>I will demonstrate BBN and influence diagram in genie</p>
+</section>
+<section id="bayesian-decision-analysis-example-in-stan" class="level3">
+<h3 class="anchored" data-anchor-id="bayesian-decision-analysis-example-in-stan">Bayesian decision analysis example in stan</h3>
+<p><a href="https://mc-stan.org/docs/stan-users-guide/decision-analysis.html">https://mc-stan.org/docs/stan-users-guide/decision-analysis.html</a></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

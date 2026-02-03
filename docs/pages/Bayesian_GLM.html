@@ -200,10 +200,6 @@ window.Quarto = {
     <a class="nav-link active" href="../pages/Bayesian_GLM.html" aria-current="page"> 
 <span class="menu-text">Bayesian GLM</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../pages/exercise_5.html"> 
-<span class="menu-text">E5</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -797,8 +793,8 @@ https://cran.r-project.org/bin/windows/Rtools/.</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.000108 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.08 seconds.
+Chain 1: Gradient evaluation took 0.000215 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 2.15 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -815,15 +811,15 @@ Chain 1: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 1.559 seconds (Warm-up)
-Chain 1:                1.261 seconds (Sampling)
-Chain 1:                2.82 seconds (Total)
+Chain 1:  Elapsed Time: 1.292 seconds (Warm-up)
+Chain 1:                1.088 seconds (Sampling)
+Chain 1:                2.38 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 5.6e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.56 seconds.
+Chain 2: Gradient evaluation took 4.3e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.43 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -840,15 +836,15 @@ Chain 2: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 2: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 2: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 1.457 seconds (Warm-up)
-Chain 2:                1.161 seconds (Sampling)
-Chain 2:                2.618 seconds (Total)
+Chain 2:  Elapsed Time: 1.608 seconds (Warm-up)
+Chain 2:                1.509 seconds (Sampling)
+Chain 2:                3.117 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 5.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.52 seconds.
+Chain 3: Gradient evaluation took 3.5e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.35 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -865,15 +861,15 @@ Chain 3: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 3: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 3: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 1.353 seconds (Warm-up)
-Chain 3:                1.554 seconds (Sampling)
-Chain 3:                2.907 seconds (Total)
+Chain 3:  Elapsed Time: 1.4 seconds (Warm-up)
+Chain 3:                1.375 seconds (Sampling)
+Chain 3:                2.775 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 5.1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.51 seconds.
+Chain 4: Gradient evaluation took 5.4e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.54 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -890,13 +886,13 @@ Chain 4: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 4: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 4: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 1.211 seconds (Warm-up)
-Chain 4:                1.172 seconds (Sampling)
-Chain 4:                2.383 seconds (Total)
+Chain 4:  Elapsed Time: 1.34 seconds (Warm-up)
+Chain 4:                1.588 seconds (Sampling)
+Chain 4:                2.928 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: There were 2 divergent transitions after warmup. See
+<pre><code>Warning: There were 6 divergent transitions after warmup. See
 https://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup
 to find out why this is a problem and how to eliminate them.</code></pre>
 </div>
@@ -907,7 +903,7 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: There were 2 divergent transitions after warmup. Increasing
+<pre><code>Warning: There were 6 divergent transitions after warmup. Increasing
 adapt_delta above 0.8 may help. See
 http://mc-stan.org/misc/warnings.html#divergent-transitions-after-warmup</code></pre>
 </div>
@@ -922,16 +918,16 @@ Formula: bill_depth_mm ~ bill_length_mm + (1 | species)
 Multilevel Hyperparameters:
 ~species (Number of levels: 3) 
               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sd(Intercept)     2.94      1.31     1.29     6.53 1.00      657      708
+sd(Intercept)     2.80      1.14     1.32     5.71 1.02      566      803
 
 Regression Coefficients:
                Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept          8.39      1.59     5.42    11.61 1.01      630      769
-bill_length_mm     0.20      0.02     0.16     0.23 1.00     1572     1165
+Intercept          8.40      1.55     5.63    11.60 1.00      613      661
+bill_length_mm     0.20      0.02     0.16     0.23 1.00     1567      998
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.96      0.04     0.89     1.03 1.00     1255     1094
+sigma     0.96      0.04     0.89     1.04 1.00     1460     1080
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -979,12 +975,12 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 Computed from 2000 by 342 log-likelihood matrix.
 
          Estimate   SE
-elpd_loo   -471.9 14.6
-p_loo         5.0  0.6
-looic       943.9 29.1
+elpd_loo   -472.3 14.6
+p_loo         5.3  0.7
+looic       944.6 29.1
 ------
 MCSE of elpd_loo is 0.1.
-MCSE and ESS estimates assume MCMC draws (r_eff in [0.5, 1.1]).
+MCSE and ESS estimates assume MCMC draws (r_eff in [0.6, 1.0]).
 
 All Pareto k estimates are good (k &lt; 0.7).
 See help('pareto-k-diagnostic') for details.</code></pre>

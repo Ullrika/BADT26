@@ -30,8 +30,7 @@ website:
         text: E4
       - href: pages/Bayesian_GLM.qmd
         text: Bayesian GLM
-      - href: pages/exercise_5.qmd
-        text: E5
+
 
 format:
   html:

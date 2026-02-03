@@ -200,10 +200,6 @@ window.Quarto = {
     <a class="nav-link" href="../pages/Bayesian_GLM.html"> 
 <span class="menu-text">Bayesian GLM</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../pages/exercise_5.html"> 
-<span class="menu-text">E5</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -437,12 +433,12 @@ install.packages('fivethirtyeightdata', repos =
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(RR) <span class="co"># posterior mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8869681</code></pre>
+<pre><code>[1] 0.8938533</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(RR,<span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>)) <span class="co"># posterior 95% probability interval</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     2.5%     97.5% 
-0.2034838 2.4478977 </code></pre>
+0.2051107 2.4558359 </code></pre>
 </div>
 </div>
 
