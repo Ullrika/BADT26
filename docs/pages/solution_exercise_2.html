@@ -8,7 +8,7 @@
 
 <meta name="author" content="Sahlin">
 
-<title>Bayesian inference and subjective probability – BADT26</title>
+<title>Conjugate models – BADT26</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -127,7 +161,7 @@ window.Quarto = {
 <span class="menu-text">Course introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../pages/Bayesian_inference_subjective_probability.html" aria-current="page"> 
+    <a class="nav-link" href="../pages/Bayesian_inference_subjective_probability.html"> 
 <span class="menu-text">Bayesian inference</span></a>
   </li>  
   <li class="nav-item">
@@ -143,7 +177,7 @@ window.Quarto = {
 <span class="menu-text">E2</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../pages/solution_exercise_2.html"> 
+    <a class="nav-link active" href="../pages/solution_exercise_2.html" aria-current="page"> 
 <span class="menu-text">SolutionE2</span></a>
   </li>  
   <li class="nav-item">
@@ -186,35 +220,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#content" id="toc-content" class="nav-link active" data-scroll-target="#content">Content</a></li>
-  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
-  <li><a href="#perspectives-on-probability" id="toc-perspectives-on-probability" class="nav-link" data-scroll-target="#perspectives-on-probability">Perspectives on probability</a>
-  <ul class="collapse">
-  <li><a href="#classical-probability" id="toc-classical-probability" class="nav-link" data-scroll-target="#classical-probability">Classical probability</a></li>
-  <li><a href="#frequentist-probability" id="toc-frequentist-probability" class="nav-link" data-scroll-target="#frequentist-probability">Frequentist probability</a></li>
-  <li><a href="#logical-probability" id="toc-logical-probability" class="nav-link" data-scroll-target="#logical-probability">Logical probability</a></li>
-  <li><a href="#logical-probability-1" id="toc-logical-probability-1" class="nav-link" data-scroll-target="#logical-probability-1">Logical probability</a>
-  <ul class="collapse">
-  <li><a href="#rules-of-plausibility-reasoning" id="toc-rules-of-plausibility-reasoning" class="nav-link" data-scroll-target="#rules-of-plausibility-reasoning">Rules of plausibility reasoning</a></li>
-  </ul></li>
-  <li><a href="#subjectivist-probability" id="toc-subjectivist-probability" class="nav-link" data-scroll-target="#subjectivist-probability">Subjectivist probability</a></li>
-  <li><a href="#knightian-uncertainty" id="toc-knightian-uncertainty" class="nav-link" data-scroll-target="#knightian-uncertainty">Knightian uncertainty</a></li>
-  <li><a href="#time-to-reflect" id="toc-time-to-reflect" class="nav-link" data-scroll-target="#time-to-reflect">Time to reflect</a></li>
-  </ul></li>
-  <li><a href="#bayesian-analysis" id="toc-bayesian-analysis" class="nav-link" data-scroll-target="#bayesian-analysis">Bayesian analysis</a>
-  <ul class="collapse">
-  <li><a href="#likelihood" id="toc-likelihood" class="nav-link" data-scroll-target="#likelihood">Likelihood</a></li>
-  <li><a href="#steps-of-a-bayesian-data-analysis" id="toc-steps-of-a-bayesian-data-analysis" class="nav-link" data-scroll-target="#steps-of-a-bayesian-data-analysis">Steps of a Bayesian data analysis</a></li>
-  </ul></li>
-  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a>
-  <ul class="collapse">
-  <li><a href="#parametric-inference-parameter-estimation" id="toc-parametric-inference-parameter-estimation" class="nav-link" data-scroll-target="#parametric-inference-parameter-estimation">Parametric inference (parameter estimation)</a>
-  <ul class="collapse">
-  <li><a href="#bayesian-p-value" id="toc-bayesian-p-value" class="nav-link" data-scroll-target="#bayesian-p-value">Bayesian p-value</a></li>
-  </ul></li>
-  <li><a href="#predictive-inference-predicting-new-observations" id="toc-predictive-inference-predicting-new-observations" class="nav-link" data-scroll-target="#predictive-inference-predicting-new-observations">Predictive inference (predicting new observations)</a></li>
-  <li><a href="#bayesian-vs-frequentist" id="toc-bayesian-vs-frequentist" class="nav-link" data-scroll-target="#bayesian-vs-frequentist">Bayesian vs Frequentist</a></li>
-  </ul></li>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link active" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
   </ul>
 </nav>
     </div>
@@ -223,8 +230,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bayesian inference and subjective probability</h1>
-<p class="subtitle lead">BADT</p>
+<h1 class="title">Conjugate models</h1>
+<p class="subtitle lead">A solution to exercise BADT</p>
 </div>
 
 
@@ -247,229 +254,199 @@ window.Quarto = {
 </header>
 
 
-<section id="content" class="level2">
-<h2 class="anchored" data-anchor-id="content">Content</h2>
-<p>Reading: BR* (Chapters 1 and 2) and DBDA* (Chapter 2, 4 and 5)</p>
-<p>Content: Probability, statistical inference, likelihood, priors, Bayes rule, posterior</p>
-</section>
-<section id="models" class="level1">
-<h1>Models</h1>
-<p>Scientific models are like golems: they do what you tell them to, but only that. They are neither true nor false.</p>
-<p>Models are used: - to predict - predictive models (ML) - often relevant in risk/decision context - to understand how the world works - inferential models - means of producing scientific knowledge - study of (causal) effects</p>
-<p>Instead of solving the real problem, we are making a practical compromise and being, of necessity, content with an approximate solution (Jaynes 2003).</p>
-</section>
-<section id="perspectives-on-probability" class="level1">
-<h1>Perspectives on probability</h1>
-<p>Schools of thought on probability<sup>[1]</sup>:</p>
-<ul>
-<li><p>Classical (Laplace, Bayes) - the “set” definition</p></li>
-<li><p>Frequentist (Pearson, Fisher, Popper, von Mises) - the “series” definition</p></li>
-<li><p>Logical (Keynes, Jeffreys, Jaynes)<sup>[2]</sup> - the “plausibility” definition</p></li>
-<li><p>Subjectivist (de Finetti, Ramsey)<sup>[3]</sup> - the “opinion” definition</p></li>
-<li><p>Knightian (Knight, the “beyond probability” school) - the “uncertainty vs risk” definition</p></li>
-</ul>
-<p>[1] Acree (2021) [2] Clayton (2021) [3] N-E Sahlin (1990)</p>
-<p>Acree MC. 2021. The Myth of Statistical Inference [Internet]. Cham: Springer International Publishing; [accessed 2022 Jan 6]. https://doi.org/10.1007/978-3-030-73257-8</p>
-<p>Clayton A. 2021. Bernoulli’s fallacy: statistical illogic and the crisis of modern science. New York: Columbia University Press.</p>
-<p>Sahlin N-E. 1990. The philosophy of FP Ramsey. [place unknown]: Cambridge University Press.</p>
-<section id="classical-probability" class="level2">
-<h2 class="anchored" data-anchor-id="classical-probability">Classical probability</h2>
-<p>Conditional probability</p>
-<blockquote class="blockquote">
-<p>If of the two subsequent events, the probability of the 1st be <span class="math inline">\(a/N\)</span> and the probability of both together be <span class="math inline">\(P/N\)</span>, then the probability of the 2nd on the supposition the 1st happens is <span class="math inline">\(P/a\)</span>. <span class="math inline">\(P(B|A)=P(A \&amp; B)/P(A)\)</span></p>
-</blockquote>
-<p>Bayes, hesitantly, concluded that time does not distinguish between the events and therefore that the relationship between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is <em>not necessarily causal</em>. <span class="math inline">\(P(A|B)P(B)=P(B|A)P(A)\)</span></p>
-<p>Laplace’s law of succession</p>
-<blockquote class="blockquote">
-<p>If an urn contains an infinity of white and black tickets in an unknown ratio, and if p + q tickets are drawn of which p are white and q are black, we ask the probability that in drawing a new ticket from this urn it will be white.</p>
-</blockquote>
-<p>Laplace suggested to replace a <em>single urn</em> of unknown constitution with an <em>infinity of urns</em> of known constitution <span class="math display">\[\frac{\int_0^1x^{p+1}(1-x)^qdx}{\int_0^1x^{p}(1-x)^qdx}=\frac{p+1}{p+q+2}\]</span></p>
-</section>
-<section id="frequentist-probability" class="level2">
-<h2 class="anchored" data-anchor-id="frequentist-probability">Frequentist probability</h2>
-<p>Bernoulli (1655-1705) in <em>Ars Conjectandi</em>:</p>
-<p>If you take a <strong>large enough sample</strong>, you can be <strong>sure</strong>, that the proportion of white pebbles you observe in the sample is <strong>close</strong> to the proportion in the urn (Law of Large Numbers).</p>
-<blockquote class="blockquote">
-<p>“The sample ratio is close to a <em>given urn ratio</em> with a high probability” vs “The urn ratio is close to a <em>given sample ratio</em> with high probability.”</p>
-</blockquote>
-<ul>
-<li><p>Fascination with the normal curve and deviations from average (Adolphe Quetelet)</p></li>
-<li><p>Galton’s natural selection and eugenics. Reversion (or <em>regression</em>) towards mediocrity in hereditary studies</p></li>
-<li><p>Pearson - numerical measure of normality <span class="math inline">\(\chi^2\)</span>.</p></li>
-<li><p>Young genius Fischer. Break-off. Animosity and hostility. Fischer’s continuous war with Egon Pearson and Jerzy Nyman.</p></li>
-</ul>
-<p>[1] Clayton (2021) [2] Acree (2021)</p>
-</section>
-<section id="logical-probability" class="level2">
-<h2 class="anchored" data-anchor-id="logical-probability">Logical probability</h2>
-<ul>
-<li><p>Inference is an extension of Boolean algebra with an implication operator <span class="math inline">\(A\implies B\)</span> (“A implies B”).</p></li>
-<li><p>Implication does not assert that either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> is true, but merely that <span class="math inline">\(A\overline{B}\)</span> is FALSE, i.e.&nbsp;that <span class="math inline">\((\overline{A}+B)\)</span> is TRUE. Also can be expressed as <span class="math inline">\(A=AB\)</span>: propositions <span class="math inline">\(A\)</span> and <span class="math inline">\(AB\)</span> have the same truth value.</p></li>
-</ul>
-<p>Desiderata for plausibility reasoning:</p>
-<ul>
-<li><p>Representation of degrees of plausibility by real numbers;</p></li>
-<li><p>Qualitative correspondence with common sense;</p></li>
-<li><p>Consistency:</p>
-<ul>
-<li><p>If a conclusion can be reasoned out in more than one way, then every possible way must lead to the same result</p></li>
-<li><p>The robot always takes into account all of the evidence it has relevant to a question. […] the robot is completely nonideological.</p></li>
-<li><p>The robot always represents equivalent states of knowledge by equivalent plausibility assignments.</p></li>
-</ul></li>
-</ul>
-<p>Randomization does not change the state of the world. It alters our knowledge. Mind-projection fallacy.</p>
-<p>[1] Jaynes(2003)</p>
-</section>
-<section id="logical-probability-1" class="level2">
-<h2 class="anchored" data-anchor-id="logical-probability-1">Logical probability</h2>
-<section id="rules-of-plausibility-reasoning" class="level3">
-<h3 class="anchored" data-anchor-id="rules-of-plausibility-reasoning">Rules of plausibility reasoning</h3>
-<ul>
-<li>The product rule</li>
-</ul>
-<p><span class="math display">\[p(AB|C)=p(A|C)p(B|AC)=p(B|C)p(A|BC)\]</span></p>
-<ul>
-<li>The sum rule</li>
-</ul>
-<p><span class="math display">\[p(A|B)+p(\overline{A}|B)=1\]</span></p>
-<p><span class="math display">\[p(A+B|C)=p(A|C)+p(B|C)-p(AB|C)\]</span></p>
-<p>Interpretation of plausibility</p>
-<p><span class="math inline">\(A \implies B\)</span></p>
-<ul>
-<li><p><span class="math inline">\(B\)</span> is true, therefore <span class="math inline">\(A\)</span> becomes more plausible</p></li>
-<li><p><span class="math inline">\(A\)</span> is false, therefore <span class="math inline">\(B\)</span> becomes less plausible</p></li>
-</ul>
-<p>[1] Jaynes (2003)</p>
-</section>
-</section>
-<section id="subjectivist-probability" class="level2">
-<h2 class="anchored" data-anchor-id="subjectivist-probability">Subjectivist probability</h2>
-<p>Beliefs without actions are abstract. Probabilities can be understood only in the context of an agent (someone making a decision or doing reasoning).</p>
-<section id="bruno-de-finetti-1906-1985" class="level4">
-<h4 class="anchored" data-anchor-id="bruno-de-finetti-1906-1985">Bruno de Finetti (1906-1985)</h4>
-<ul>
-<li><p>“PROBABILITY DOES NOT EXIST!”</p></li>
-<li><p>Interpretation of probability as personal attitude to uncertainty is inseparable from willingness to take risk</p></li>
-<li><p>Unexperienced uncertainty (nothing at stake) is not a real uncertainty</p></li>
-<li><p>Uncertainty can <em>only</em> be observed (and probabilities can be extracted) from betting behavior</p></li>
-</ul>
-</section>
-<section id="frank-ramsey-1903-19301" class="level4">
-<h4 class="anchored" data-anchor-id="frank-ramsey-1903-19301">Frank Ramsey (1903-1930)<sup>[1]</sup></h4>
-<ul>
-<li><p>Probabilities are subjective. Both prior beliefs and previously experienced frequencies are relevant for decision</p></li>
-<li><p>Beliefs can be separated from preferences through the definition of “ethically neutral proposition” (uninfluenced decision)</p></li>
-</ul>
-<p>[1]N-E Sahlin</p>
-</section>
-</section>
-<section id="knightian-uncertainty" class="level2">
-<h2 class="anchored" data-anchor-id="knightian-uncertainty">Knightian uncertainty</h2>
-<p>Knight (1921):</p>
-<ul>
-<li><p>risk - inherent randomness in the world described by probability</p></li>
-<li><p>uncertainty - lack of knowledge. “Uncertainty occurs when we cannot assign values to the probability”</p></li>
-</ul>
-<p>Bayes and Knight does not combine!</p>
-<p>Introduce uncertainty about probabilities e.g.&nbsp;</p>
-<p>Imprecise probability theory:</p>
-<ul>
-<li><p>What to do when one can not assign a single probability number?</p></li>
-<li><p>Probability represented by bounds without any distribution assigned to them (NOT uniform!)</p></li>
-</ul>
-<p>Robust Bayesian approach gives imprecise probabilities</p>
-<ul>
-<li><p>Sets of priors or sets of likelihoods</p></li>
-<li><p>Find bounds of probabilities when summarising quantities of interest</p></li>
-</ul>
-<p>Relax the strict interpretation of Knight (he admitted that probability can describe uncertainty when there is enough basis to make judgements or Bayesian inferece)</p>
-<ul>
-<li>Avoid conflating probabilities defining risk with probabilities expressing uncertainty about risk</li>
-</ul>
-</section>
-<section id="time-to-reflect" class="level2">
-<h2 class="anchored" data-anchor-id="time-to-reflect">Time to reflect</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="task-1" class="level3">
+<h3 class="anchored" data-anchor-id="task-1">Task 1</h3>
+<p>Test an hypothesis using conjugate model. How sensitive is the conclusion from the choice of prior?</p>
+<p>Let <span class="math inline">\(\lambda\)</span> be the average number of goals scored in a Women’s World Cup game. We’ll analyse <span class="math inline">\(\lambda\)</span> by a Gamma-Poisson model where data <span class="math inline">\(Y_i\)</span> is the observed number of goals scored in a sample of World Cup games</p>
 <ol type="1">
-<li><p>How can different interpretations of probability affect a scientific discussion or knowledge generating process?</p></li>
-<li><p>Which perspectives on probability have you encountered in you research experience?</p></li>
+<li><p>Specify the model</p></li>
+<li><p>Plot and summarize our prior understanding of <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>Why is the Poisson model a reasonable choice for our data<br>
+<span class="math inline">\(Y_i\)</span>?</p></li>
 </ol>
+<p>Use the wwc_2019_matches data from <a href="https://data.fivethirtyeight.com/">fivethirtyeight</a></p>
+<p>The wwc_2019_matches data includes the number of goals scored by the two teams in each 2019 Women’s World Cup match. We summed the scores by the two teams per game, made a histogram and calculated some summary statistics:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Some larger datasets need to be installed separately, like senators and
+house_district_forecast. To install these, we recommend you install the
+fivethirtyeightdata package by running:
+install.packages('fivethirtyeightdata', repos =
+'https://fivethirtyeightdata.github.io/drat/', type = 'source')</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solution_exercise_2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solution_exercise_2_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   2.000   3.000   2.808   3.000  13.000 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 52</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Make a test if the average number of goals scored in a Women’s World Cup game is less than 1.8.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics of data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(goals)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(goals)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Flat</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>s_prior <span class="ot">=</span> <span class="dv">1</span> <span class="co">#shape</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>r_prior <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span> <span class="co">#rate</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#expected value is shape/rate</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>s_prior<span class="sc">/</span>r_prior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#variance increase with shape and decrease with rate</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>s_prior<span class="sc">/</span>r_prior<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Strong</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s_prior <span class="ot">=</span> <span class="dv">1</span><span class="sc">*</span><span class="dv">20</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>r_prior <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span><span class="sc">*</span><span class="dv">20</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#expected value is shape/rate. </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>s_prior<span class="sc">/</span>r_prior </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#variance increase with shape and decrease with rate</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s_prior<span class="sc">/</span>r_prior<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>s_post <span class="ot">=</span> s_prior <span class="sc">+</span> m<span class="sc">*</span>n <span class="co">#shape</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>r_post <span class="ot">=</span> r_prior <span class="sc">+</span> n <span class="co">#rate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">ppoints</span>(<span class="dv">200</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#yy &lt;- seq(0.01,10,by=0.01)</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(pp,<span class="at">shape=</span>s_prior,<span class="at">rate=</span>r_prior)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">goals=</span><span class="fu">c</span>(yy,yy),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">pdf=</span><span class="fu">c</span>(<span class="fu">dgamma</span>(yy,<span class="at">shape=</span>s_prior,<span class="at">rate=</span>r_prior),<span class="fu">dgamma</span>(yy,<span class="at">shape=</span>s_post,<span class="at">rate=</span>r_post)),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">dist=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>,<span class="st">"post"</span>),<span class="at">each=</span><span class="dv">200</span>))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>goals,<span class="at">y=</span>pdf,<span class="at">col=</span>dist)) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom=</span><span class="st">"point"</span>,<span class="at">x=</span>m,<span class="at">y=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span><span class="fl">1.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solution_exercise_2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test if lambda is less than 1.8</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># I calculate the probability that lambda is less than 1.8 using the posterior. If this value is not super small, I will consider it to </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="fl">1.8</span>,<span class="at">shape=</span>s_post,<span class="at">rate=</span>r_post)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.125193e-07</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95% probability interval </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">qgamma</span>(<span class="fl">0.025</span>,<span class="at">shape=</span>s_post,<span class="at">rate=</span>r_post),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qgamma</span>(<span class="fl">0.975</span>,<span class="at">shape=</span>s_post,<span class="at">rate=</span>r_post))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.285608 3.099771</code></pre>
+</div>
+</div>
 </section>
-</section>
-<section id="bayesian-analysis" class="level1">
-<h1>Bayesian analysis</h1>
-<p><strong>Observable:</strong> <span class="math inline">\(Y\)</span></p>
-<p><strong>Observations(data):</strong> <span class="math inline">\(\mathbf{y}=(y_1,\ldots,y_n)\)</span> (random sample from <span class="math inline">\(Y\)</span>)</p>
-<p><strong>Data generating process:</strong> <span class="math inline">\(Y|\theta \sim \cdot\)</span></p>
-<p><strong>Parameters:</strong> <span class="math inline">\(\theta\)</span></p>
-<p><strong>Likelihood:</strong> <span class="math inline">\(L(\theta,\mathbf{y})=p(\mathbf{y}|\theta)\)</span></p>
-<p><strong>Prior:</strong> <span class="math inline">\(\theta|\nu \sim \cdot\)</span></p>
-<p><strong>Hyper-parameters:</strong> <span class="math inline">\(\nu\)</span></p>
-<p><strong>Posterior:</strong> <span class="math inline">\(\theta|\mathbf{y},\nu \sim \cdot\)</span></p>
-<p><strong>Bayes rule:</strong> <span class="math display">\[p(\theta|\mathbf{y},\nu) = \frac{p(\mathbf{y}|\theta)p(\theta|\nu)}{\int p(\mathbf{y}|\theta)p(\theta|\nu)d\theta} = \frac{p(\mathbf{y}|\theta)p(\theta|\nu)}{p(\mathbf{y})}\]</span></p>
-<p><strong>Posterior predictive:</strong> <span class="math inline">\(p(y_{new}|\mathbf{y}) = \int p(y_{new}|\theta)p(\theta|\mathbf{y})d\theta\)</span></p>
-<section id="likelihood" class="level2">
-<h2 class="anchored" data-anchor-id="likelihood">Likelihood</h2>
-<p><span class="math inline">\(p(data|\text{parameters})\)</span></p>
-<ul>
-<li><p>Parameters as fixed and data as variable</p></li>
-<li><p>Data as fixed and parameter as uncertain</p></li>
-</ul>
-</section>
-<section id="steps-of-a-bayesian-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="steps-of-a-bayesian-data-analysis">Steps of a Bayesian data analysis</h2>
+<section id="task-2" class="level3">
+<h3 class="anchored" data-anchor-id="task-2">Task 2</h3>
+<p>Use conjugate models to construct probability intervals for the results from a clinical trial and compare to a published meta-analysis.</p>
+<p><a href="https://www.thelancet.com/article/S0140-67362031142-9/fulltext">Lancet paper</a></p>
+<p><img src="https://www.thelancet.com/cms/10.1016/S0140-6736(20)31142-9/asset/b966c770-af7d-4424-a04a-556cef203d13/main.assets/gr4_lrg.jpg" class="img-fluid"></p>
+<p>A relative risk (RR) is a ratio of the probability of an event occurring in the exposed group versus the probability of the event occurring in the non-exposed group.</p>
 <ol type="1">
-<li><p>Identify data relevant to the research question (<strong>question/model-first</strong>)</p></li>
-<li><p>Define a probabilistic data generating model (linking data to question/model, needed to derive the likelihood)</p></li>
-<li><p>Specify prior for parameters within the model</p></li>
-<li><p>Use Bayesian inference to re-allocate credibility across parameter values. Interpret the posterior with respect to the validity of the model.</p></li>
-<li><p>Check that the posterior predictions mimic the data with reasonable accuracy (i.e.&nbsp;make posterior predictive check)</p></li>
+<li><p>Reproduce the probability interval for a RR from the forest plots tables e.g.&nbsp;Scales et al 2003</p></li>
+<li><p>Calculate a probability interval for one of the studies for which the RR is not calculable, e.g.&nbsp;Hall et al 2014</p></li>
 </ol>
-</section>
-</section>
-<section id="inference" class="level1">
-<h1>Inference</h1>
-<section id="parametric-inference-parameter-estimation" class="level2">
-<h2 class="anchored" data-anchor-id="parametric-inference-parameter-estimation">Parametric inference (parameter estimation)</h2>
-<p>Inference about parameters are made by summarising the posterior for the quantity of interest.</p>
-<ul>
-<li><p>Posterior mean and variance</p></li>
-<li><p>Posterior mode</p></li>
-<li><p>Posterior probability interval</p></li>
-<li><p>Posterior quantiles (percentiles)</p></li>
-<li><p>Propagation of posterior uncertainty into quantities derived from parameters <span class="math inline">\(g(\theta)\)</span></p></li>
-</ul>
-<section id="bayesian-p-value" class="level3">
-<h3 class="anchored" data-anchor-id="bayesian-p-value">Bayesian p-value</h3>
-<p>Sometimes, analysts derive a Bayesian “p-value” which is the posterior probability of a null hypothesis. If this probability is small, then the null hypothesis can be rejected. Note that this is a pragmatic approach adopting frequentist terminology and not part of Bayesian theory.</p>
-<p>For example, we specify the following hypotheses:</p>
-<p><span class="math inline">\(H_0: \theta \leq 0\)</span> against <span class="math inline">\(H_1: \theta &gt; 0\)</span></p>
-<p>The Bayesian p-value is then <span class="math inline">\(\text{Bayesian p-value}=\int_{-\infty}^0 p(\theta|data)d\theta\)</span> where <span class="math inline">\(p(\theta|data)\)</span> denotes the posterior density.</p>
-</section>
-</section>
-<section id="predictive-inference-predicting-new-observations" class="level2">
-<h2 class="anchored" data-anchor-id="predictive-inference-predicting-new-observations">Predictive inference (predicting new observations)</h2>
-<ul>
-<li><p>Posterior predictive</p></li>
-<li><p>Data validation (predictive performance)</p></li>
-<li><p>Forecasting, classification, etc</p></li>
-</ul>
-</section>
-<section id="bayesian-vs-frequentist" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-vs-frequentist">Bayesian vs Frequentist</h2>
-<p>This section is inspired by Efron and Hastie’s book Computer age statistical inference - algorithms, evidence, and data science</p>
-<ul>
-<li><p>Bayesian inference requires a prior distribution, and the choice of prior is therefore important and sometimes challenging.</p></li>
-<li><p>Frequentism replaces the choice of a prior with the choice of a method or algorithm designed for the quantity of interest.</p></li>
-<li><p>Bayesian inference answers all possible questions at once.</p></li>
-<li><p>Frequentism requires different methods/algorithms for different questions.</p></li>
-<li><p>Bayesian inference is open for sequential updating, e.g.&nbsp;when data are to be integrated to the model over time.</p></li>
-</ul>
-<blockquote class="blockquote">
-<p>The authors states that “Computer-age statistical inference at its most successful combines elements of the two philosophies”</p>
-</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data Scales</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>y_mask <span class="ot">=</span> <span class="dv">3</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>N_mask <span class="ot">=</span> <span class="dv">16</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y_nomask <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>N_nomask <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="cn">FALSE</span>){</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># not calculable Hall</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>y_mask <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>N_mask <span class="ot">=</span> <span class="dv">42</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>y_nomask <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>N_nomask <span class="ot">=</span> <span class="dv">6</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prior</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>a_prior <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>b_prior <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># posterior</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>a_mask <span class="ot">=</span> a_prior <span class="sc">+</span> y_mask</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>b_mask <span class="ot">=</span> b_prior <span class="sc">+</span> N_mask <span class="sc">-</span> y_mask</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>a_nomask <span class="ot">=</span> a_prior <span class="sc">+</span> y_nomask</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>b_nomask <span class="ot">=</span> b_prior <span class="sc">+</span> N_nomask <span class="sc">-</span> y_nomask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">=</span> <span class="fu">ppoints</span>(<span class="dv">200</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta=</span>pp,<span class="at">pdf=</span><span class="fu">c</span>(<span class="fu">dbeta</span>(pp,a_mask,b_mask),<span class="fu">dbeta</span>(pp,a_nomask,b_nomask)),<span class="at">treatment=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"mask"</span>,<span class="st">"no mask"</span>),<span class="at">each=</span><span class="dv">200</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>theta,<span class="at">y=</span>pdf,<span class="at">col=</span>treatment))<span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solution_exercise_2_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample to calculate posterior for the derived quantity RR</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>niter <span class="ot">=</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">4</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>RR <span class="ot">=</span> <span class="fu">rbeta</span>(niter,a_mask,b_mask)<span class="sc">/</span><span class="fu">rbeta</span>(niter,a_nomask,b_nomask)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise the posterior for RR - a value less than 1 is in favour of wearing face masks</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(RR) <span class="co"># posterior mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8869681</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(RR,<span class="at">probs=</span><span class="fu">c</span>(<span class="fl">0.025</span>,<span class="fl">0.975</span>)) <span class="co"># posterior 95% probability interval</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     2.5%     97.5% 
+0.2034838 2.4478977 </code></pre>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

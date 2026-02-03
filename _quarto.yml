@@ -18,6 +18,8 @@ website:
         text: Conjugate models
       - href: pages/exercise_2.qmd
         text: E2
+      - href: pages/solution_exercise_2.qmd
+        text: SolutionE2
       - href: pages/MCMC.qmd
         text: MCMC
       - href: pages/exercise_3.qmd
