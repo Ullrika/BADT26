@@ -301,9 +301,26 @@ $\beta_0 \sim N(0,5)$.
 
 How does the island hopping analogy work here?
 
-## Exercise 3
 
-Complete Ex 3: today and beginning of tomorrow's session. 
+::: {.callout-note title="Metropolis algorithm"}
+
+0. Start with an arbitrary initial value of the parameter, and denote it $\theta_{current}$
+
+1. Randomly generate a proposed jump, $\Delta\theta \sim N(0,\sigma^2)$ and derive the proposed parameter as $\theta_{proposed} = \theta_{current}+\Delta\theta$. 
+
+2. Compute the probability of moving to the proposed value as 
+$$\begin{split} & \\ p_{move}=min\left(1,\frac{f(\theta_{proposed}|y)}{f(\theta_{current}|y)}\right) =& \\min\left(1,\frac{l(y|\theta_{proposed})f(\theta_{proposed})}{l(y|\theta_{current})f(\theta_{current})}\right) \end{split}$$
+
+3. Accept the proposed parameter value if a random value sampled from a [0,1] uniform distribution is less than $p_{move}$
+
+Repeat steps 1 to 3 until a sufficiently representative sample of the posterior has been generated. 
+
+Throw away a *burn-in* period of the sampling and keep the part where the algorithm has converged.
+
+The Metropolis algorithm (is a type of importance sampling) which can be combined with ways to generate proposals make the sampling more efficient, including Gibbs sampling and Hamiltonian Markov Chain (HMC).  
+:::
+
+
 
 ## MCMC diagnostics
 

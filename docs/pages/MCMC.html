@@ -192,6 +192,14 @@ window.Quarto = {
     <a class="nav-link" href="../pages/exercise_4.html"> 
 <span class="menu-text">E4</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/Bayesian_GLM.html"> 
+<span class="menu-text">Bayesian GLM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/exercise_5.html"> 
+<span class="menu-text">E5</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -218,7 +226,6 @@ window.Quarto = {
   <li><a href="#summary-of-hopping" id="toc-summary-of-hopping" class="nav-link" data-scroll-target="#summary-of-hopping">Summary of hopping</a></li>
   </ul></li>
   <li><a href="#metropolis-algorithm" id="toc-metropolis-algorithm" class="nav-link" data-scroll-target="#metropolis-algorithm">Metropolis algorithm</a></li>
-  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
   <li><a href="#mcmc-diagnostics" id="toc-mcmc-diagnostics" class="nav-link" data-scroll-target="#mcmc-diagnostics">MCMC diagnostics</a></li>
   </ul>
 </nav>
@@ -429,11 +436,11 @@ Beta(\alpha, \beta)
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>mcmc_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         island mcmc_prob true_posterior
-Island 1      1     0.058     0.06666667
-Island 2      2     0.160     0.13333333
-Island 3      3     0.225     0.20000000
-Island 4      4     0.254     0.26666667
-Island 5      5     0.303     0.33333333</code></pre>
+Island 1      1     0.064     0.06666667
+Island 2      2     0.163     0.13333333
+Island 3      3     0.217     0.20000000
+Island 4      4     0.252     0.26666667
+Island 5      5     0.304     0.33333333</code></pre>
 </div>
 </div>
 <p>Trace the move</p>
@@ -507,10 +514,27 @@ p(Y|\beta_0,\beta_1,\epsilon,x)=\prod_i^{n} \frac{1}{\sqrt{2\pi \sigma^2}}exp(-\
 <p>Priors:</p>
 <p><span class="math inline">\(\beta_0 \sim N(0,5)\)</span>.</p>
 <p>How does the island hopping analogy work here?</p>
-</section>
-<section id="exercise-3" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3">Exercise 3</h2>
-<p>Complete Ex 3: today and beginning of tomorrow’s session.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Metropolis algorithm">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Metropolis algorithm
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol start="0" type="1">
+<li><p>Start with an arbitrary initial value of the parameter, and denote it <span class="math inline">\(\theta_{current}\)</span></p></li>
+<li><p>Randomly generate a proposed jump, <span class="math inline">\(\Delta\theta \sim N(0,\sigma^2)\)</span> and derive the proposed parameter as <span class="math inline">\(\theta_{proposed} = \theta_{current}+\Delta\theta\)</span>.</p></li>
+<li><p>Compute the probability of moving to the proposed value as <span class="math display">\[\begin{split} &amp; \\ p_{move}=min\left(1,\frac{f(\theta_{proposed}|y)}{f(\theta_{current}|y)}\right) =&amp; \\min\left(1,\frac{l(y|\theta_{proposed})f(\theta_{proposed})}{l(y|\theta_{current})f(\theta_{current})}\right) \end{split}\]</span></p></li>
+<li><p>Accept the proposed parameter value if a random value sampled from a [0,1] uniform distribution is less than <span class="math inline">\(p_{move}\)</span></p></li>
+</ol>
+<p>Repeat steps 1 to 3 until a sufficiently representative sample of the posterior has been generated.</p>
+<p>Throw away a <em>burn-in</em> period of the sampling and keep the part where the algorithm has converged.</p>
+<p>The Metropolis algorithm (is a type of importance sampling) which can be combined with ways to generate proposals make the sampling more efficient, including Gibbs sampling and Hamiltonian Markov Chain (HMC).</p>
+</div>
+</div>
 </section>
 <section id="mcmc-diagnostics" class="level2">
 <h2 class="anchored" data-anchor-id="mcmc-diagnostics">MCMC diagnostics</h2>

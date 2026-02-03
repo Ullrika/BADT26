@@ -1,6 +1,6 @@
 ---
-title: "Exercise 4"
-subtitle: "DABT26"
+title: "MCMC sampling software"
+subtitle: "Exercise BADT"
 author: "Zheng Zhou"
 ---
 

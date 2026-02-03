@@ -163,6 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../pages/exercise_4.html"> 
 <span class="menu-text">E4</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/Bayesian_GLM.html"> 
+<span class="menu-text">Bayesian GLM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/exercise_5.html"> 
+<span class="menu-text">E5</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -324,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(posterior_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-5.885e-05 4.056e-02 6.459e-02 5.694e-02 7.683e-02 7.999e-02 </code></pre>
+0.0002058 0.0415588 0.0652608 0.0566188 0.0764509 0.0799875 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>trace_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">iteration =</span> <span class="dv">1</span><span class="sc">:</span>n_iterations,</span>

@@ -38,13 +38,13 @@ Reading: BR* (Chapters 6, 7, 8) and DBDA* (Chapter 7)
 
 [Exercise 3. Write your own MCMC sampler](pages\exercise_3.qmd)
 
-10.30 Short lecture Introduction to software for MCMC sampling (Zheng)
+10.30 Short lecture [Introduction to software for MCMC sampling](pages\MCMC.qmd)
 
 10.45 Short lecture [Predictive performance in Bayesian inference](pages\PP.qmd)
 
-Exercise 4. Get started with a software for MCMC sampling
+[Exercise 4. Get started with a software for MCMC sampling](pages\exercuse_4.qmd)
 
-11.30 Lecture Generalised Linear Regression models 
+11.30 Lecture [Generalised Linear Regression models](pages\Bayesian_GLM.qmd)
 
 Reading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)
 
@@ -52,7 +52,7 @@ Reading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)
 
 13.00 Exercise 5. Bayesian GLMs 
 
-14.15 Lecture on Decision theory with example in stan
+14.15 Lecture on Decision theory
 
 Reading: 1* and 2*
 

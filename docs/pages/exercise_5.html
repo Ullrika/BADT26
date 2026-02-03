@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Zheng Zhou">
+<meta name="author" content="Sahlin">
 
-<title>Predictive Performance – BADT26</title>
+<title>Bayesian Generalised Linear Models – BADT26</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -151,7 +122,7 @@ window.Quarto = {
 <span class="menu-text">E3</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../pages/PP.html" aria-current="page"> 
+    <a class="nav-link" href="../pages/PP.html"> 
 <span class="menu-text">Predictive performance</span></a>
   </li>  
   <li class="nav-item">
@@ -163,7 +134,7 @@ window.Quarto = {
 <span class="menu-text">Bayesian GLM</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../pages/exercise_5.html"> 
+    <a class="nav-link active" href="../pages/exercise_5.html" aria-current="page"> 
 <span class="menu-text">E5</span></a>
   </li>  
 </ul>
@@ -182,13 +153,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#learning-goals" id="toc-learning-goals" class="nav-link active" data-scroll-target="#learning-goals">Learning goals</a></li>
-  <li><a href="#the-rationale-for-model-evaluation-and-comparison" id="toc-the-rationale-for-model-evaluation-and-comparison" class="nav-link" data-scroll-target="#the-rationale-for-model-evaluation-and-comparison">The rationale for model evaluation and comparison</a></li>
-  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting">Overfitting</a></li>
-  <li><a href="#predictive-performance-metrics-for-bayesian-models" id="toc-predictive-performance-metrics-for-bayesian-models" class="nav-link" data-scroll-target="#predictive-performance-metrics-for-bayesian-models">Predictive performance metrics for Bayesian models</a></li>
-  <li><a href="#generalization-with-practical-context" id="toc-generalization-with-practical-context" class="nav-link" data-scroll-target="#generalization-with-practical-context">Generalization with practical context</a></li>
-  <li><a href="#out-of-sample-evaluation" id="toc-out-of-sample-evaluation" class="nav-link" data-scroll-target="#out-of-sample-evaluation">Out-of-sample evaluation</a></li>
-  <li><a href="#category-of-predictive-performance-metrics" id="toc-category-of-predictive-performance-metrics" class="nav-link" data-scroll-target="#category-of-predictive-performance-metrics">Category of predictive performance metrics</a></li>
+  <li><a href="#we-run-bayesian-glm-in-brms-or-bambi" id="toc-we-run-bayesian-glm-in-brms-or-bambi" class="nav-link active" data-scroll-target="#we-run-bayesian-glm-in-brms-or-bambi">We run Bayesian GLM in brms or bambi</a></li>
   </ul>
 </nav>
     </div>
@@ -197,8 +162,8 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Predictive Performance</h1>
-<p class="subtitle lead">BADT</p>
+<h1 class="title">Bayesian Generalised Linear Models</h1>
+<p class="subtitle lead">Exercise BADT</p>
 </div>
 
 
@@ -208,7 +173,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Zheng Zhou </p>
+             <p>Sahlin </p>
           </div>
   </div>
     
@@ -221,126 +186,8 @@ window.Quarto = {
 </header>
 
 
-<section id="learning-goals" class="level2">
-<h2 class="anchored" data-anchor-id="learning-goals">Learning goals</h2>
-<ol class="example" type="1">
-<li>Describe how prior and data influence posterior distributions</li>
-</ol>
-<ul>
-<li>Apply this understanding to interpret posterior predictions across different scenarios with varying priors (flat, informed) and data (sparse, abundant)</li>
-<li>Reflect on the ethical and practical implication of prior choices in modeling</li>
-</ul>
-<ol start="2" class="example" type="1">
-<li>Describe the purpose of evaluating predictive performance</li>
-</ol>
-<ul>
-<li>Describe why evaluation of predictive performance is necessary for model validation, generalization and avoiding overfitting</li>
-<li>Describe the difference between in-sample and out-of-sample evaluation of predictive performance</li>
-<li>Reflect on the limitations of relying solely on predictive performance for decision making</li>
-</ul>
-<ol start="3" class="example" type="1">
-<li>Describe categories of predictive performance metrics</li>
-</ol>
-<ul>
-<li>Describe the key difference between the categories</li>
-<li>Describe Bayesian predictive measures</li>
-</ul>
-<hr>
-</section>
-<section id="the-rationale-for-model-evaluation-and-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="the-rationale-for-model-evaluation-and-comparison">The rationale for model evaluation and comparison</h2>
-<p>Model evaluation: how good is this model?</p>
-<ul>
-<li><p>Goodness-of-fit: Is the model good enough (for the data)?</p></li>
-<li><p>Predictive performance: Can the model make good predictions for new data?</p></li>
-</ul>
-<p>Model comparison: Is the model better than other models?</p>
-<p>Two critical issues:</p>
-<ul>
-<li><p>Lack of fit</p></li>
-<li><p>Overfitting</p></li>
-<li><p>Generalization with context</p></li>
-</ul>
-</section>
-<section id="overfitting" class="level2">
-<h2 class="anchored" data-anchor-id="overfitting">Overfitting</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/overfitting.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Best example of overfitting</figcaption>
-</figure>
-</div>
-<p>In MCMC, overfitting, i.e., having more parameters than needed may cause three things:</p>
-<ol type="1">
-<li><p>The predictions are too good to be true</p></li>
-<li><p>Divergence statistics are bad</p></li>
-<li><p>Posteriors for individual parameters have huge dispersion</p></li>
-</ol>
-<p>Identifiability issue: MCMC can’t tell influence on the likelihood come from which parameter</p>
-</section>
-<section id="predictive-performance-metrics-for-bayesian-models" class="level2">
-<h2 class="anchored" data-anchor-id="predictive-performance-metrics-for-bayesian-models">Predictive performance metrics for Bayesian models</h2>
-<p>Bayesian models have a full posterior distribution already!</p>
-<p>With sufficient computing power, no reason not to use full predictive distribution.</p>
-<p>Expected log predictive density (elpd)</p>
-<p><span class="math display">\[
-elpd(y,\tilde{y}_i) = \sum^n_{i=1}{\int{p_t (\tilde{y}_i)\log \ p(\tilde{y}_i |y)\ d \tilde{y}_i}}
-\]</span></p>
-<p>elpd can be used for computing Widely-applicable information criterion or leave-one-out cross validation.</p>
-<p>Expansion reads:</p>
-<p><a href="https://arxiv.org/abs/1507.04544">Vehtari, A.; Gelman, A.; Gabry, J. Practical Bayesian model evaluation using leave-one-out516 cross-validation and WAIC. Statistics and Computing 2017, 27, 1413–1432</a></p>
-</section>
-<section id="generalization-with-practical-context" class="level2">
-<h2 class="anchored" data-anchor-id="generalization-with-practical-context">Generalization with practical context</h2>
-<p>Scope of evaluation: in-sample vs out-of-sample</p>
-<p>A model to predict ice cream consumption based on swimming activity.</p>
-<p>If the model is trained on survey data by people in Lund in summer, will the predictions apply to people in Malmö winter?</p>
-<p>Will the predictions apply to people in Qatar (in desert) in summer?</p>
-</section>
-<section id="out-of-sample-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="out-of-sample-evaluation">Out-of-sample evaluation</h2>
-<p>Cross-validation</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/k-CV.jpg" class="img-fluid figure-img"></p>
-<figcaption>K-fold cross validation</figcaption>
-</figure>
-</div>
-<p>True remedy to out-of-sample prediction problem is to improve the representativeness of sampling protocol. - Not necessarily related to sample size - Be aware of bias in sampling protocol and reduce the bias</p>
-</section>
-<section id="category-of-predictive-performance-metrics" class="level2">
-<h2 class="anchored" data-anchor-id="category-of-predictive-performance-metrics">Category of predictive performance metrics</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 30%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Category</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Central tendency</td>
-<td style="text-align: left;">Considers <strong>ONLY</strong> the mean distance between observed and predictive values</td>
-<td style="text-align: left;">Mean Rooted Squared Errors</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Incomplete uncertainty</td>
-<td style="text-align: left;">In addition to central tendency, also considers <strong>uncertainty</strong> from the spread (variance)</td>
-<td style="text-align: left;">Ranked Probability Score</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Complete uncertainty</td>
-<td style="text-align: left;">Full predictive <em>density</em> distribution</td>
-<td style="text-align: left;">Expected Log Predictive Density</td>
-</tr>
-</tbody>
-</table>
+<section id="we-run-bayesian-glm-in-brms-or-bambi" class="level2">
+<h2 class="anchored" data-anchor-id="we-run-bayesian-glm-in-brms-or-bambi">We run Bayesian GLM in brms or bambi</h2>
 
 
 </section>
