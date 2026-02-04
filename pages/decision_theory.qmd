@@ -26,7 +26,7 @@ There are other decision rules!
 
 - Descriptive: What people actually do, or have done
 
-- Prescriptive: What people shoudl and can do
+- Prescriptive: What people should and can do
 
 - Normative: What people should do (in theory, e.g. if rational)
 
@@ -102,3 +102,117 @@ I will demonstrate BBN and influence diagram in genie
 ### Bayesian decision analysis example in stan
 
 [https://mc-stan.org/docs/stan-users-guide/decision-analysis.html](https://mc-stan.org/docs/stan-users-guide/decision-analysis.html)
+
+
+
+```{}
+# Save this code into a file that could name "dm.stan"
+
+functions {
+  real U(real c, real t) {
+    return -(c + 25 * t);
+  }
+}
+data {
+  int<lower=0> N;
+  array[N] int<lower=1, upper=4> d;
+  array[N] real c;
+  array[N] real<lower=0> t;
+}
+parameters {
+  vector[4] mu;
+  vector<lower=0>[4] sigma;
+  array[4] real nu;
+  array[4] real<lower=0> tau;
+}
+model {
+  mu ~ normal(0, 1);
+  sigma ~ lognormal(0, 0.25);
+  nu ~ normal(0, 20);
+  tau ~ lognormal(0, 0.25);
+  t ~ lognormal(mu[d], sigma[d]);
+  c ~ lognormal(nu[d], tau[d]);
+}
+generated quantities {
+  array[4] real util;
+  for (k in 1:4) {
+    util[k] = U(lognormal_rng(nu[k], tau[k]),
+                lognormal_rng(mu[k], sigma[k]));
+  }
+}
+```
+
+```{r}
+library(cmdstanr)
+library(ggplot2)
+library(bayesplot)
+```
+
+
+```{r}
+generate_fake_data <- function(N){
+d = sample(1:4,N,replace=TRUE)
+d_label = c("walk", "bike share", "public transportation", "cab")
+
+mu = sort(rnorm(4,0,0.5),decreasing=TRUE)
+sigma = rlnorm(4,0,0.1)
+nu = sort(rnorm(4,0,1),decreasing=FALSE)
+tau = rlnorm(4,0,0.25)
+
+data.frame(
+t = rlnorm(N,mu[d],sigma[d]),
+c = rlnorm(N,nu[d],tau[d]),
+d = d, d_label = d_label[d])
+}
+```
+
+
+```{r}
+# prepare data
+dat <- generate_fake_data(N = 50)
+
+df <- data.frame(val = c(dat$t,dat$c), d = c(dat$d_label,dat$d_label), variable = rep(c("time","cost"),each=nrow(dat)))
+ggplot(df,aes(x=val,y=d,col=d)) +
+  geom_boxplot() + 
+  geom_jitter(alpha=0.3) +
+  facet_wrap(~variable) +
+  theme_minimal()
+```
+
+
+```{r}
+# turn data to list
+stan_data <- list(N = nrow(dat),t=dat$t,c=dat$c,d=dat$d)
+
+# compile model
+model.dm <- cmdstan_model(stan_file="dm.stan")
+
+# perform the mcmc sampling
+post <- model.dm$sample(data=stan_data)
+post$diagnostic_summary()
+```
+
+
+```{r}
+# summarise the relevant quantities of interest 
+draws <- post$draws()
+bayesplot::mcmc_trace(draws,pars = c("util[1]","util[2]","util[3]","util[4]"))
+```
+
+```{r}
+bayesplot::mcmc_intervals(post$draws(),pars = c("util[1]","util[2]","util[3]","util[4]"), prob=0.8)
+```
+
+```{r}
+# Calculate the expected utilities 
+
+df_draws <- posterior::as_draws_df(draws)
+df_dm <- data.frame(EU = colMeans(df_draws[,c("util[1]","util[2]","util[3]","util[4]")]),
+           d = c("walk", "bike share", "public transportation", "cab"))
+df_dm$bayesopt <- ""
+df_dm$bayesopt[order(df_dm$EU,decreasing=TRUE)[1]] <- "*"
+df_dm
+```
+
+
+

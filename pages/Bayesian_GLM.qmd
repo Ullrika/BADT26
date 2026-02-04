@@ -45,7 +45,7 @@ The model
 
 $$y_i=\beta_0+\beta_1x_{i1}+\ldots+\beta_px_{ip}+\varepsilon_i$$
 
-where $\varepsilon_i\sim N(0,\sigma^2)$
+where $\varepsilon_i\sim N(0,\sigma)$
 
 can alternatively be written as
 
@@ -182,7 +182,7 @@ db <- penguins %>%
 
 The palmerpenguins data contains size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica. This data set is being used for education of statistics and data science. 
 
-![](../img/culmen_depth.png)
+![](img/culmen_depth.png)
 
 
 ### Association between bill length and bill depth
@@ -275,7 +275,7 @@ From the analysis above, we conclude that there is something odd with the model.
 
 The data material consists of observations from three species, which constitute three groups where one can expect that the variation between groups is larger than the variation within groups. What if the relationship between bill length and bill depth looks different for different species? 
 
-![](../img/penguins.png)
+![](img/penguins.png)
 
 Let us investigate by visualising the data where we separate the observations from the three groups. Here the visualisation is made by fitting a linear model per group. 
 
@@ -424,7 +424,7 @@ A Bayesian specification of the model made in "tilde"-format can be
 
 - Likelihood
 
-$$Y_{ij}|\beta_{0},\beta_1,\sigma,x \sim N(\beta_{0} + u_j + \beta_1 x_{ij},\sigma^2)$$
+$$Y_{ij}|\beta_{0},\beta_1,\sigma,x \sim N(\beta_{0} + u_j + \beta_1 x_{ij},\sigma)$$
 
 
 $$u_j|\tau \sim N(0,\tau)$$

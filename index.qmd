@@ -51,7 +51,7 @@ Lecture [Generalised Linear Regression models](pages\Bayesian_GLM.qmd)
 
 Reading: BR* (Chapters 9, 10, 11) and DBDA* (Chapter 15)
 
-14.15 Lecture on Decision theory
+14.15 Almost a lecture on [Decision theory](pages/decision_theory.qmd)
 
 Reading: 1* and 2*
 

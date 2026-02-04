@@ -30,8 +30,9 @@ website:
         text: E4
       - href: pages/Bayesian_GLM.qmd
         text: Bayesian GLM
-
-
+      - href: pages/decision_theory.qmd
+        text: Decision theory
+        
 format:
   html:
     theme: cosmo
