@@ -106,7 +106,7 @@ I will demonstrate BBN and influence diagram in genie
 
 
 ```{}
-# Save this code into a file that could name "dm.stan"
+# Save this code into a file named "dm.stan"
 
 functions {
   real U(real c, real t) {

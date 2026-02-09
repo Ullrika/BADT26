@@ -1,0 +1,6 @@
+---
+title: "Decision making under uncertainty"
+subtitle: "BADT 2026"
+author: "Sahlin"
+---
+

@@ -72,7 +72,7 @@ library(bayesplot)
 library(tidyverse)
 ```
 
-Check rhat and effecti sample size:
+Check rhat and effective sample size:
 
 ```{r}
 # all parameters

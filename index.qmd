@@ -57,6 +57,36 @@ Reading: 1* and 2*
 
 # Second meeting 24-25 Feb
 
-Material for second meeting to come
+**Tuesday, 24 Feb 2026 (12-16) Världen Geocentrum I** 
+
+12.15 Lecture Decision making under uncertainty
+
+13.15 Case studies on Bayesian data and decision analysis
+
+BR* (Chapters 11, 13-17) and DBDA* (Chapter 9 and 10) 
+
+14.45 Coffee
+
+15.00 Preparation Literature seminar
+
+16.00 End of day
+
+**Wednesday, 25 Feb 2026 (9-15)**
+
+09.15 Case studies on Bayesian data and decision analysis
+
+11.30 Literature seminar theme 1
+
+12.00 Lunch
+
+13.15 Literature seminar theme 2
+
+13.45 Coffee
+
+14.00 Literature seminar theme 3
+
+14.30 Pitching individual project
+
+15.00 End of day
 
 
