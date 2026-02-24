@@ -25,7 +25,7 @@ $$\delta(D)^* = \arg \max_{\delta} E^{\theta|D}U(\delta)$$
 
 # Multi-attribute utility 
 
-Let $U(a_i) be the utility on a specific attribute $a_i$
+Let $U(a_i)$ be the utility on a specific attribute $a_i$
 
 Additive utility function 
 
