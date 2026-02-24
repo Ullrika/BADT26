@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -68,6 +102,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -141,6 +204,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../pages/decision_theory.html"> 
 <span class="menu-text">Decision theory</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../pages/decision_making_under_uncertainty.html" aria-current="page"> 
+<span class="menu-text">DMU</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/case_study_bmd.html"> 
+<span class="menu-text">Case study BMD</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/case_study_sb.html"> 
+<span class="menu-text">Case study SB</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -152,8 +227,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sure-thing-principle" id="toc-sure-thing-principle" class="nav-link active" data-scroll-target="#sure-thing-principle">Sure thing principle</a></li>
+  <li><a href="#bayes-optimal-decisions" id="toc-bayes-optimal-decisions" class="nav-link" data-scroll-target="#bayes-optimal-decisions">Bayes optimal decisions</a></li>
+  <li><a href="#the-stan-example" id="toc-the-stan-example" class="nav-link" data-scroll-target="#the-stan-example">The stan example</a></li>
+  <li><a href="#multi-attribute-utility" id="toc-multi-attribute-utility" class="nav-link" data-scroll-target="#multi-attribute-utility">Multi-attribute utility</a></li>
+  <li><a href="#bounded-probabilities" id="toc-bounded-probabilities" class="nav-link" data-scroll-target="#bounded-probabilities">Bounded probabilities</a></li>
+  <li><a href="#portfolio-theory" id="toc-portfolio-theory" class="nav-link" data-scroll-target="#portfolio-theory">Portfolio theory</a>
+  <ul class="collapse">
+  <li><a href="#multi-criteria-decision-making" id="toc-multi-criteria-decision-making" class="nav-link" data-scroll-target="#multi-criteria-decision-making">Multi-criteria decision making</a></li>
+  <li><a href="#decision-analysis-using-stochastic-dominance" id="toc-decision-analysis-using-stochastic-dominance" class="nav-link" data-scroll-target="#decision-analysis-using-stochastic-dominance">Decision analysis using stochastic dominance</a></li>
+  </ul></li>
+  <li><a href="#robust-decison-making" id="toc-robust-decison-making" class="nav-link" data-scroll-target="#robust-decison-making">Robust decison making</a></li>
+  <li><a href="#uncertainty-analysis" id="toc-uncertainty-analysis" class="nav-link" data-scroll-target="#uncertainty-analysis">Uncertainty analysis</a>
+  <ul class="collapse">
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps">Steps</a></li>
+  <li><a href="#characterisation-of-overall-uncertainty" id="toc-characterisation-of-overall-uncertainty" class="nav-link" data-scroll-target="#characterisation-of-overall-uncertainty">Characterisation of overall uncertainty</a></li>
+  <li><a href="#summarise-well" id="toc-summarise-well" class="nav-link" data-scroll-target="#summarise-well">Summarise well</a></li>
+  <li><a href="#use-an-expression-of-uncertainty-for-which-there-is-a-decision-rule-that-the-decision-maker-is-willing-to-use" id="toc-use-an-expression-of-uncertainty-for-which-there-is-a-decision-rule-that-the-decision-maker-is-willing-to-use" class="nav-link" data-scroll-target="#use-an-expression-of-uncertainty-for-which-there-is-a-decision-rule-that-the-decision-maker-is-willing-to-use">Use an expression of uncertainty for which there is a decision rule that the decision maker is willing to use</a></li>
+  <li><a href="#use-sensitivie-analysis-to-support-characterisation" id="toc-use-sensitivie-analysis-to-support-characterisation" class="nav-link" data-scroll-target="#use-sensitivie-analysis-to-support-characterisation">Use sensitivie analysis to support characterisation</a></li>
+  <li><a href="#communicate-remaining-uncertainties" id="toc-communicate-remaining-uncertainties" class="nav-link" data-scroll-target="#communicate-remaining-uncertainties">Communicate remaining uncertainties</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -184,8 +284,134 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="sure-thing-principle" class="level1">
+<h1>Sure thing principle</h1>
+<p>Umbrella</p>
+</section>
+<section id="bayes-optimal-decisions" class="level1">
+<h1>Bayes optimal decisions</h1>
+<p>Graph</p>
+<p><span class="math display">\[\delta(D)^* = \arg \max_{\delta} E^{\theta|D}U(\delta)\]</span></p>
+</section>
+<section id="the-stan-example" class="level1">
+<h1>The stan example</h1>
+</section>
+<section id="multi-attribute-utility" class="level1">
+<h1>Multi-attribute utility</h1>
+<p>Let $U(a_i) be the utility on a specific attribute <span class="math inline">\(a_i\)</span></p>
+<p>Additive utility function</p>
+<p><span class="math display">\[U(a_1,\dots,a_n)=\textstyle\sum_{i=1}^n k_i U_i(a_i)\]</span></p>
+<p>If we can identify attributes and create utilities over them, we can construct an overall utility function</p>
+<p><a href="https://onlinelibrary.wiley.com/doi/10.1111/risa.13722">link to crayfish paper</a></p>
+<p><img src="img/risa13722-fig-0001-m.jpg" class="img-fluid"></p>
+</section>
+<section id="bounded-probabilities" class="level1">
+<h1>Bounded probabilities</h1>
+<p>Imprecise probability theory.</p>
+<p>From <span class="math inline">\(P\)</span> to <span class="math inline">\(\underline P, \overline P\)</span></p>
+<p>Derive lower bound on expected utility and maximise that.</p>
+<p><span class="math display">\[\delta(D)^* = \arg \max_{\delta} \underline E^{\theta|D}U(\delta)\]</span></p>
+</section>
+<section id="portfolio-theory" class="level1">
+<h1>Portfolio theory</h1>
+<p>A portfolio is a linear combination of assets</p>
+<p>The assets vary over time (backward or forward looking)</p>
+<p>The efficiency frontier is determined by the mean-variance relationship</p>
+<p>Variance is a measure of risk</p>
+<p>Covariation between assets play a large role since it influences the variance and thereby where a portfolio lies in relation the efficieny frontier</p>
+<section id="multi-criteria-decision-making" class="level2">
+<h2 class="anchored" data-anchor-id="multi-criteria-decision-making">Multi-criteria decision making</h2>
+<ul>
+<li><p>screen out inferior options</p></li>
+<li><p>consider and weight in multiple criteria</p></li>
+</ul>
+</section>
+<section id="decision-analysis-using-stochastic-dominance" class="level2">
+<h2 class="anchored" data-anchor-id="decision-analysis-using-stochastic-dominance">Decision analysis using stochastic dominance</h2>
+<p>A decision rule of stochastic dominance. Note that this is not a Bayesian decision rule.</p>
+<p>Let us denote uncertainty in a quantity of interest <span class="math inline">\(Q\)</span> under two decision alternatives <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, as <span class="math inline">\(Q_A\)</span> and <span class="math inline">\(Q_B\)</span>. Alternative <span class="math inline">\(A\)</span> is stochastically dominating alternative <span class="math inline">\(B\)</span> of the first order if</p>
+<p><span class="math display">\[P(Q_A\leq q) &lt; P(Q_B\leq q) \ \forall q \]</span> In other words, <span class="math inline">\(A\)</span> is better than <span class="math inline">\(B\)</span> if the cumulative probability distribution for A is always to the right of the cumulative probability distribution for <span class="math inline">\(B\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">ppoints</span>(<span class="dv">200</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Q =</span> <span class="fu">c</span>(<span class="fu">qnorm</span>(pp,<span class="dv">2</span>,<span class="dv">1</span>),<span class="fu">qnorm</span>(pp,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>)), <span class="at">cdf=</span>pp,<span class="at">Alternative =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>),<span class="at">each=</span><span class="fu">length</span>(pp)))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>Q,<span class="at">y=</span>cdf,<span class="at">col=</span>Alternative)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="decision_making_under_uncertainty_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="robust-decison-making" class="level1">
+<h1>Robust decison making</h1>
+<ul>
+<li>Keep options open</li>
+</ul>
+<p>Quantitative: Scenario based analysis</p>
+<p>Fruit break and buses</p>
+</section>
+<section id="uncertainty-analysis" class="level1">
+<h1>Uncertainty analysis</h1>
+<section id="steps" class="level2">
+<h2 class="anchored" data-anchor-id="steps">Steps</h2>
+<ul>
+<li><p>Identify sources of uncertainty</p></li>
+<li><p>Evaluate the combined impact on the conclusion</p></li>
+<li><p>Communicate (un)certainty in conclusion</p></li>
+</ul>
+</section>
+<section id="characterisation-of-overall-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="characterisation-of-overall-uncertainty">Characterisation of overall uncertainty</h2>
+<p>Evaluate in one step the impact of all sources of uncertainty using expert judgement.</p>
+<p>OR</p>
+<p>Break assessment into parts, evaluate the impact on the parts and combine by calculation. Then evaluate the combined impact of any <strong>additional sources of uncertainty</strong> on the conclusion.</p>
+</section>
+<section id="summarise-well" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-well">Summarise well</h2>
+<ul>
+<li>Avoid multiple summaries with an unclear relation</li>
+</ul>
+<p>e.g.&nbsp;summaries of indirect and direct uncertainty (exaplained in class)</p>
+</section>
+<section id="use-an-expression-of-uncertainty-for-which-there-is-a-decision-rule-that-the-decision-maker-is-willing-to-use" class="level2">
+<h2 class="anchored" data-anchor-id="use-an-expression-of-uncertainty-for-which-there-is-a-decision-rule-that-the-decision-maker-is-willing-to-use">Use an expression of uncertainty for which there is a decision rule that the decision maker is willing to use</h2>
+<ul>
+<li>Make sure the decision maker has a decision rule given the way uncertainty is expressed</li>
+</ul>
+<p>Bayesian decision theory matches uncertainty expressed by subjective probability</p>
+<p>second order uncertainty, e.g.&nbsp;a bound on a probability can be minimax rule</p>
+<p>second order uncertainty, where the second order measure indicates reliability of the assessment, set a threshold for reliability and use the resulting bounds with the minimax decision rule</p>
+<p>info-gap decision theory - info-gaps</p>
+<p>qualitative expression, low, moderate, high - define a rule for what action to take given the qualitative expression</p>
+<p>Scenario analysis - an option to consider non-quantified uncertainties</p>
+</section>
+<section id="use-sensitivie-analysis-to-support-characterisation" class="level2">
+<h2 class="anchored" data-anchor-id="use-sensitivie-analysis-to-support-characterisation">Use sensitivie analysis to support characterisation</h2>
+<ul>
+<li>Use sensitivity analysis to support the characterisation of overall uncertainty</li>
+</ul>
+<p>Sensitivity analysis is not a way to quantify uncertainty, it helps to evaluate the influence of changes in model (parameter, structure, assumptions) on the quantity or outcome of interest (model output)</p>
+</section>
+<section id="communicate-remaining-uncertainties" class="level2">
+<h2 class="anchored" data-anchor-id="communicate-remaining-uncertainties">Communicate remaining uncertainties</h2>
+<ul>
+<li><p>Communicate any remaining uncertainties that are not taken into account in the characterisation of overall uncertainty</p></li>
+<li><p>Use verbal to support quantitative expressions (not the other way around)</p></li>
+</ul>
+<p><img src="img/aps.png" class="img-fluid"></p>
+<p><img src="img/DI_Yardstick_HD.jpg" class="img-fluid"></p>
+<p><img src="img/verbals.png" class="img-fluid"></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

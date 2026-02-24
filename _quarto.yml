@@ -32,6 +32,14 @@ website:
         text: Bayesian GLM
       - href: pages/decision_theory.qmd
         text: Decision theory
+      - href: pages/decision_making_under_uncertainty.qmd
+        text: DMU
+      - href: pages/case_study_bmd.qmd
+        text: Case study BMD
+      - href: pages/case_study_sb.qmd
+        text: Case study SB
+      
+        
         
 format:
   html:

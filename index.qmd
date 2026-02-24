@@ -57,21 +57,26 @@ Reading: 1* and 2*
 
 # Second meeting 24-25 Feb
 
-**Tuesday, 24 Feb 2026 (12-16) Världen Geocentrum I** 
+**Tuesday, 24 Feb 2026 (12-16) Pufendorf** 
 
-12.15 Lecture Decision making under uncertainty
+12.15 Lecture [Decision making under uncertainty]()
+<!-- (pages\decision_making_under_uncertainty.qmd) -->
 
 13.15 Case studies on Bayesian data and decision analysis
 
+[Case study BMD](pages/case_study_bmd.qmd)
+
+[Case study SB](pages/case_study_sb.qmd)
+
 BR* (Chapters 11, 13-17) and DBDA* (Chapter 9 and 10) 
 
-14.45 Coffee
+14.45 Coffee (self organised)
 
 15.00 Preparation Literature seminar
 
 16.00 End of day
 
-**Wednesday, 25 Feb 2026 (9-15)**
+**Wednesday, 25 Feb 2026 (9-15) Geocentrum**
 
 09.15 Case studies on Bayesian data and decision analysis
 
@@ -81,7 +86,7 @@ BR* (Chapters 11, 13-17) and DBDA* (Chapter 9 and 10)
 
 13.15 Literature seminar theme 2
 
-13.45 Coffee
+13.45 Coffee (self organised)
 
 14.00 Literature seminar theme 3
 

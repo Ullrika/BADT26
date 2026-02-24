@@ -204,6 +204,18 @@ window.Quarto = {
     <a class="nav-link" href="../pages/decision_theory.html"> 
 <span class="menu-text">Decision theory</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/decision_making_under_uncertainty.html"> 
+<span class="menu-text">DMU</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/case_study_bmd.html"> 
+<span class="menu-text">Case study BMD</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../pages/case_study_sb.html"> 
+<span class="menu-text">Case study SB</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -767,8 +779,8 @@ Note
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 0.000161 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 1.61 seconds.
+Chain 1: Gradient evaluation took 0.000233 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 2.33 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -785,15 +797,15 @@ Chain 1: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 1.867 seconds (Warm-up)
-Chain 1:                1.325 seconds (Sampling)
-Chain 1:                3.192 seconds (Total)
+Chain 1:  Elapsed Time: 1.773 seconds (Warm-up)
+Chain 1:                1.521 seconds (Sampling)
+Chain 1:                3.294 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 8.1e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.81 seconds.
+Chain 2: Gradient evaluation took 2.8e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.28 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -810,15 +822,15 @@ Chain 2: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 2: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 2: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 1.51 seconds (Warm-up)
-Chain 2:                1.218 seconds (Sampling)
-Chain 2:                2.728 seconds (Total)
+Chain 2:  Elapsed Time: 1.894 seconds (Warm-up)
+Chain 2:                1.59 seconds (Sampling)
+Chain 2:                3.484 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 6.3e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.63 seconds.
+Chain 3: Gradient evaluation took 6.7e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.67 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -835,15 +847,15 @@ Chain 3: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 3: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 3: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 2.097 seconds (Warm-up)
-Chain 3:                2.264 seconds (Sampling)
-Chain 3:                4.361 seconds (Total)
+Chain 3:  Elapsed Time: 1.62 seconds (Warm-up)
+Chain 3:                1.503 seconds (Sampling)
+Chain 3:                3.123 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 7.2e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.72 seconds.
+Chain 4: Gradient evaluation took 3.6e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.36 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -860,9 +872,9 @@ Chain 4: Iteration: 800 / 1000 [ 80%]  (Sampling)
 Chain 4: Iteration: 900 / 1000 [ 90%]  (Sampling)
 Chain 4: Iteration: 1000 / 1000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 1.41 seconds (Warm-up)
-Chain 4:                1.621 seconds (Sampling)
-Chain 4:                3.031 seconds (Total)
+Chain 4:  Elapsed Time: 2.031 seconds (Warm-up)
+Chain 4:                2.258 seconds (Sampling)
+Chain 4:                4.289 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -873,9 +885,14 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Examine the pairs() plot to diagnose sampling problems</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
+Running the chains for more iterations may help. See
+https://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: There were 6 divergent transitions after warmup. Increasing
 adapt_delta above 0.8 may help. See
@@ -892,16 +909,16 @@ Formula: bill_depth_mm ~ bill_length_mm + (1 | species)
 Multilevel Hyperparameters:
 ~species (Number of levels: 3) 
               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sd(Intercept)     2.95      1.21     1.38     6.06 1.01      626      718
+sd(Intercept)     2.99      1.36     1.34     7.09 1.01      409      299
 
 Regression Coefficients:
                Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept          8.38      1.64     5.48    11.80 1.01      622      609
-bill_length_mm     0.20      0.02     0.17     0.23 1.00     1662      972
+Intercept          8.42      1.67     5.10    11.65 1.00      682      772
+bill_length_mm     0.20      0.02     0.16     0.23 1.00     1364     1039
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.96      0.04     0.89     1.03 1.00     1296     1148
+sigma     0.95      0.04     0.88     1.03 1.00     1383     1049
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -909,7 +926,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -919,7 +936,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">mcmc_plot</span>(bmod,<span class="at">type=</span><span class="st">"trace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">mcmc_plot</span>(bmod,<span class="at">type=</span><span class="st">"trace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -929,7 +946,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">mcmc_plot</span>(bmod,<span class="at">pars=</span><span class="fu">c</span>(<span class="st">"b_Intercept"</span>,<span class="st">"b_bill_length_mm"</span>),<span class="at">type=</span><span class="st">"scatter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>brms<span class="sc">::</span><span class="fu">mcmc_plot</span>(bmod,<span class="at">pars=</span><span class="fu">c</span>(<span class="st">"b_Intercept"</span>,<span class="st">"b_bill_length_mm"</span>),<span class="at">type=</span><span class="st">"scatter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Argument 'pars' is deprecated. Please use 'variable' instead.</code></pre>
 </div>
@@ -942,24 +959,24 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># investigate model fit</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">loo</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># investigate model fit</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">loo</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Computed from 2000 by 342 log-likelihood matrix.
 
          Estimate   SE
-elpd_loo   -472.0 14.6
-p_loo         5.1  0.7
-looic       944.1 29.2
+elpd_loo   -472.2 14.7
+p_loo         5.2  0.7
+looic       944.3 29.3
 ------
 MCSE of elpd_loo is 0.1.
-MCSE and ESS estimates assume MCMC draws (r_eff in [0.6, 1.1]).
+MCSE and ESS estimates assume MCMC draws (r_eff in [0.6, 1.0]).
 
 All Pareto k estimates are good (k &lt; 0.7).
 See help('pareto-k-diagnostic') for details.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pp_check</span>(bmod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Using 10 posterior draws for ppc type 'dens_overlay' by default.</code></pre>
 </div>
