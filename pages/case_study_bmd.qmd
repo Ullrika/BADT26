@@ -230,7 +230,7 @@ loo_brms
 
 ## Stan 
 
-## Specify and run the model
+### Specify and run the model
 
 ```{r}
 library(cmdstanr)

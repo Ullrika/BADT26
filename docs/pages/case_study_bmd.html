@@ -248,9 +248,9 @@ window.Quarto = {
   <li><a href="#summarise-the-parameters" id="toc-summarise-the-parameters" class="nav-link" data-scroll-target="#summarise-the-parameters">Summarise the parameters</a></li>
   <li><a href="#model-diagnostics" id="toc-model-diagnostics" class="nav-link" data-scroll-target="#model-diagnostics">Model diagnostics</a></li>
   </ul></li>
-  <li><a href="#stan" id="toc-stan" class="nav-link" data-scroll-target="#stan">Stan</a></li>
-  <li><a href="#specify-and-run-the-model-1" id="toc-specify-and-run-the-model-1" class="nav-link" data-scroll-target="#specify-and-run-the-model-1">Specify and run the model</a>
+  <li><a href="#stan" id="toc-stan" class="nav-link" data-scroll-target="#stan">Stan</a>
   <ul class="collapse">
+  <li><a href="#specify-and-run-the-model-1" id="toc-specify-and-run-the-model-1" class="nav-link" data-scroll-target="#specify-and-run-the-model-1">Specify and run the model</a></li>
   <li><a href="#summarise-the-parameters-1" id="toc-summarise-the-parameters-1" class="nav-link" data-scroll-target="#summarise-the-parameters-1">Summarise the parameters</a></li>
   <li><a href="#model-diagnostics-1" id="toc-model-diagnostics-1" class="nav-link" data-scroll-target="#model-diagnostics-1">Model diagnostics</a></li>
   </ul></li>
@@ -697,7 +697,7 @@ Chain 3 Iteration: 1700 / 2000 [ 85%]  (Sampling)
 Chain 3 Iteration: 1800 / 2000 [ 90%]  (Sampling) 
 Chain 3 Iteration: 1900 / 2000 [ 95%]  (Sampling) 
 Chain 3 Iteration: 2000 / 2000 [100%]  (Sampling) 
-Chain 3 finished in 0.1 seconds.
+Chain 3 finished in 0.2 seconds.
 Chain 4 Iteration:    1 / 2000 [  0%]  (Warmup) 
 Chain 4 Iteration:  100 / 2000 [  5%]  (Warmup) 
 Chain 4 Iteration:  200 / 2000 [ 10%]  (Warmup) 
@@ -724,7 +724,7 @@ Chain 4 finished in 0.2 seconds.
 
 All 4 chains finished successfully.
 Mean chain execution time: 0.2 seconds.
-Total execution time: 1.2 seconds.</code></pre>
+Total execution time: 1.8 seconds.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required namespace: rstan</code></pre>
@@ -747,12 +747,12 @@ Formula: y ~ beta0 + beta1 * dose
 
 Regression Coefficients:
                 Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-beta0_Intercept     1.44      0.04     1.37     1.52 1.00     2004     2350
-beta1_Intercept     0.02      0.00     0.02     0.03 1.00     1958     2253
+beta0_Intercept     1.44      0.04     1.37     1.51 1.00     2000     2099
+beta1_Intercept     0.02      0.00     0.02     0.03 1.00     2027     2039
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.33      0.02     0.30     0.36 1.00     2345     2519
+sigma     0.33      0.02     0.30     0.36 1.00     2777     2565
 
 Draws were sampled using sample(hmc). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -838,9 +838,9 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 Computed from 4000 by 175 log-likelihood matrix.
 
          Estimate   SE
-elpd_loo    -53.4  8.0
-p_loo         2.8  0.3
-looic       106.7 16.0
+elpd_loo    -53.3  8.0
+p_loo         2.7  0.3
+looic       106.6 15.9
 ------
 MCSE of elpd_loo is 0.0.
 MCSE and ESS estimates assume MCMC draws (r_eff in [0.5, 1.1]).
@@ -853,9 +853,8 @@ See help('pareto-k-diagnostic') for details.</code></pre>
 </section>
 <section id="stan" class="level2">
 <h2 class="anchored" data-anchor-id="stan">Stan</h2>
-</section>
-<section id="specify-and-run-the-model-1" class="level2">
-<h2 class="anchored" data-anchor-id="specify-and-run-the-model-1">Specify and run the model</h2>
+<section id="specify-and-run-the-model-1" class="level3">
+<h3 class="anchored" data-anchor-id="specify-and-run-the-model-1">Specify and run the model</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cmdstanr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -1035,9 +1034,10 @@ Chain 4 finished in 0.4 seconds.
 
 All 4 chains finished successfully.
 Mean chain execution time: 0.4 seconds.
-Total execution time: 2.0 seconds.</code></pre>
+Total execution time: 2.1 seconds.</code></pre>
 </div>
 </div>
+</section>
 <section id="summarise-the-parameters-1" class="level3">
 <h3 class="anchored" data-anchor-id="summarise-the-parameters-1">Summarise the parameters</h3>
 <div class="cell">
@@ -1046,9 +1046,9 @@ Total execution time: 2.0 seconds.</code></pre>
 <pre><code># A tibble: 3 × 10
   variable   mean median       sd      mad     q5    q95  rhat ess_bulk ess_tail
   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 sigma    0.327  0.326  0.0179   0.0180   0.298  0.357   1.00    2625.    1970.
-2 beta0    1.44   1.44   0.0363   0.0370   1.38   1.50    1.00    2175.    2439.
-3 beta1    0.0247 0.0247 0.000657 0.000650 0.0236 0.0258  1.00    2169.    2137.</code></pre>
+1 sigma    0.327  0.326  0.0180   0.0175   0.299  0.358   1.00    2644.    2262.
+2 beta0    1.44   1.44   0.0366   0.0366   1.38   1.50    1.00    1994.    2215.
+3 beta1    0.0247 0.0247 0.000661 0.000649 0.0236 0.0258  1.00    1914.    2564.</code></pre>
 </div>
 </div>
 </section>
@@ -1173,7 +1173,7 @@ Computed from 4000 by 175 log-likelihood matrix.
          Estimate   SE
 elpd_loo    -53.3  8.0
 p_loo         2.7  0.3
-looic       106.7 16.0
+looic       106.6 16.0
 ------
 MCSE of elpd_loo is 0.0.
 MCSE and ESS estimates assume MCMC draws (r_eff in [0.5, 1.3]).
